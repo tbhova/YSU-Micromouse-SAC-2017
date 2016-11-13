@@ -118,3 +118,6 @@ DEFINES += "TEENSYDUINO=130"
 
 OTHER_FILES += platformio.ini
 
+SOURCES += \
+    src/main.cpp
+
