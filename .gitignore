@@ -1,3 +1,4 @@
 .user
 .pioenvs
 .piolibdeps
+*.user.*
