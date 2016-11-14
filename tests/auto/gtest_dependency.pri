@@ -1,3 +1,5 @@
+GOOGLETEST_DIR = $$PWD\..\..\googletest-release-1.8.0
+
 isEmpty(GOOGLETEST_DIR):GOOGLETEST_DIR=$$(GOOGLETEST_DIR)
 
 isEmpty(GOOGLETEST_DIR) {
