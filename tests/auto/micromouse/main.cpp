@@ -1,4 +1,5 @@
 #include "tst_micromouse.h"
+#include "mazetest.h"
 
 #include <gtest/gtest.h>
 

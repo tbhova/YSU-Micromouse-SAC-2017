@@ -119,5 +119,11 @@ DEFINES += "TEENSYDUINO=130"
 OTHER_FILES += platformio.ini
 
 SOURCES += \
-    src/main.cpp
+    src/main.cpp \
+    src/maze.cpp
+
+HEADERS += \
+    src/maze.h \
+    src/cardinal8.h \
+    src/micromouseexception.h
 
