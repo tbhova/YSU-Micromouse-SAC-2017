@@ -120,10 +120,27 @@ OTHER_FILES += platformio.ini
 
 SOURCES += \
     src/main.cpp \
-    src/maze.cpp
+    src/maze.cpp \
+    src/stopgodriver.cpp \
+    src/breadthfirstgps.cpp \
+    src/infraredsensor.cpp \
+    src/infraredsensorarray.cpp \
+    src/motors.cpp \
+    src/motor.cpp \
+    src/encoders.cpp \
+    src/encoder.cpp
 
 HEADERS += \
     src/maze.h \
     src/cardinal8.h \
-    src/micromouseexception.h
+    src/micromouseexception.h \
+    src/pins.h \
+    src/navigator.h \
+    src/driver.h \
+    src/stopgodriver.h \
+    src/gps.h \
+    src/breadthfirstgps.h \
+    src/infraredsensorarray.h \
+    src/motors.h \
+    src/encoders.h
 
