@@ -7,7 +7,7 @@ CONFIG -= app_bundle
 CONFIG += thread
 CONFIG -= qt
 
-HEADERS +=     tst_micromouse.h \
+HEADERS +=     \
     mazetest.h
 
 SOURCES +=     main.cpp

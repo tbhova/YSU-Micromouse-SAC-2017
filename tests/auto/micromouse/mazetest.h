@@ -5,8 +5,32 @@
 #include "../../src/src/maze.cpp"
 
 using namespace testing;
+using namespace std;
 
-TEST(MicromouseMaze, TestConstructor) {
+class MazeTest : public ::testing::Test {
+private:
+    int sizeX, sizeY;
+    Maze* maze;
+
+public:
+    MazeTest() {
+        srand(time(NULL));
+        sizeX = 16;
+        sizeY = 16;
+        maze = new Maze(sizeX, sizeY);
+    };
+
+    int getSizeX() const { return sizeX; }
+    int getSizeY() const { return sizeY; }
+    int getLastX() const { return sizeX - 1; }
+    int getLastY() const { return sizeY - 1; }
+    int getMiddleX() const { return rand() % (sizeX - 2) + 1; }
+    int getMiddleY() const { return rand() % (sizeY - 2) + 1; }
+
+    Maze getMaze() const { return *maze; }
+};
+
+TEST_F(MazeTest, TestConstructor) {
 	Maze m = Maze(16,16);
 	EXPECT_EQ(m.getSizeX(), 16);
 	ASSERT_EQ(m.getSizeY(), 16);
@@ -15,7 +39,7 @@ TEST(MicromouseMaze, TestConstructor) {
 	ASSERT_EQ(m.getSizeY(), 4);
 }
 
-TEST(MicromouseMaze, TestPerimeterWalls) {
+TEST_F(MazeTest, TestPerimeterWalls) {
 	Maze m = Maze(16,16);
 
 	for (int x = 0; x < m.getSizeX(); x++) {
@@ -29,30 +53,49 @@ TEST(MicromouseMaze, TestPerimeterWalls) {
 
 }
 
-TEST(MicromouseMaze, TestWallsEmptyCell) {
+TEST_F(MazeTest, TestWallsEmptyCell) {
+    const int size_x = 16, size_y = 16;
+    Maze m = Maze(size_x, size_y);
+    srand(time(NULL));
+
+    //generate random number between 1 and size_x - 1 (a middle box)
+    const int x = rand() % (size_x - 2) + 1;
+    const int y = rand() % (size_y - 2) + 1;
+
+    for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+        EXPECT_FALSE(m.isWall(x, y, *it));
+    }
+}
+
+TEST_F(MazeTest, TestInsertWallAndAdjacentCell) {
+    const int size_x = 16, size_y = 16;
+    Maze m = Maze(size_x, size_y);
+    srand(time(NULL));
+
+    //generate random number between 1 and size_x - 1 (a middle box)
+    const int x = rand() % (size_x - 2) + 1;
+    const int y = rand() % (size_y - 2) + 1;
+    const int directionIndex = rand() % 4;
+
+    m.placeWall(x, y, primaryCardinalList.at(directionIndex));
+}
+
+TEST_F(MazeTest, TestInsertDuplicateWall) {
 	Maze m = Maze(16,16);
 }
 
-TEST(MicromouseMaze, TestInsertWallAndAdjacentCell) {
+TEST_F(MazeTest, TestWallsFullCell) {
 	Maze m = Maze(16,16);
 }
 
-TEST(MicromouseMaze, TestInsertDuplicateWall) {
+TEST_F(MazeTest, TestRemoveWallsEmpty) {
 	Maze m = Maze(16,16);
 }
 
-TEST(MicromouseMaze, TestWallsFullCell) {
+TEST_F(MazeTest, TestRemovePerimeterWalls) {
 	Maze m = Maze(16,16);
 }
 
-TEST(MicromouseMaze, TestRemoveWallsEmpty) {
-	Maze m = Maze(16,16);
-}
-
-TEST(MicromouseMaze, TestRemovePerimeterWalls) {
-	Maze m = Maze(16,16);
-}
-
-TEST(MicromouseMaze, TestRemoveWallAndAdjacentCell) {
+TEST_F(MazeTest, TestRemoveWallAndAdjacentCell) {
 	Maze m = Maze(16,16);
 }

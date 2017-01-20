@@ -40,8 +40,8 @@ Maze::Maze(const int sizeX, const int sizeY) : sizeX(sizeX), sizeY(sizeY){
 }
 
 int Maze::cardinalToBit(Cardinal8 dir) {
-	// If we get NE/SE/NW/SW
-	int dirInt = (int)dir;
+    int dirInt = (int)dir;
+//     If we get NE/SE/NW/SW
 //	if ((dirInt % 2) == 1) {
 //		throw MicromouseException("Can only convert NSWE to bit, given " + dir);
 //	}
