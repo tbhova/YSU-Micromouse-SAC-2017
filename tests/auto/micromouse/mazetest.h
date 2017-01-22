@@ -8,94 +8,104 @@ using namespace testing;
 using namespace std;
 
 class MazeTest : public ::testing::Test {
-private:
-    int sizeX, sizeY;
-    Maze* maze;
+protected:
+    const int sizeX = 16, sizeY = 16;
+    int middleX, middleY;
+    Maze maze = Maze(sizeX, sizeY);
 
 public:
     MazeTest() {
         srand(time(NULL));
-        sizeX = 16;
-        sizeY = 16;
-        maze = new Maze(sizeX, sizeY);
+
+        //chose a box in the middle between 1 and size - 2
+        middleX = rand() % (sizeX - 2) + 1;
+        middleY = rand() % (sizeY - 2) + 1;
     };
-
-    int getSizeX() const { return sizeX; }
-    int getSizeY() const { return sizeY; }
-    int getLastX() const { return sizeX - 1; }
-    int getLastY() const { return sizeY - 1; }
-    int getMiddleX() const { return rand() % (sizeX - 2) + 1; }
-    int getMiddleY() const { return rand() % (sizeY - 2) + 1; }
-
-    Maze getMaze() const { return *maze; }
 };
 
 TEST_F(MazeTest, TestConstructor) {
-	Maze m = Maze(16,16);
-	EXPECT_EQ(m.getSizeX(), 16);
-	ASSERT_EQ(m.getSizeY(), 16);
-	m = Maze(12, 4);
-	EXPECT_EQ(m.getSizeX(), 12);
-	ASSERT_EQ(m.getSizeY(), 4);
+    Maze m = Maze(16,16);
+    EXPECT_EQ(m.getSizeX(), 16);
+    ASSERT_EQ(m.getSizeY(), 16);
+    m = Maze(12, 4);
+    EXPECT_EQ(m.getSizeX(), 12);
+    ASSERT_EQ(m.getSizeY(), 4);
 }
 
+/**
+ * @brief TestPerimeterWalls
+ * Test that there are perimeter walls and no walls in the middle
+ */
 TEST_F(MazeTest, TestPerimeterWalls) {
-	Maze m = Maze(16,16);
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
 
-	for (int x = 0; x < m.getSizeX(); x++) {
-		ASSERT_TRUE(m.isWall(x, 0, South));
-		ASSERT_TRUE(m.isWall(x, m.getSizeY() - 1, North));
-	}
-	for (int y = 0; y < m.getSizeX(); y++) {
-		ASSERT_TRUE(m.isWall(0, y, West));
-		ASSERT_TRUE(m.isWall(m.getSizeX() - 1, y, East));
-	}
+            const bool southWall = maze.isWall(x, y, South),
+                       northWall = maze.isWall(x, y, North),
+                       westWall  = maze.isWall(x, y, West),
+                       eastWall  = maze.isWall(x, y, East);
 
+            if (y == 0) { ASSERT_TRUE(southWall); }
+            else { ASSERT_FALSE(southWall); }
+
+            if (y == maze.getSizeY() - 1) { ASSERT_TRUE(northWall); }
+            else { ASSERT_FALSE(northWall); }
+
+            if (x == 0) { ASSERT_TRUE(westWall); }
+            else { ASSERT_FALSE(westWall); }
+
+            if (x == maze.getSizeX() - 1) { ASSERT_TRUE(eastWall); }
+            else { ASSERT_FALSE(eastWall); }
+        }
+    }
 }
 
 TEST_F(MazeTest, TestWallsEmptyCell) {
-    const int size_x = 16, size_y = 16;
-    Maze m = Maze(size_x, size_y);
-    srand(time(NULL));
-
-    //generate random number between 1 and size_x - 1 (a middle box)
-    const int x = rand() % (size_x - 2) + 1;
-    const int y = rand() % (size_y - 2) + 1;
-
     for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
-        EXPECT_FALSE(m.isWall(x, y, *it));
+        EXPECT_FALSE(maze.isWall(middleX, middleY, *it));
     }
 }
 
 TEST_F(MazeTest, TestInsertWallAndAdjacentCell) {
-    const int size_x = 16, size_y = 16;
-    Maze m = Maze(size_x, size_y);
-    srand(time(NULL));
-
-    //generate random number between 1 and size_x - 1 (a middle box)
-    const int x = rand() % (size_x - 2) + 1;
-    const int y = rand() % (size_y - 2) + 1;
     const int directionIndex = rand() % 4;
+    const Cardinal8 randomDirection = primaryCardinalList.at(directionIndex);
 
-    m.placeWall(x, y, primaryCardinalList.at(directionIndex));
+    maze.placeWall(middleX, middleY, randomDirection);
+
+    ASSERT_TRUE(maze.isWall(middleX, middleY, randomDirection));
+
+    int x = middleX, y = middleY;
+    switch (randomDirection) {
+    case North:
+        y++;
+        break;
+    case South:
+        y--;
+        break;
+    case West:
+        x--;
+        break;
+    case East:
+        x++;
+        break;
+    default:
+        break;
+    }
+
+//    ASSERT_TRUE(maze.isWall(x, y, oppositeDirection(randomDirection)));
 }
 
 TEST_F(MazeTest, TestInsertDuplicateWall) {
-	Maze m = Maze(16,16);
 }
 
 TEST_F(MazeTest, TestWallsFullCell) {
-	Maze m = Maze(16,16);
 }
 
 TEST_F(MazeTest, TestRemoveWallsEmpty) {
-	Maze m = Maze(16,16);
 }
 
 TEST_F(MazeTest, TestRemovePerimeterWalls) {
-	Maze m = Maze(16,16);
 }
 
 TEST_F(MazeTest, TestRemoveWallAndAdjacentCell) {
-	Maze m = Maze(16,16);
 }
