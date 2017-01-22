@@ -3,6 +3,7 @@
 
 #include "cardinal8.h"
 #include <vector>
+#include "coordinate.h"
 
 class Maze {
 
@@ -15,16 +16,20 @@ private:
 
 	public:
 		Cell();
-		void placeWall(Cardinal8 dir);
-		void removeWall(Cardinal8 dir);
-		bool isWall(Cardinal8 dir) const;
+        void placeWall(const Cardinal8 dir);
+        void removeWall(const Cardinal8 dir);
+        bool isWall(const Cardinal8 dir) const;
 		bool isVisited() const { return visitied; }
 	};
 
 	int sizeX, sizeY;
 	std::vector<std::vector<Cell>> mazeCells = std::vector<std::vector<Cell>>();
 
-	static int cardinalToBit(Cardinal8 dir);
+    static int cardinalToBit(const Cardinal8 dir);
+    static Coordinate adjacentCell(const int x, const int y, const Cardinal8 dir);
+
+    bool isValidCell(const Coordinate cell) const;
+    bool isValidCell(const int x, const int y) const;
 
 
 public:
@@ -33,9 +38,9 @@ public:
 	int getSizeX() const { return sizeX; }
 	int getSizeY() const { return sizeY; }
 
-	void placeWall(int x, int y, Cardinal8 dir);
-	void removeWall(int x, int y, Cardinal8 dir);
-	bool isWall(int x, int y, Cardinal8 dir) const;
+    void placeWall(const int x, const int y, const Cardinal8 dir);
+    void removeWall(const int x, const int y, const Cardinal8 dir);
+    bool isWall(const int x, const int y, const Cardinal8 dir) const;
 
 };
 

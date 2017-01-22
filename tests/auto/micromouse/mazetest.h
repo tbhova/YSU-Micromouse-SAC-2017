@@ -66,7 +66,17 @@ TEST_F(MazeTest, TestWallsEmptyCell) {
     }
 }
 
-TEST_F(MazeTest, TestInsertWallAndAdjacentCell) {
+TEST_F(MazeTest, TestInsertAdjacentBoundaryWalls) {
+    for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+        maze.placeWall(0,0, *it);
+        ASSERT_TRUE(maze.isWall(0, 0, *it));
+    }
+    ASSERT_TRUE(maze.isWall(0, 1, West));
+    ASSERT_TRUE(maze.isWall(1, 0, South));
+}
+
+TEST_F(MazeTest, TestInsertAndRemoveWallAdjacency) {
+    //insert a wall
     const int directionIndex = rand() % 4;
     const Cardinal8 randomDirection = primaryCardinalList.at(directionIndex);
 
@@ -92,20 +102,30 @@ TEST_F(MazeTest, TestInsertWallAndAdjacentCell) {
         break;
     }
 
-//    ASSERT_TRUE(maze.isWall(x, y, oppositeDirection(randomDirection)));
+    ASSERT_TRUE(maze.isWall(x, y, oppositeDirection(randomDirection)));
+
+    //remove the wall
+    maze.removeWall(middleX, middleY, randomDirection);
+    ASSERT_FALSE(maze.isWall(middleX, middleY, randomDirection));
+    ASSERT_FALSE(maze.isWall(x, y, oppositeDirection(randomDirection)));
 }
 
-TEST_F(MazeTest, TestInsertDuplicateWall) {
+TEST_F(MazeTest, TestRemoveBoundaryWall) {
+    maze.placeWall(0,0, North);
+    maze.removeWall(0,1, South);
+    ASSERT_FALSE(maze.isWall(0, 0, North));
 }
 
-TEST_F(MazeTest, TestWallsFullCell) {
-}
+TEST_F(MazeTest, TestInsertAndRemoveAllWalls) {
+    for (int x = 0; x < sizeX; x++) {
+        for (int y = 0; y < sizeY; y++) {
+            for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+                maze.placeWall(x, y, *it);
+                ASSERT_TRUE(maze.isWall(x, y, *it));
 
-TEST_F(MazeTest, TestRemoveWallsEmpty) {
-}
-
-TEST_F(MazeTest, TestRemovePerimeterWalls) {
-}
-
-TEST_F(MazeTest, TestRemoveWallAndAdjacentCell) {
+                maze.removeWall(x, y, *it);
+                ASSERT_FALSE(maze.isWall(x, y, *it));
+            }
+        }
+    }
 }
