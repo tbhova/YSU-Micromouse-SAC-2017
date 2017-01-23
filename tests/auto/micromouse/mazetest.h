@@ -5,54 +5,127 @@
 #include "../../src/src/maze.cpp"
 
 using namespace testing;
+using namespace std;
 
-TEST(MicromouseMaze, TestConstructor) {
-	Maze m = Maze(16,16);
-	EXPECT_EQ(m.getSizeX(), 16);
-	ASSERT_EQ(m.getSizeY(), 16);
-	m = Maze(12, 4);
-	EXPECT_EQ(m.getSizeX(), 12);
-	ASSERT_EQ(m.getSizeY(), 4);
+class MazeTest : public ::testing::Test {
+protected:
+    const int sizeX = 16, sizeY = 16;
+    int middleX, middleY;
+    Maze maze = Maze(sizeX, sizeY);
+
+public:
+    MazeTest() {
+        srand(time(NULL));
+
+        //chose a box in the middle between 1 and size - 2
+        middleX = rand() % (sizeX - 2) + 1;
+        middleY = rand() % (sizeY - 2) + 1;
+    };
+};
+
+TEST_F(MazeTest, TestConstructor) {
+    Maze m = Maze(16,16);
+    EXPECT_EQ(m.getSizeX(), 16);
+    ASSERT_EQ(m.getSizeY(), 16);
+    m = Maze(12, 4);
+    EXPECT_EQ(m.getSizeX(), 12);
+    ASSERT_EQ(m.getSizeY(), 4);
 }
 
-TEST(MicromouseMaze, TestPerimeterWalls) {
-	Maze m = Maze(16,16);
+/**
+ * @brief TestPerimeterWalls
+ * Test that there are perimeter walls and no walls in the middle
+ */
+TEST_F(MazeTest, TestPerimeterWalls) {
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
 
-	for (int x = 0; x < m.getSizeX(); x++) {
-		ASSERT_TRUE(m.isWall(x, 0, South));
-		ASSERT_TRUE(m.isWall(x, m.getSizeY() - 1, North));
-	}
-	for (int y = 0; y < m.getSizeX(); y++) {
-		ASSERT_TRUE(m.isWall(0, y, West));
-		ASSERT_TRUE(m.isWall(m.getSizeX() - 1, y, East));
-	}
+            const bool southWall = maze.isWall(x, y, South),
+                       northWall = maze.isWall(x, y, North),
+                       westWall  = maze.isWall(x, y, West),
+                       eastWall  = maze.isWall(x, y, East);
 
+            if (y == 0) { ASSERT_TRUE(southWall); }
+            else { ASSERT_FALSE(southWall); }
+
+            if (y == maze.getSizeY() - 1) { ASSERT_TRUE(northWall); }
+            else { ASSERT_FALSE(northWall); }
+
+            if (x == 0) { ASSERT_TRUE(westWall); }
+            else { ASSERT_FALSE(westWall); }
+
+            if (x == maze.getSizeX() - 1) { ASSERT_TRUE(eastWall); }
+            else { ASSERT_FALSE(eastWall); }
+        }
+    }
 }
 
-TEST(MicromouseMaze, TestWallsEmptyCell) {
-	Maze m = Maze(16,16);
+TEST_F(MazeTest, TestWallsEmptyCell) {
+    for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+        EXPECT_FALSE(maze.isWall(middleX, middleY, *it));
+    }
 }
 
-TEST(MicromouseMaze, TestInsertWallAndAdjacentCell) {
-	Maze m = Maze(16,16);
+TEST_F(MazeTest, TestInsertAdjacentBoundaryWalls) {
+    for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+        maze.placeWall(0,0, *it);
+        ASSERT_TRUE(maze.isWall(0, 0, *it));
+    }
+    ASSERT_TRUE(maze.isWall(0, 1, West));
+    ASSERT_TRUE(maze.isWall(1, 0, South));
 }
 
-TEST(MicromouseMaze, TestInsertDuplicateWall) {
-	Maze m = Maze(16,16);
+TEST_F(MazeTest, TestInsertAndRemoveWallAdjacency) {
+    //insert a wall
+    const int directionIndex = rand() % 4;
+    const Cardinal8 randomDirection = primaryCardinalList.at(directionIndex);
+
+    maze.placeWall(middleX, middleY, randomDirection);
+
+    ASSERT_TRUE(maze.isWall(middleX, middleY, randomDirection));
+
+    int x = middleX, y = middleY;
+    switch (randomDirection) {
+    case North:
+        y++;
+        break;
+    case South:
+        y--;
+        break;
+    case West:
+        x--;
+        break;
+    case East:
+        x++;
+        break;
+    default:
+        break;
+    }
+
+    ASSERT_TRUE(maze.isWall(x, y, oppositeDirection(randomDirection)));
+
+    //remove the wall
+    maze.removeWall(middleX, middleY, randomDirection);
+    ASSERT_FALSE(maze.isWall(middleX, middleY, randomDirection));
+    ASSERT_FALSE(maze.isWall(x, y, oppositeDirection(randomDirection)));
 }
 
-TEST(MicromouseMaze, TestWallsFullCell) {
-	Maze m = Maze(16,16);
+TEST_F(MazeTest, TestRemoveBoundaryWall) {
+    maze.placeWall(0,0, North);
+    maze.removeWall(0,1, South);
+    ASSERT_FALSE(maze.isWall(0, 0, North));
 }
 
-TEST(MicromouseMaze, TestRemoveWallsEmpty) {
-	Maze m = Maze(16,16);
-}
+TEST_F(MazeTest, TestInsertAndRemoveAllWalls) {
+    for (int x = 0; x < sizeX; x++) {
+        for (int y = 0; y < sizeY; y++) {
+            for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+                maze.placeWall(x, y, *it);
+                ASSERT_TRUE(maze.isWall(x, y, *it));
 
-TEST(MicromouseMaze, TestRemovePerimeterWalls) {
-	Maze m = Maze(16,16);
-}
-
-TEST(MicromouseMaze, TestRemoveWallAndAdjacentCell) {
-	Maze m = Maze(16,16);
+                maze.removeWall(x, y, *it);
+                ASSERT_FALSE(maze.isWall(x, y, *it));
+            }
+        }
+    }
 }

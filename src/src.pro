@@ -133,7 +133,6 @@ SOURCES += \
 HEADERS += \
     src/maze.h \
     src/cardinal8.h \
-    src/micromouseexception.h \
     src/pins.h \
     src/navigator.h \
     src/driver.h \
@@ -142,5 +141,6 @@ HEADERS += \
     src/breadthfirstgps.h \
     src/infraredsensorarray.h \
     src/motors.h \
-    src/encoders.h
+    src/encoders.h \
+    src/coordinate.h
 
