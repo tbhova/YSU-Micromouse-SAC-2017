@@ -41,7 +41,9 @@ public:
     void placeWall(const int x, const int y, const Cardinal8 dir);
     void removeWall(const int x, const int y, const Cardinal8 dir);
     bool isWall(const int x, const int y, const Cardinal8 dir) const;
+    bool isWall(const int x1, const int y1, const int x2, const int y2) const;
 
+    std::vector<Coordinate> getNeighboringCells(const int x, const int y) const;
 };
 
 #endif // MAZE_H

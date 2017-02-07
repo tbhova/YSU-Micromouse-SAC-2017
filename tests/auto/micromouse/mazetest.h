@@ -3,6 +3,10 @@
 
 #include "../../src/src/maze.h"
 #include "../../src/src/maze.cpp"
+#include "../../src/src/coordinate.h"
+
+#include <vector>
+#include <algorithm>
 
 using namespace testing;
 using namespace std;
@@ -128,4 +132,38 @@ TEST_F(MazeTest, TestInsertAndRemoveAllWalls) {
             }
         }
     }
+}
+
+bool containsCoordinate(const vector<Coordinate>& vec, const int x, const int y) {
+    return any_of(vec.begin(), vec.end(), [x, y](Coordinate c) {return Coordinate(x,y) == c; });
+}
+
+TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
+    //Expect cell 0,0 to have neighbors of 0,1 and 1,0
+    vector<Coordinate> neighbors = maze.getNeighboringCells(0,0);
+
+    EXPECT_EQ(neighbors.size(), 2);
+
+    EXPECT_TRUE(containsCoordinate(neighbors, 0, 1));
+    ASSERT_TRUE(containsCoordinate(neighbors, 1, 0));
+}
+
+TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellEmpty) {
+    vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
+
+    EXPECT_EQ(neighbors.size(), 4);
+
+    ASSERT_TRUE(containsCoordinate(neighbors, middleX + 1, middleY));
+    ASSERT_TRUE(containsCoordinate(neighbors, middleX - 1, middleY));
+    ASSERT_TRUE(containsCoordinate(neighbors, middleX, middleY + 1));
+    ASSERT_TRUE(containsCoordinate(neighbors, middleX, middleY - 1));
+}
+
+TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellFull) {
+    for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+        maze.placeWall(middleX, middleY, *it);
+    }
+
+    vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
+    EXPECT_EQ(neighbors.size(), 0);
 }

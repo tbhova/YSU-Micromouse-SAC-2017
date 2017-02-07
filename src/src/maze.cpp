@@ -1,5 +1,7 @@
 #include "maze.h"
 
+using namespace std;
+
 Maze::Cell::Cell() {
 	visitied = false;
 	walls = 0;
@@ -99,4 +101,18 @@ void Maze::removeWall(const int x, const int y, const Cardinal8 dir) {
 
 bool Maze::isWall(const int x, const int y, const Cardinal8 dir) const {
 	return mazeCells.at(x).at(y).isWall(dir);
+}
+
+vector<Coordinate> Maze::getNeighboringCells(const int x, const int y) const {
+    vector<Coordinate> answer = vector<Coordinate>();
+
+    if (isValidCell(x, y)) {
+        for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
+            if (!isWall(x, y, *it)) {
+                answer.push_back(adjacentCell(x, y, *it));
+            }
+        }
+    }
+
+    return answer;
 }
