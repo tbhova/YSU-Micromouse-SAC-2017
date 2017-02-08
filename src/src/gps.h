@@ -14,16 +14,15 @@ class GPS {
 public:
     GPS();
     virtual Cardinal8 nextDirection() = 0;
-
-    Coordinate askForDirectionToXY(Coordinate cell, Coordinate cell, Coordinate cell, Coordinate cell);
+    /**
+     * @brief askForDirectionToXY - Request the directions from current cell to New Cell
+     * @param cell - Current Cell
+     * @param cell - Destination Cell
+     * @return Direction to the new cell
+     */
+    Coordinate askForDirectionToXY(Coordinate cell, Coordinate cell);
 
 protected:
     Maze &maze;
 };
-
-    askForDirectionToXY(Coordinate cell,Coordinate cell, Coordinate cell, Coordinate cell) {
-
-
-
-
 #endif // GPS_H
