@@ -19,7 +19,7 @@ private:
 
     void updateMaze(); //Get wall data from Driver and adjust maze
 
-    //isnt this what the for loop is doing in the cpp file?
+   
     Coordinate findUnvisitedCell();
         //Search maze for a cell.visited = false
         //determine coordinates of cell

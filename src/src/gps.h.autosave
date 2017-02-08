@@ -21,9 +21,5 @@ protected:
     Maze &maze;
 };
 
-    askForDirectionToXY(Coordinate cell,Coordinate cell, Coordinate cell, Coordinate cell) {
-
-
-
 
 #endif // GPS_H
