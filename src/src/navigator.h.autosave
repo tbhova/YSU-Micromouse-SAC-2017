@@ -19,10 +19,17 @@ private:
 
     void updateMaze(); //Get wall data from Driver and adjust maze
 
+<<<<<<< Updated upstream
    
     Coordinate findUnvisitedCell();
         //Search maze for a cell.visited = false
         //determine coordinates of cell
+=======
+    Coordinate findUnvisitedCell();
+        //Search maze for a cell.visited = false
+        //determine coordinates of cell
+    bool isDestination(); //Returns whether a cell is the destination
+>>>>>>> Stashed changes
 
 public:
     Navigator();
@@ -36,7 +43,11 @@ public:
 
 protected:
 
+<<<<<<< Updated upstream
     void map();
+=======
+    Coordinate map();
+>>>>>>> Stashed changes
     void optimalRoute();
 
 
