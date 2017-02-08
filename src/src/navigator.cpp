@@ -3,23 +3,23 @@
 Navigator::findUnvisitedCell() {
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++)
-                if (maze.hasMouseVisited((x,y) && /*notDestination (7,7 7,8 8,7 8,8)*/)){
-                    //I am unsure of what else needs to be done to this statement
-                    //findbox(x,y);
+                if (!Maze.hasMouseVisited(x,y) && isDestination(x,y)){
+                    findbox(x,y);
                     break;
                 }
         }
 }
 Navigator::isDestination() {
-    //Replace Hardcoded cordinates with variable
+    //Replace Hardcoded cordinates with variable destination
     if ( cell == (7,7) || (7,8) || (8,7) || (8,8) ) {
-        return true;
-    else
         return false;
+    else
+        return true;
     }
 }
-    findBox(x, y) { //Does this go here?
+//what data type are we saving the path from GPS in? IE what data type will the output of findBox be?
+    findBox(x, y) {
         updateMaze();
         Cardinal8 direction = GPS.askForDirectionToXY(CurX, CurY, x, y);
     }
-}
+
