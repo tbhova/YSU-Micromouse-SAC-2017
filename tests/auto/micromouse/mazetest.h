@@ -142,7 +142,7 @@ TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
     //Expect cell 0,0 to have neighbors of 0,1 and 1,0
     vector<Coordinate> neighbors = maze.getNeighboringCells(0,0);
 
-    EXPECT_EQ(neighbors.size(), 2);
+    EXPECT_EQ(neighbors.size(), (unsigned int)2);
 
     EXPECT_TRUE(containsCoordinate(neighbors, 0, 1));
     ASSERT_TRUE(containsCoordinate(neighbors, 1, 0));
@@ -151,7 +151,7 @@ TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
 TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellEmpty) {
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
 
-    EXPECT_EQ(neighbors.size(), 4);
+    EXPECT_EQ(neighbors.size(), (unsigned int)4);
 
     ASSERT_TRUE(containsCoordinate(neighbors, middleX + 1, middleY));
     ASSERT_TRUE(containsCoordinate(neighbors, middleX - 1, middleY));
@@ -165,7 +165,7 @@ TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellFull) {
     }
 
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
-    EXPECT_EQ(neighbors.size(), 0);
+    EXPECT_EQ(neighbors.size(), (unsigned int)0);
 }
 
 TEST_F(MazeTest, TestMouseVisited) {
