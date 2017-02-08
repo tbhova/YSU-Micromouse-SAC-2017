@@ -128,7 +128,8 @@ SOURCES += \
     src/motors.cpp \
     src/motor.cpp \
     src/encoders.cpp \
-    src/encoder.cpp
+    src/encoder.cpp \
+    src/navigator.cpp
 
 HEADERS += \
     src/maze.h \

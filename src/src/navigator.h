@@ -12,7 +12,7 @@
 
 class Navigator {
 private:
-    //Memeber Data
+    //Member Data
     Driver driver;
     GPS directions;
     Maze maze;
