@@ -167,3 +167,39 @@ TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellFull) {
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
     EXPECT_EQ(neighbors.size(), 0);
 }
+
+TEST_F(MazeTest, TestMouseVisited) {
+    maze.setMouseVisited(middleX, middleY);
+
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
+            bool isVisited = false;
+            if (x == middleX && y == middleY) {
+                isVisited = true;
+            }
+            ASSERT_EQ(maze.hasMouseVisited(x, y), isVisited);
+        }
+    }
+}
+
+TEST_F(MazeTest, TestTraversalVisted) {
+    maze.setTraversalVisited(middleX, middleY);
+
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
+            bool isVisited = false;
+            if (x == middleX && y == middleY) {
+                isVisited = true;
+            }
+            ASSERT_EQ(maze.hasTraversalVisited(x, y), isVisited);
+        }
+    }
+
+    maze.resetTraversalVisited();
+
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
+            ASSERT_FALSE(maze.hasTraversalVisited(x, y));
+        }
+    }
+}

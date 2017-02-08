@@ -3,7 +3,8 @@
 using namespace std;
 
 Maze::Cell::Cell() {
-	visitied = false;
+    visited = false;
+    traversalVisited = false;
 	walls = 0;
 }
 
@@ -78,29 +79,45 @@ bool Maze::isValidCell(const int x, const int y) const {
     return (x >=0) && (x < sizeX) && (y >= 0) && (y < sizeY);
 }
 
+const Maze::Cell& Maze::getCell(const int x, const int y) const {
+    return mazeCells.at(x).at(y);
+}
+
+const Maze::Cell& Maze::getCell(const Coordinate cell) const {
+    return getCell(cell.x, cell.y);
+}
+
+Maze::Cell& Maze::getCell(const int x, const int y) {
+    return mazeCells.at(x).at(y);
+}
+
+Maze::Cell& Maze::getCell(const Coordinate cell) {
+    return getCell(cell.x, cell.y);
+}
+
 void Maze::placeWall(const int x, const int y, const Cardinal8 dir) {
-	mazeCells.at(x).at(y).placeWall(dir);
+    getCell(x, y).placeWall(dir);
 
     Coordinate adj = adjacentCell(x, y, dir);
     if (!isValidCell(adj)) return;
 
     Cardinal8 oppDir = oppositeDirection(dir);
-    mazeCells.at(adj.x).at(adj.y).placeWall(oppDir);
+    getCell(adj).placeWall(oppDir);
 }
 
 void Maze::removeWall(const int x, const int y, const Cardinal8 dir) {
-	mazeCells.at(x).at(y).removeWall(dir);
+    getCell(x, y).removeWall(dir);
 
     Coordinate adj = adjacentCell(x, y, dir);
     if (!isValidCell(adj)) return;
 
     Cardinal8 oppDir = oppositeDirection(dir);
-    mazeCells.at(adj.x).at(adj.y).removeWall(oppDir);
+    getCell(adj).removeWall(oppDir);
 }
 
 
 bool Maze::isWall(const int x, const int y, const Cardinal8 dir) const {
-	return mazeCells.at(x).at(y).isWall(dir);
+    return getCell(x, y).isWall(dir);
 }
 
 vector<Coordinate> Maze::getNeighboringCells(const int x, const int y) const {
@@ -115,4 +132,44 @@ vector<Coordinate> Maze::getNeighboringCells(const int x, const int y) const {
     }
 
     return answer;
+}
+
+bool Maze::hasMouseVisited(const int x, const int y) const {
+    return getCell(x, y).isVisited();
+}
+
+bool Maze::hasMouseVisited(const Coordinate cell) const {
+    return hasMouseVisited(cell.x, cell.y);
+}
+
+void Maze::setMouseVisited(const int x, const int y) {
+    getCell(x, y).setVisited();
+}
+
+void Maze::setMouseVisited(const Coordinate cell) {
+    setMouseVisited(cell.x, cell.y);
+}
+
+bool Maze::hasTraversalVisited(const int x, const int y) const {
+    return getCell(x, y).isTraversalVisited();
+}
+
+bool Maze::hasTraversalVisited(const Coordinate cell) const {
+    return hasTraversalVisited(cell.x, cell.y);
+}
+
+void Maze::setTraversalVisited(const int x, const int y) {
+    getCell(x, y).setTraversalVisited(true);
+}
+
+void Maze::setTraversalVisited(const Coordinate cell) {
+    setMouseVisited(cell.x, cell.y);
+}
+
+void Maze::resetTraversalVisited() {
+    for (int x = 0; x < sizeX; x++) {
+        for (int y = 0; y < sizeY; y++) {
+            getCell(x, y).setTraversalVisited(false);
+        }
+    }
 }
