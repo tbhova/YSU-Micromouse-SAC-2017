@@ -3,6 +3,14 @@
 
 struct Coordinate {
     int x, y;
+
+    Coordinate(const int x, const int y) : x(x), y(y) {}
+
+    Coordinate() {x = 0; y = 0;}
+
+    bool operator==(Coordinate& other) {
+        return other.x == x && other.y == y;
+    }
 };
 
 #endif // COORDINATE_H

@@ -8,16 +8,16 @@ const int   LEFT_MOTOR_SPEED        = 7,
             RIGHT_MOTOR_SPEED       = 10,
             RIGHT_MOTOR_FORWARD     = 11,
             RIGHT_MOTOR_REVERSE     = 12,
-            MOTOR_STANDBY           = 13,
-            LEFT_MOTOR_ENCODER_A    = 38,
-            LEFT_MOTOR_ENCODER_B    = 37,
+            MOTOR_STANDBY           = 24,
             RIGHT_MOTOR_ENCODER_A   = 27,
-            RIGHT_MOTOR_ENCODER_B   = 28;
+            RIGHT_MOTOR_ENCODER_B   = 28,
+            LEFT_MOTOR_ENCODER_A    = 37,
+            LEFT_MOTOR_ENCODER_B    = 38;
 
 //Analog Input Pins
-#define IR_SENSOR_RIGHT     A13 //pin 32
+#define IR_SENSOR_LEFT      A13 //pin 32
 #define IR_SENSOR_CENTER    A14 //pin 33
-#define IR_SENSOR_LEFTT     A15 //pin 34
+#define IR_SENSOR_RIGHT     A15 //pin 34
 
 
 #endif // PINS_H
