@@ -28,7 +28,7 @@ private:
         //determine coordinates of cell
 
     bool isDestination(Coordinate cell); //Returns whether a cell is the destination
-
+    bool isCenter(int i);
 public:
     Navigator();
 
