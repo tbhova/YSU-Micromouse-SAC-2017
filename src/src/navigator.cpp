@@ -13,9 +13,8 @@ bool Navigator::isCenter(int i) {
     return (i == 7 || i == 8);
 }
 
-bool Navigator::isDestination() {
-    //Replace Hardcoded cordinates with variable destination
-    return isCenter(cell.x) && isCenter(cell.y);
+bool Navigator::isDestination(int x, int y) {
+    return isCenter(x) && isCenter(y);
 }
 
 //what data type are we saving the path from GPS in? IE what data type will the output of findBox be?
@@ -24,3 +23,14 @@ bool Navigator::isDestination() {
         Cardinal8 direction = GPS.askForDirectionToXY(CurX, CurY, x, y);
     }
 
+/*
+ * map
+ *
+ * Check walls and update Maze
+ * Get cell location from findUnvisitedCell
+ *
+ * Use directions from gps to UnvisitedCell from current location according to Driver and determine the path of travel
+ * Send direction to the driver
+ *
+ *
+ * /
