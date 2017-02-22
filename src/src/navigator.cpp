@@ -1,13 +1,14 @@
 #include "navigator.h"
-
+using namespace std;
 Coordinate Navigator::findUnvisitedCell() {
-        for (int x = 0; x < sizeX; x++) {
-            for (int y = 0; y < sizeY; y++)
-                if (!maze.hasMouseVisited(x,y)){
-                    return Coordinate;
-                    break;
-                }
+    for (int x = 0; x < sizeX; x++) {
+        for (int y = 0; y < sizeY; y++){
+            if (!maze.hasMouseVisited(x,y)){
+                return Coordinate;
+                break;
+            }
         }
+    }
 }
 
 
@@ -15,11 +16,6 @@ Coordinate Navigator::findUnvisitedCell() {
 bool Navigator::isDestination(int x, int y) {
     return isCenter(x) && isCenter(y);
 }
-
-//Deleted find box method
-
-
-
 
 /*
  * map
@@ -33,16 +29,16 @@ bool Navigator::isDestination(int x, int y) {
  * Send direction to the driver
  */
 
-
 void Navigator::map(){
 //I dont remember what we decidied to name the function for placing walls
 //so I just put checkWalls();
-checkWalls();
-updateMaze();
-findUnvisitedCell();
-GPS.askForDirectionToXY();
+vector<Cardinal8> walls=driver.getWalls();
+Coordinate destinationCell=findUnvisitedCell();
+Coordinate currentCell=driver.getcurrentlocation();
+updateMaze(currentCell,walls);
+Cardinal8 nextDir=directions.askForDirectionToXY(currentCell, destinationCell);
 
-Driver.drive();
+driver.drive(nextDir);
 
 
 }

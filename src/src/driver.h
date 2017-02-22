@@ -15,7 +15,9 @@ public:
 
     virtual void drive(const GPS &directions) = 0;
     virtual void drive(const Cardinal8 dir, const int cells) = 0;
-
+    virtual void drive(const Cardinal8 dir) = 0;
+    Coordinate getcurrentlocation();
+    std::vector<Cardinal8> getWalls();
 };
 
 #endif // DRIVER_H

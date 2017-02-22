@@ -17,7 +17,7 @@ private:
     GPS directions;
     Maze maze;
     Coordinate destination;
-    void updateMaze(); //Get wall data from Driver and adjust maze
+    void updateMaze(Coordinate cell, std::vector<Cardinal8>); //Get wall data from Driver and adjust maze
 
     /**
      * @brief findUnvisitedCell - determine the Coordinates of the neares UnvisitedCell
