@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_g_p_s.html" title="The gps class Abstract class, all other gps classes should inherit from this Gives directions to the ..." alt="" coords="5,5,56,32"/>
+<area shape="rect" id="node2" href="$class_breadth_first_g_p_s.html" title="BreadthFirstGPS" alt="" coords="104,5,225,32"/>
+</map>

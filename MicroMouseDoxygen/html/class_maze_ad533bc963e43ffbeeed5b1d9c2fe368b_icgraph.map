@@ -1,0 +1,3 @@
+<map id="Maze::isWall" name="Maze::isWall">
+<area shape="rect" id="node2" href="$class_maze.html#a19ccd969acb12eaf110264b44dbda74a" title="getNeighboringCells &#45; get a list of reachable (no wall) adjacent cells " alt="" coords="152,5,329,32"/>
+</map>
