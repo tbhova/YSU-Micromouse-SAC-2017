@@ -1,4 +1,5 @@
 #include "mazetest.h"
+#include "breadthfirstgpstests.h"
 
 #include <gtest/gtest.h>
 

@@ -12,11 +12,12 @@
 
 class GPS {
 public:
-    GPS();
+    GPS(){
+    }
     virtual Cardinal8 nextDirection() = 0;
 
 protected:
-    Maze &maze;
+    Maze *maze;
 };
 
 #endif // GPS_H
