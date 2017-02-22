@@ -10,6 +10,14 @@ public:
 private:
     //Private class for 1 sensor
     class InfraredSensor {
+    private:
+        // Priavate class to interpolate voltages to distances
+        class InterpolateIR {
+            struct IR_Data {
+
+            };
+        };
+
     public:
         InfraredSensor();
     };
