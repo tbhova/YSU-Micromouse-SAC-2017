@@ -32,14 +32,20 @@ bool Navigator::isDestination(int x, int y) {
 void Navigator::map(){
 //I dont remember what we decidied to name the function for placing walls
 //so I just put checkWalls();
-vector<Cardinal8> walls=driver.getWalls();
-Coordinate destinationCell=findUnvisitedCell();
-Coordinate currentCell=driver.getcurrentlocation();
+vector<Cardinal8> walls = driver.getWalls();
+Coordinate destinationCell = findUnvisitedCell();
+Coordinate currentCell = driver.getcurrentlocation();
 updateMaze(currentCell,walls);
-Cardinal8 nextDir=directions.askForDirectionToXY(currentCell, destinationCell);
+Cardinal8 nextDir = directions.askForDirectionToXY(currentCell, destinationCell);
 
 driver.drive(nextDir);
 
+}
+
+void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls){
+    for(vector<Cardinal8>::iterator it=walls.begin(); it != walls.end(); ++it) {
+        maze.placeWall(cell.x,cell.y,*it);
+    }
 
 }
 
