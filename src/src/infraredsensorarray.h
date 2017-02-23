@@ -5,6 +5,9 @@ class InfraredSensorArray {
 
 public:
     InfraredSensorArray();
+    getLeftIR();
+    getRightIR();
+    getCenterIR();
 
 private:
     //Private class for 1 sensor
