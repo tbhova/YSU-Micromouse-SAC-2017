@@ -130,7 +130,10 @@ SOURCES += \
     src/encoders.cpp \
     src/encoder.cpp \
     src/navigator.cpp \
-    src/abstractdriver.cpp
+    src/abstractdriver.cpp \
+    src/mousedriver.cpp \
+    src/hardwaremanager.cpp \
+    src/batterysensor.cpp
 
 HEADERS += \
     src/maze.h \
@@ -145,5 +148,8 @@ HEADERS += \
     src/motors.h \
     src/encoders.h \
     src/coordinate.h \
+    src/mousedriver.h \
+    src/hardwaremanager.h \
+    src/batterysensor.h \
     src/abstractdriver.h
 
