@@ -169,6 +169,28 @@ public:
     std::vector<Coordinate> getNeighboringCells(const int x, const int y) const;
 
     /**
+     * @brief getDirectionBetweenCells get the Cardinal direction between 2 cells
+     * The cells must be 1 cell apart, there is no error checking for this
+     * @param fromCell first cell
+     * @param toCell second cell
+     * @return direction from fromCell to toCell
+     */
+    static Cardinal8 getDirectionBetweenCells(const Coordinate fromCell, const Coordinate toCell);
+
+    /**
+     * @brief getDirectionBetweenCells
+     * @param x1 x coordinate of 1st cell
+     * @param y1 y coordinate of 1st cell
+     * @param x2 x coordinate of 2nd cell
+     * @param y2 y coordinate of 2nd cell
+     * @return Cardinal direction from (x1, y1) to (x2, y2)
+     *
+     * @see getDirectionBetweenCells
+     */
+    static Cardinal8 getDirectionBetweenCells(const int x1, const int y1, const int x2, const int y2);
+
+
+    /**
      * @brief hasMouseVisited - checks if the mouse has visited x, y
      * @param x - x coordinate
      * @param y - y coordinate
