@@ -1,4 +1,5 @@
 #include "mazetest.h"
+#include "ir_interpolate_test.h"
 
 #include <gtest/gtest.h>
 
