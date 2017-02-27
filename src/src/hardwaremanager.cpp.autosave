@@ -6,6 +6,12 @@ getIRData();
 
 
 }
+/**
+ * @brief getIRData
+ * It's gone put the IR data in an array
+ * It's gone give the driver the IR data
+ * @return 
+ */
 short int* getIRData() {
     short int irData[3]={getLeftIR(), getCenterIR(), getRightIR()};
     return irData;
