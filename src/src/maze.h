@@ -127,7 +127,7 @@ public:
      * @param sizeX - x dimension of the maze
      * @param sizeY - y dimension of the maze
      */
-	Maze(const int sizeX, const int sizeY);
+    explicit Maze(const int sizeX, const int sizeY);
 
 	int getSizeX() const { return sizeX; }
 	int getSizeY() const { return sizeY; }

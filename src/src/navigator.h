@@ -13,8 +13,8 @@
 class Navigator {
 private:
     //Member Data
-    Driver driver;
-    GPS directions;
+    Driver *driver;
+    GPS *directions;
     Maze maze;
     Coordinate destination;
     void updateMaze(Coordinate cell, std::vector<Cardinal8> walls); //Get wall data from Driver and adjust maze
