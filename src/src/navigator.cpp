@@ -33,7 +33,7 @@ void Navigator::map(){
     driver->drive(nextDir);*/
 }
 
-void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls){
+void Navigator::updateMaze(Coordinate cell, vector<Cardinal8> walls){
     for(vector<Cardinal8>::iterator it=walls.begin(); it != walls.end(); ++it) {
         maze->placeWall(cell.x,cell.y,*it);
     }

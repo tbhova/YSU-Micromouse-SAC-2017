@@ -1,7 +1,7 @@
 #ifndef HARDWAREMANAGER_H
 #define HARDWAREMANAGER_H
 
-#include "driver.h"
+#include "infraredsensorarray.h"
 
 class HardwareManager {
 private:
@@ -11,7 +11,8 @@ private:
 
 public:
     HardwareManager();
-    getIRData(InfraredSensor)
+    getIRData(InfraredSensor);
+    short int* irData;
 };
 
 #endif // HARDWAREMANAGER_H
