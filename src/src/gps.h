@@ -20,7 +20,7 @@ public:
      * @param cell - Destination Cell
      * @return Direction to the new cell
      */
-    Cardinal8 askForDirectionToXY(Coordinate cell, Coordinate cell);
+    Cardinal8 askForDirectionToXY(const Coordinate cell, const Coordinate destination);
 
 protected:
     Maze &maze;
