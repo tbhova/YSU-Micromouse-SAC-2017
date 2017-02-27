@@ -164,6 +164,20 @@ public:
     bool isWall(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2) const;
 
     /**
+     * @brief adjacentCell - get the coordinates of the cell to the NSWE of given cell
+     * @param x - given cell's x coordinate
+     * @param y - given cell's y coordinate
+     * @param dir - primary cardinal NSWE
+     * @return int with 1 of lower 4 bits set
+     *
+     * North -> least significant bit (LSB)
+     * West -> 2nd LSB
+     * South -> 3rd LSB
+     * East -> 4th LSB
+     */
+    static Coordinate adjacentCell(const int x, const int y, const Cardinal8 dir);
+
+    /**
      * @brief getNeighboringCells - get a list of reachable (no wall) adjacent cells
      * @param x - x coordinate of cell to check
      * @param y - y coordinate of cell to check

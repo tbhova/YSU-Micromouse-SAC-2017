@@ -134,7 +134,8 @@ SOURCES += \
     src/abstractdriver.cpp \
     src/mousedriver.cpp \
     src/hardwaremanager.cpp \
-    src/batterysensor.cpp
+    src/batterysensor.cpp \
+    src/driver.cpp
 
 HEADERS += \
     src/maze.h \

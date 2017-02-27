@@ -5,8 +5,8 @@
 class MouseDriver : public Driver {
 public:
     MouseDriver();
-
-
+    virtual void drive(const Cardinal8 dir);
+    //turning, updateState, drive forward 1 cell(hardware manager
 };
 
 #endif // MOUSEDRIVER_H
