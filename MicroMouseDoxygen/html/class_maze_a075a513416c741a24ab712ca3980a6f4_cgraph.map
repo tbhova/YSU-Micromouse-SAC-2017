@@ -1,3 +1,0 @@
-<map id="Maze::Maze" name="Maze::Maze">
-<area shape="rect" id="node2" href="$class_maze.html#a0d62900ebfd21548c11c10cc8b3af0af" title="placeWall &#45; puts the &quot;dir&quot; wall at location x, y Does nothing if there is already a wall there ..." alt="" coords="148,5,267,32"/>
-</map>
