@@ -19,4 +19,8 @@ class NavigatorTest : public ::testing::Test {
     
 };
 
+TEST_F(NavigatorTest, testMapping) {
+    //Write actual test code
+}
+
 #endif // NAVIGATOR_TEST_H
