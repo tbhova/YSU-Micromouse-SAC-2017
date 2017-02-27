@@ -2,5 +2,10 @@
 
 MouseDriver::MouseDriver()
 {
+updateState();
+updateHeading();
+}
+void updateState();{
+
 
 }
