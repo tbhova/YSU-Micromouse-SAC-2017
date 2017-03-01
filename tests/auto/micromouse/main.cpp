@@ -1,4 +1,5 @@
 #include "mazetest.h"
+#include "navigator_test.h"
 
 #include <gtest/gtest.h>
 

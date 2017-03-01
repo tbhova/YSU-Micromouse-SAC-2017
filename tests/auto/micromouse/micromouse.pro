@@ -8,6 +8,7 @@ CONFIG += thread
 CONFIG -= qt
 
 HEADERS +=     \
-    mazetest.h
+    mazetest.h \
+    navigator_test.h
 
 SOURCES +=     main.cpp
