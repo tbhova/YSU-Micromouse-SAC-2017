@@ -77,6 +77,7 @@ private:
 	};
 
 	int sizeX, sizeY;
+    int cellsVisited = 0;
 	std::vector<std::vector<Cell>> mazeCells = std::vector<std::vector<Cell>>();
 
     /**
@@ -208,6 +209,12 @@ public:
      * @brief resetTraversalVisited - mark all cells as not visited by maze solver
      */
     void resetTraversalVisited();
+
+    /**
+     * @brief isMazeMapped
+     * @return true if all cells have been visited
+     */
+    bool isMazeMapped();
 };
 
 #endif // MAZE_H
