@@ -1,6 +1,10 @@
 #include "navigator.h"
 using namespace std;
 
+Navigator::Navigator() {
+
+}
+
 Coordinate Navigator::findUnvisitedCell() {
     for (int x = 0; x < maze->getSizeX(); x++) {
         for (int y = 0; y < maze->getSizeY(); y++) {
@@ -14,12 +18,12 @@ Coordinate Navigator::findUnvisitedCell() {
 }
 
 void Navigator::map(){
-    vector<Cardinal8> walls = driver->getWalls();
+    /*vector<Cardinal8> walls = driver->getWalls();
     Coordinate destinationCell = findUnvisitedCell();
     Coordinate currentCell = driver->getcurrentlocation();
     updateMaze(currentCell,walls);
     Cardinal8 nextDir = directions->askForDirectionToXY(currentCell, destinationCell);
-    driver->drive(nextDir);
+    driver->drive(nextDir);*/
 }
 
 void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls){
