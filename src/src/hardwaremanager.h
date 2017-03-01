@@ -7,12 +7,11 @@ class HardwareManager {
 private:
     Driver driver;
 
-
-
 public:
-    HardwareManager();
-    getIRData(InfraredSensor);
-    short int* irData;
+    bool* areWalls();
+
+
+
 };
 
 #endif // HARDWAREMANAGER_H

@@ -1,22 +1,12 @@
-#ifndef STOPGODRIVER_H
-#define STOPGODRIVER_H
-
-#include "gps.h"
-#include "cardinal8.h"
+#ifndef MOUSEDRIVER_H
+#define MOUSEDRIVER_H
 #include "driver.h"
 
-/**
- * @brief The StopGoDriver class
- * Driver that stops after each move
- * Turns are made in place
- */
-
-class StopGoDriver : public Driver {
+class MouseDriver : public Driver {
 public:
-    StopGoDriver();
-
-    virtual void drive(const GPS &directions);
-    virtual void drive(const Cardinal8 dir, const int cells);
+    MouseDriver();
+    virtual void drive(const Cardinal8 dir);
+    //turning, updateState, drive forward 1 cell(hardware manager
 };
 
-#endif // STOPGODRIVER_H
+#endif // MOUSEDRIVER_H
