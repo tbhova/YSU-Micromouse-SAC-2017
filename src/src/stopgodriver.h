@@ -1,12 +1,14 @@
-#ifndef MOUSEDRIVER_H
-#define MOUSEDRIVER_H
+#ifndef STOPGODRIVER_H
+#define STOPGODRIVER_H
 #include "driver.h"
 
-class MouseDriver : public Driver {
+class StopGoDriver : public Driver {
 public:
-    MouseDriver();
+    topGoDriver();
     virtual void drive(const Cardinal8 dir);
-    //turning, updateState, drive forward 1 cell(hardware manager
+    void turn()
+    //turning, updateState, drive forward 1 cell (hardware manager)
+
 };
 
 #endif // MOUSEDRIVER_H
