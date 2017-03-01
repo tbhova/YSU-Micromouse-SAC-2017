@@ -9,12 +9,16 @@ public:
     short int getLeftIR();
     short int getRightIR();
     short int getCenterIR();
+    short int* getIRData();
+
 
 private:
     //Private class for 1 sensor
     class InfraredSensor {
-public:
+
+    public:
         InfraredSensor();
+        short int getDistance();
     };
 
 

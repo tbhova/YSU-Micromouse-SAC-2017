@@ -2,11 +2,13 @@
 
 HardwareManager::HardwareManager() {
 //Now lets make it do a thing
-getIRData();
-
 
 }
-short int* getIRData() {
-    short int irData[3]={getLeftIR(), getCenterIR(), getRightIR()};
-    return irData;
+
+bool* areWalls() {
+bool leftWall = getLeftIR()>8000;
+bool centerWall = getCenterIR()>8000;
+bool rightWall = getRightIR()>8000;
+bool wallData[3]={leftWall, centerWall, rightWall};
+return wallData;
 }

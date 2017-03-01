@@ -1,5 +1,11 @@
-#include "stopgodriver.h"
+#include "mousedriver.h"
 
-StopGoDriver::StopGoDriver() {
+MouseDriver::MouseDriver()
+{
+updateState();
+updateHeading();
+}
+void updateState();{
+
 
 }

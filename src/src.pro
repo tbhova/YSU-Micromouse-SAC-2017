@@ -131,7 +131,6 @@ SOURCES += \
     src/encoder.cpp \
     src/navigator.cpp \
     src/abstractdriver.cpp \
-    src/mousedriver.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
     src/driver.cpp
@@ -142,15 +141,13 @@ HEADERS += \
     src/pins.h \
     src/navigator.h \
     src/driver.h \
-    src/stopgodriver.h \
     src/gps.h \
     src/breadthfirstgps.h \
     src/infraredsensorarray.h \
     src/motors.h \
     src/encoders.h \
     src/coordinate.h \
-    src/mousedriver.h \
     src/hardwaremanager.h \
     src/batterysensor.h \
-    src/abstractdriver.h
+    src/stopgodriver.h
 
