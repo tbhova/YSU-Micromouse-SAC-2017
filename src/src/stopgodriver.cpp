@@ -1,11 +1,11 @@
-#include "mousedriver.h"
+#include "stopgodriver.h"
 
-MouseDriver::MouseDriver()
-{
-updateState();
-updateHeading();
+MouseDriver::MouseDriver() {
+    dir
 }
-void updateState();{
+virtual void MouseDriver::drive(const Cardinal8 dir) {
+    updateState(dir);
 
 
 }
+
