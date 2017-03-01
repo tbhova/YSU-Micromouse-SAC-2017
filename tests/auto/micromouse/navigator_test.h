@@ -16,16 +16,17 @@
 using namespace testing;
 using namespace std;
 
-class NavigatorTest : public ::testing::Test {
-    MockDriver driver = MockDriver();
-    Navigator navigator = Navigator
-};
-
-class MockDriver : public Driver {
+/*class MockDriver : public Driver {
     MOCK_METHOD0(drive, void(const GPS &directions));
     MOCK_METHOD1(drive, void(const Cardinal8 dir, const int cells));
     MOCK_METHOD2(drive, void(const Cardinal8 dir));
+};*/
+
+class NavigatorTest : public ::testing::Test {
+    //MockDriver driver = MockDriver();
+    Navigator navigator = Navigator();
 };
+
 
 TEST_F(NavigatorTest, testMapping) {
     //Write actual test code

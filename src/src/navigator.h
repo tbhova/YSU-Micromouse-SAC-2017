@@ -14,7 +14,7 @@ class Navigator {
 private:
     Driver *driver;
     GPS *directions;
-    Maze maze;
+    Maze *maze;
 
     /**
      * @brief updateMaze - Collects wall data from the Driver and updates the maze model with walls

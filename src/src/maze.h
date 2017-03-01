@@ -132,6 +132,8 @@ public:
 	int getSizeX() const { return sizeX; }
 	int getSizeY() const { return sizeY; }
 
+    Coordinate getDestinationCell() const { return Coordinate(sizeX/2, sizeY/2); }
+
     /**
      * @brief placeWall - puts the "dir" wall at location x, y
      * Does nothing if there is already a wall there
