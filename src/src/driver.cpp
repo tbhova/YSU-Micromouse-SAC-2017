@@ -15,8 +15,7 @@ void Driver::updateState(Cardinal8 direction) {
     dir=direction;
 
 }
-//do we want an update heading method or just a heading
-//variable that we change in updateState?
+
 void Driver::updateHeading() {
 
 }
@@ -40,15 +39,22 @@ std::vector<Cardinal8> getWalls() {
 
 }
 Driver::getLeftDir() {
-
+    leftDir=(int)dir+2;
+    if(leftDir>8) {
+        leftDir-8;
+    }
+    return (Cardinal8)leftDir;
 }
+
 Driver::getForwardDir() {
-
+    return dir;
 }
+
 Driver::getRightDir() {
-
+    rightDir=(int)dir-2;
+    if(rightDir<0) {
+        rightDir+8;
+    }
+    return (Cardinal8)rightDir;
 }
-//Use math for calculating what direction mouse will face
-//method for calculating what direction mouse will face
-//Check to see if subtracting int cardnal values wont work right
-//
+
