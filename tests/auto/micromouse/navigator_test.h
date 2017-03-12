@@ -7,20 +7,23 @@
 
 #include "../../src/src/maze.h"
 #include "../../src/src/coordinate.h"
+#include "../../src/src/cardinal8.h"
 #include "../../src/src/navigator.h"
 #include "../../src/src/navigator.cpp"
 #include "../../src/src/driver.h"
+#include "../../src/src/gps.h"
 
 #include <vector>
 
 using namespace testing;
 using namespace std;
 
-/*class MockDriver : public Driver {
-    MOCK_METHOD0(drive, void(const GPS &directions));
-    MOCK_METHOD1(drive, void(const Cardinal8 dir, const int cells));
-    MOCK_METHOD2(drive, void(const Cardinal8 dir));
-};*/
+class MockDriver : public Driver {
+public:
+    //MOCK_METHOD0(drive, void(const GPS &directions));
+    //MOCK_METHOD1(drive, void(const Cardinal8 dir, const int cells));
+    MOCK_METHOD0(drive, void(const Cardinal8 dir));
+};
 
 class NavigatorTest : public ::testing::Test {
     //MockDriver driver = MockDriver();
