@@ -10,22 +10,22 @@
 #include <vector>
 #include <algorithm>
 
-TEST(InterpolateIr, TestInterpolationBoundaries) {
+TEST(InterpolateIr, TestInterpolationLowerBoundaries) {
     InterpolateIR interpolate;
-
-    //Lower Boundary
     ASSERT_EQ(interpolate.getDistance(624), 3000);
     ASSERT_EQ(interpolate.getDistance(625), 3000);
+}
 
-    //Below Lower Boundary
-    ASSERT_EQ(interpolate.getDistance(647), -2);
+TEST(InterpolateIr, TestInterpolationBeyondBoundaries) {
+    InterpolateIR interpolate;
+    ASSERT_EQ(interpolate.getDistance(647), 3000);
+    ASSERT_EQ(interpolate.getDistance(42), 40000);
+}
 
-    //Upper Boundary
+TEST(InterpolateIr, TestInterpolationUpperBoundary) {
+    InterpolateIR interpolate;
     ASSERT_EQ(interpolate.getDistance(65), 40000);
     ASSERT_EQ(interpolate.getDistance(64), 40000);
-
-    //Above upper boundary
-    ASSERT_EQ(interpolate.getDistance(42), -1);
 }
 
 TEST(InterpolateIr, TestInterpolationExactValues) {
@@ -47,17 +47,16 @@ TEST(InterpolateIr, TestInterpolationHighLowInterpolate) {
     InterpolateIR interpolate;
 
     //Middle Values - Lower Distance Interpolate
-    ASSERT_EQ(interpolate.getDistance(208), 13538);
+    ASSERT_EQ(interpolate.getDistance(208), 12461);
 
     //Middle Values - Upper Distance Interpolate
-    EXPECT_EQ(interpolate.getDistance(201), 13308);
-    EXPECT_EQ(interpolate.getDistance(200), 13308);
-    EXPECT_EQ(interpolate.getDistance(199), 13308);
-    EXPECT_EQ(interpolate.getDistance(198), 13308);
-    EXPECT_EQ(interpolate.getDistance(197), 13308);
-    EXPECT_EQ(interpolate.getDistance(196), 13308);
-    EXPECT_EQ(interpolate.getDistance(195), 13308);
-
+    EXPECT_EQ(interpolate.getDistance(201), 13000);
+    EXPECT_EQ(interpolate.getDistance(200), 13076);
+    EXPECT_EQ(interpolate.getDistance(199), 13153);
+    EXPECT_EQ(interpolate.getDistance(198), 13230);
+    EXPECT_EQ(interpolate.getDistance(197), 13307);
+    EXPECT_EQ(interpolate.getDistance(196), 13384);
+    EXPECT_EQ(interpolate.getDistance(195), 13461);
 }
 
 #endif // IR_INTERPOLATE_TEST_H

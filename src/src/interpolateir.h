@@ -6,9 +6,9 @@
 class InterpolateIR {
 private:
     struct IR_Data {
-        short int voltage, distance;
+        unsigned short int voltage, distance;
 
-        IR_Data(const short int voltage, const short int distance) :
+        IR_Data(const unsigned short int voltage, const unsigned short int distance) :
             voltage(voltage), distance(distance) {}
 
         inline bool operator<(const IR_Data& rhs) const {
@@ -17,9 +17,9 @@ private:
         }
     };
 
-    static const short int threshold = 22;
+    static const unsigned short int threshold = 22;
 
-    static const short int size = 18;
+    static const unsigned short int size = 18;
 
     // This data should be sorted in reverse order by voltage (high voltage = low distance)
     const IR_Data dataArray[size] =
@@ -46,18 +46,18 @@ private:
 
     const std::vector<IR_Data>sensorCurve = std::vector<IR_Data>(dataArray, std::end(dataArray));
 
-    short int voltsAt(const int index) const {
+    unsigned short int voltsAt(const int index) const {
         return sensorCurve.at(index).voltage;
     }
 
-    short int distAt(const int index) const {
+    unsigned short int distAt(const int index) const {
         return sensorCurve.at(index).distance;
     }
 
 public:
     InterpolateIR() {}
 
-    short int getDistance(const int voltage) const;
+    unsigned short int getDistance(const int voltage) const;
 
 };
 
