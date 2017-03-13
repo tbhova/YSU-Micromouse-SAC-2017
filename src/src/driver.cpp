@@ -8,8 +8,12 @@ void Driver::drive(const Cardinal8 dir, const int cells) {
     }
 }
 
+void Driver::drive(const Cardinal8 dir) {
+
+}
+
 void Driver::updateState(Cardinal8 direction) {
-    Coordinate cell = Maze.adjacentCell(x,y,direction);
+    Coordinate cell = maze.adjacentCell(x,y,direction);
     x=cell.x;
     y=cell.y;
     dir=direction;
@@ -21,11 +25,11 @@ void Driver::updateHeading(Cardinal8 direc) {
 }
 
 
-Driver::numTurns(Cardinal8 direction) {
+int Driver::numTurns(Cardinal8 direction) {
      return ((int)direction-(int)dir);
 }
-std::vector<Cardinal8> getWalls() {
-    bool areWalls[3]=manager.areWalls();
+std::vector<Cardinal8> Driver::getWalls() {
+    bool* areWalls=manager.areWalls();
     std::vector<Cardinal8> walls;
             if(areWalls[0]) {
                 walls.push_back(getLeftDir());
@@ -37,28 +41,27 @@ std::vector<Cardinal8> getWalls() {
                 walls.push_back(getRightDir());
             }
 
-
-
+    return walls;
 }
-Driver::getLeftDir() {
-    leftDir=(int)dir+2;
+Cardinal8 Driver::getLeftDir() {
+   int leftDir=(int)dir+2;
     if(leftDir>8) {
-        leftDir-8;
+        leftDir-=8;
     }
     return (Cardinal8)leftDir;
 }
 
-Driver::getForwardDir() {
+Cardinal8 Driver::getForwardDir() {
     return dir;
 }
 
-Driver::getRightDir() {
-    rightDir=(int)dir-2;
+Cardinal8 Driver::getRightDir() {
+    int rightDir=(int)dir-2;
     if(rightDir<0) {
-        rightDir+8;
+        rightDir+=8;
     }
     return (Cardinal8)rightDir;
 }
-Driver::getCurrentLocation() {
+Coordinate Driver::getCurrentLocation() {
     return Coordinate(x,y);
 }

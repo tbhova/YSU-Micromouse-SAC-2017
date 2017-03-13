@@ -5,10 +5,10 @@ BatterySensor::BatterySensor() {
     batteryVoltage*=3;
     float batteryMin=9.6;
     float batteryWarning=10.5;
-    if(batteryVoltage==batteryMin){
+    if(batteryVoltage==batteryMin) {
 
-//    }
-//    else if(batteryVoltage==batteryWarning) {
+    }
+    else if(batteryVoltage==batteryWarning) {
 
-//    }
+    }
 }

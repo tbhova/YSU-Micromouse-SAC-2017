@@ -3,13 +3,13 @@
 InfraredSensorArray::InfraredSensorArray() {
 
 }
-short int InfraredSensorArray::getLeftIR() {
+unsigned short int InfraredSensorArray::getLeftIR() {
     return leftIR.getDistance();
 }
-short int InfraredSensorArray::getCenterIR() {
+unsigned short int InfraredSensorArray::getCenterIR() {
     return centerIR.getDistance();
 }
-short int InfraredSensorArray::getRightIR() {
+unsigned short int InfraredSensorArray::getRightIR() {
     return rightIR.getDistance();
 }
 

@@ -131,7 +131,6 @@ SOURCES += \
     src/encoder.cpp \
     src/navigator.cpp \
     src/interpolateir.cpp
-    src/abstractdriver.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
     src/driver.cpp
