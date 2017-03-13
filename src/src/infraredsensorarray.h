@@ -9,7 +9,6 @@ public:
     short int getLeftIR();
     short int getRightIR();
     short int getCenterIR();
-    short int* getIRData();
 
 
 private:

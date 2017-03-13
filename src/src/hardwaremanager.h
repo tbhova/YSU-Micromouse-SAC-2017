@@ -5,7 +5,6 @@
 
 class HardwareManager {
 private:
-    Driver driver;
 
 public:
     bool* areWalls();

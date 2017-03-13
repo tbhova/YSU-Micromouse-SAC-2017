@@ -1,5 +1,7 @@
 #include "motors.h"
 #include "mk20dx128.h"
+#include "Arduino.h"
+#include "pins.h"
 
 Motors::Motors()
 {
@@ -22,37 +24,37 @@ void Motors::stop() {
 }
 
 void Motors::leftForward() {
-    digitalWrite(Left_Motor_Reverse, LOW);
-    digitalWrite(Left_Motor_Forward, HIGH);
-    analogWrite(Left_Motor_Speed, power);
+    digitalWriteFast(LEFT_MOTOR_REVERSE, LOW);
+    digitalWriteFast(LEFT_MOTOR_FORWARD, HIGH);
+    analogWrite(LEFT_MOTOR_SPEED, power);
 }
 
 void Motors::leftStop() {
-    digitalWrite(Left_Motor_Forward, LOW);
-    digitalWrite(Left_Motor_Reverse, LOW);
-    analogWrite(Left_Motor_Speed, off);
+    digitalWriteFast(LEFT_MOTOR_FORWARD, LOW);
+    digitalWriteFast(LEFT_MOTOR_REVERSE, LOW);
+    analogWrite(LEFT_MOTOR_SPEED, off);
 }
 
 void Motors::leftReverse() {
-    digitalWrite(Left_Motor_Forward, LOW);
-    digitalWrite(Left_Motor_Reverse, HIGH);
-    analogWrite(Left_Motor_Speed, power);
+    digitalWriteFast(LEFT_MOTOR_FORWARD, LOW);
+    digitalWriteFast(LEFT_MOTOR_REVERSE, HIGH);
+    analogWrite(LEFT_MOTOR_SPEED, power);
 }
 
 void Motors::rightForward() {
-    digitalWrite(Right_Motor_Reverse, LOW);
-    digitalWrite(Right_Motor_Forward, HIGH);
-    analogWrite(Right_Motor_Speed, power);
+    digitalWriteFast(RIGHT_MOTOR_REVERSE, LOW);
+    digitalWriteFast(RIGHT_MOTOR_FORWARD, HIGH);
+    analogWrite(RIGHT_MOTOR_SPEED, power);
 }
 
 void Motors::rightReverse() {
-    digitalWrite(Right_Motor_Forward, LOW);
-    digitalWrite(Right_Motor_Reverse, HIGH);
-    analogWrite(Right_Motor_Speed, power);
+    digitalWriteFast(RIGHT_MOTOR_FORWARD, LOW);
+    digitalWriteFast(RIGHT_MOTOR_REVERSE, HIGH);
+    analogWrite(RIGHT_MOTOR_SPEED, power);
 }
 
 void Motors::rightStop() {
-    digitalWrite(Right_Motor_Reverse, LOW);
-    digitalWrite(Right_Motor_Forward, LOW);
-    analogWrite(Right_Motor_Speed, off);
+    digitalWriteFast(RIGHT_MOTOR_REVERSE, LOW);
+    digitalWriteFast(RIGHT_MOTOR_FORWARD, LOW);
+    analogWrite(RIGHT_MOTOR_SPEED, off);
 }
