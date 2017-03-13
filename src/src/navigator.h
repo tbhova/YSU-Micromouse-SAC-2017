@@ -13,8 +13,8 @@
 class Navigator {
 private:
     AbstractDriver *driver;
-    GPS *directions;
     Maze *maze;
+    GPS *directions;
 
     /**
      * @brief updateMaze - Collects wall data from the Driver and updates the maze model with walls
@@ -30,7 +30,7 @@ private:
     Coordinate findUnvisitedCell();
 
 public:
-    Navigator();
+    Navigator(AbstractDriver *driver, Maze *maze, GPS *gps);
 
     /**
      * @brief run - function called by main to either map or travel optimalRoute

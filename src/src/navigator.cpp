@@ -1,7 +1,9 @@
 #include "navigator.h"
+
 using namespace std;
 
-Navigator::Navigator() {
+Navigator::Navigator(AbstractDriver *driver, Maze *maze, GPS *gps) :
+    driver(driver), maze(maze), directions(gps) {
 
 }
 
