@@ -5,6 +5,7 @@ class InfraredSensorArray {
 
 public:
     InfraredSensorArray();
+    short int getRightIR();
     unsigned short int getLeftIR();
     unsigned short int getRightIR();
     unsigned short int getCenterIR();

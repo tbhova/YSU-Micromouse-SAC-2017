@@ -14,12 +14,16 @@ private:
         Motor();
 
     };
+
     void rightForward();
     void rightStop();
     void rightReverse();
     void leftForward();
     void leftStop();
     void leftReverse();
+    void stop();
+    void driveForward();
+    void turn();
     const int power = 127, off = 0;
 
     Motor leftMotor, rightMotor;
