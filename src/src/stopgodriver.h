@@ -4,10 +4,12 @@
 
 class StopGoDriver : public Driver {
 public:
-    topGoDriver();
+    StopGoDriver();
     virtual void drive(const Cardinal8 dir);
-    void turn()
+    void turn();
     //turning, updateState, drive forward 1 cell (hardware manager)
+private:
+    int x, y;
 
 };
 

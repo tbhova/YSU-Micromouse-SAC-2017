@@ -11,7 +11,6 @@ public:
     unsigned short int getCenterIR();
     unsigned short int* getIRData();
 
-
 private:
     //Private class for 1 sensor
     class InfraredSensor {

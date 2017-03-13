@@ -130,7 +130,6 @@ SOURCES += \
     src/encoders.cpp \
     src/encoder.cpp \
     src/navigator.cpp \
-    src/abstractdriver.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
     src/driver.cpp
