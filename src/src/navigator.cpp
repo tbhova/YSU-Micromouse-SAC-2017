@@ -39,4 +39,3 @@ void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls){
     }
 
 }
-
