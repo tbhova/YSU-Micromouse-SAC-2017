@@ -6,10 +6,10 @@ class InfraredSensorArray {
 
 public:
     InfraredSensorArray();
-    short int getLeftIR();
-    short int getRightIR();
-    short int getCenterIR();
-    short int* getIRData();
+    unsigned short int getLeftIR();
+    unsigned short int getRightIR();
+    unsigned short int getCenterIR();
+    unsigned short int* getIRData();
 
 
 private:

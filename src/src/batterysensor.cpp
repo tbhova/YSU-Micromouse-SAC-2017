@@ -1,10 +1,10 @@
 #include "batterysensor.h"
 
 BatterySensor::BatterySensor() {
-    batteryVoltage=;
+    float batteryVoltage=9999999999;
     batteryVoltage*=3;
-    batteryMin=make it 15% higher than the reccomended min voltage
-    batteryWarning=make it 25%
+    float batteryMin=9.6;
+    float batteryWarning=10.5;
     if(batteryVoltage==batteryMin){
 
     }
