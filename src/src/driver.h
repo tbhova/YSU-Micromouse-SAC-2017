@@ -3,21 +3,18 @@
 
 #include "gps.h"
 #include "cardinal8.h"
+#include "abstractdriver.h"
 
 /**
  * @brief The driver class
  * Abstract class, all other drivers should inherit from this
  */
 
-class Driver {
+class Driver : public AbstractDriver {
 public:
     Driver();
-
-    virtual void drive(const GPS &directions) = 0;
-    virtual void drive(const Cardinal8 dir, const int cells) = 0;
-    virtual void drive(const Cardinal8 dir) = 0;
-    Coordinate getcurrentlocation();
-    std::vector<Cardinal8> getWalls();
+    virtual Coordinate getCurrentLocation();
+    virtual std::vector<Cardinal8> getWalls();
 };
 
 #endif // DRIVER_H

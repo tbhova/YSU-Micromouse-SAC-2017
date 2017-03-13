@@ -10,7 +10,7 @@
 #include "../../src/src/cardinal8.h"
 #include "../../src/src/navigator.h"
 #include "../../src/src/navigator.cpp"
-#include "../../src/src/driver.h"
+#include "../../src/src/abstractdriver.h"
 #include "../../src/src/gps.h"
 
 #include <vector>
@@ -18,15 +18,18 @@
 using namespace testing;
 using namespace std;
 
-class MockDriver : public Driver {
+class MockDriver : public AbstractDriver {
 public:
-    //MOCK_METHOD0(drive, void(const GPS &directions));
-    //MOCK_METHOD1(drive, void(const Cardinal8 dir, const int cells));
-    MOCK_METHOD0(drive, void(const Cardinal8 dir));
+    MockDriver() {};
+    MOCK_METHOD1(drive, void(const GPS &directions));
+    MOCK_METHOD2(drive, void(const Cardinal8 dir, const int cells));
+    MOCK_METHOD1(drive, void(const Cardinal8 dir));
+    MOCK_METHOD0(getCurrentLocation, Coordinate());
+    MOCK_METHOD0(getWalls, std::vector<Cardinal8>());
 };
 
 class NavigatorTest : public ::testing::Test {
-    //MockDriver driver = MockDriver();
+    MockDriver driver;
     Navigator navigator = Navigator();
 };
 

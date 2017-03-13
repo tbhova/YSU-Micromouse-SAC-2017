@@ -2,7 +2,7 @@
 #define NAVIGATOR_H
 
 #include "maze.h"
-#include "driver.h"
+#include "abstractdriver.h"
 #include "gps.h"
 
 /**
@@ -12,7 +12,7 @@
 
 class Navigator {
 private:
-    Driver *driver;
+    AbstractDriver *driver;
     GPS *directions;
     Maze *maze;
 
