@@ -143,6 +143,9 @@ bool Maze::hasMouseVisited(const Coordinate cell) const {
 }
 
 void Maze::setMouseVisited(const int x, const int y) {
+    if (!hasMouseVisited(x, y)) {
+        cellsVisited++;
+    }
     getCell(x, y).setVisited();
 }
 
@@ -172,4 +175,9 @@ void Maze::resetTraversalVisited() {
             getCell(x, y).setTraversalVisited(false);
         }
     }
+}
+
+bool Maze::isMazeMapped() {
+    int numberOfCells = sizeX*sizeY;
+    return (numberOfCells == cellsVisited);
 }

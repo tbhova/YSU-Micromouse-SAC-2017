@@ -18,12 +18,19 @@ Coordinate Navigator::findUnvisitedCell() {
 }
 
 void Navigator::map(){
-    /*vector<Cardinal8> walls = driver->getWalls();
-    Coordinate destinationCell = findUnvisitedCell();
+    Coordinate destinationCell;
+    if (maze->isMazeMapped()) {
+        destinationCell = Coordinate(0, 0);
+    }
+    else {
+        vector<Cardinal8> walls = driver->getWalls();
+        updateMaze(currentCell,walls);
+        destinationCell = findUnvisitedCell();
+    }
     Coordinate currentCell = driver->getcurrentlocation();
-    updateMaze(currentCell,walls);
+
     Cardinal8 nextDir = directions->askForDirectionToXY(currentCell, destinationCell);
-    driver->drive(nextDir);*/
+    driver->drive(nextDir);
 }
 
 void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls){

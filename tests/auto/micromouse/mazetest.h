@@ -203,3 +203,16 @@ TEST_F(MazeTest, TestTraversalVisted) {
         }
     }
 }
+
+TEST_F(MazeTest, TestMazeMapped) {
+    maze.isMazeMapped();
+
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
+            ASSERT_FALSE(maze.isMazeMapped());
+            maze.setMouseVisited(x, y);
+            maze.setMouseVisited(x, y);
+        }
+    }
+    ASSERT_TRUE(maze.isMazeMapped());
+}
