@@ -37,7 +37,6 @@ public:
      */
     void run();
 
-
 protected:
     /**
      * @brief map - updateMaze with wall data from Driver
@@ -46,8 +45,6 @@ protected:
      */
     void map();
     void optimalRoute();
-
-
 };
 
 #endif // NAVIGATOR_H

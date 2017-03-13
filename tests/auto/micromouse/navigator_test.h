@@ -20,7 +20,7 @@ using namespace std;
 
 class MockDriver : public AbstractDriver {
 public:
-    MockDriver() {};
+    MockDriver() {}
     MOCK_METHOD1(drive, void(const GPS &directions));
     MOCK_METHOD2(drive, void(const Cardinal8 dir, const int cells));
     MOCK_METHOD1(drive, void(const Cardinal8 dir));
@@ -28,13 +28,31 @@ public:
     MOCK_METHOD0(getWalls, std::vector<Cardinal8>());
 };
 
-class NavigatorTest : public ::testing::Test {
+class MockGPS : public GPS {
+public:
+    MockGPS() {}
+    MOCK_METHOD0(nextDirection, Cardinal8());
+    MOCK_METHOD2(askForDirectionToXY, Cardinal8(const Coordinate cell, const Coordinate destination));
+};
+
+class MockedNavigatorTest : public ::testing::Test {
+protected:
     MockDriver driver;
-    Navigator navigator = Navigator();
+    Maze maze = Maze(4,4);
+    MockGPS gps;
+    Navigator navigator = Navigator(&driver, &maze, &gps);
+public:
+    MockedNavigatorTest() {}
+};
+
+class NavigatorTest : public ::testing::Test {
+protected:
+    Navigator *navigator;
+public:
 };
 
 
-TEST_F(NavigatorTest, testMapping) {
+TEST_F(MockedNavigatorTest, testMapping) {
     //Write actual test code
 }
 
