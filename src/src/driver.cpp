@@ -16,9 +16,11 @@ void Driver::updateState(Cardinal8 direction) {
 
 }
 
-void Driver::updateHeading() {
-
+void Driver::updateHeading(Cardinal8 direc) {
+    dir=direc;
 }
+
+
 Driver::numTurns(Cardinal8 direction) {
      return ((int)direction-(int)dir);
 }
@@ -57,4 +59,6 @@ Driver::getRightDir() {
     }
     return (Cardinal8)rightDir;
 }
-
+Driver::getCurrentLocation() {
+    return Coordinate(x,y);
+}

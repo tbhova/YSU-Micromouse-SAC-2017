@@ -3,6 +3,7 @@
 
 #include "gps.h"
 #include "cardinal8.h"
+#include "hardwaremanager.h"
 #include "abstractdriver.h"
 
 /**
@@ -21,12 +22,18 @@ public:
 
 protected:
     Cardinal8 getDir();
-    void updateState(Cardinal8);
-    void updateHeading();
+    void updateState(Cardinal8 direction);
+    void updateHeading(Cardinal8 direc);
+    int numTurns(Cardinal8 direction);
+    Cardinal8 getLeftDir();
+    Cardinal8 getRightDir();
+    Cardinal8 getForwardDir();
 
 private:
     int x, y;
     Cardinal8 dir;
+    HardwareManager manager;
+
 };
 
 #endif // DRIVER_H

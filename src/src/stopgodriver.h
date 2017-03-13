@@ -11,4 +11,4 @@ public:
 
 };
 
-#endif // MOUSEDRIVER_H
+#endif // STOPGODRIVER_H
