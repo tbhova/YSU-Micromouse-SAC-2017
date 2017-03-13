@@ -1,6 +1,7 @@
 #ifndef MOTORS_H
 #define MOTORS_H
 
+#include "pins.h"
 
 class Motors {
 
@@ -11,7 +12,15 @@ private:
     class Motor {
     public:
         Motor();
+
     };
+    void rightForward();
+    void rightStop();
+    void rightReverse();
+    void leftForward();
+    void leftStop();
+    void leftReverse();
+    const int power = 127, off = 0;
 
     Motor leftMotor, rightMotor;
 };
