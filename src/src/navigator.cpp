@@ -19,7 +19,7 @@ Coordinate Navigator::findUnvisitedCell() {
 
 void Navigator::map(){
     Coordinate destinationCell;
-    /*const Coordinate currentCell = driver->getcurrentlocation();
+    const Coordinate currentCell = driver->getCurrentLocation();
     if (maze->isMazeMapped()) {
         destinationCell = Coordinate(0, 0);
     }
@@ -30,7 +30,7 @@ void Navigator::map(){
     }
 
     Cardinal8 nextDir = directions->askForDirectionToXY(currentCell, destinationCell);
-    driver->drive(nextDir);*/
+    driver->drive(nextDir);
 }
 
 void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls){
