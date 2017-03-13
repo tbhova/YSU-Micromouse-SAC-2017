@@ -1,9 +1,9 @@
 #include "stopgodriver.h"
 
-MouseDriver::MouseDriver() {
+StopGoDriver::StopGoDriver() {
     dir
 }
-virtual void MouseDriver::drive(const Cardinal8 dir) {
+virtual void StopGoDriver::drive(const Cardinal8 dir) {
     updateState(dir);
 
 
