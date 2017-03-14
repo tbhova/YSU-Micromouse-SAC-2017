@@ -5,9 +5,8 @@ StopGoDriver::StopGoDriver() {
    y=0;
    dir=North;
 }
-virtual void StopGoDriver::drive(const Cardinal8 dir) {
+void StopGoDriver::drive(const Cardinal8 dir) {
     updateState(dir);
-
 
 }
 
