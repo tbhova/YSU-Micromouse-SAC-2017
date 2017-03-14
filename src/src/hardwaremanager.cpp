@@ -1,7 +1,8 @@
 #include "hardwaremanager.h"
 #include "infraredsensorarray.h"
 
-bool* HardwareManager::areWalls() {
+bool * HardwareManager::areWalls() {
+    static bool wallData[3] = {false, false, false};
     bool leftWall = irArray.getLeftIR()>8000;
     bool centerWall = irArray.getCenterIR()>8000;
     bool rightWall = irArray.getRightIR()>8000;

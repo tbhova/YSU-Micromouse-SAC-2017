@@ -6,7 +6,6 @@
 class HardwareManager {
 private:
     InfraredSensorArray irArray;
-
 public:
     bool* areWalls();
 
