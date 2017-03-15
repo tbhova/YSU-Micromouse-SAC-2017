@@ -54,6 +54,8 @@ public:
 
 TEST_F(MockedNavigatorTest, testMapping) {
     //Write actual test code
+
+    navigator.map();
 }
 
 #endif // NAVIGATOR_TEST_H

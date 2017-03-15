@@ -37,7 +37,6 @@ public:
      */
     void run();
 
-protected:
     /**
      * @brief map - updateMaze with wall data from Driver
      * generate direction and path of travel from current cell to a destination cell
@@ -45,6 +44,9 @@ protected:
      */
     void map();
     void optimalRoute();
+
+protected:
+
 };
 
 #endif // NAVIGATOR_H
