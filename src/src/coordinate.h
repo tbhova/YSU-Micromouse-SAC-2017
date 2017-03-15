@@ -2,9 +2,9 @@
 #define COORDINATE_H
 
 struct Coordinate {
-    int x, y;
+    unsigned int x, y;
 
-    Coordinate(const int x, const int y) : x(x), y(y) {}
+    Coordinate(const unsigned int x, const unsigned int y) : x(x), y(y) {}
 
     Coordinate() {x = 0; y = 0;}
 

@@ -76,8 +76,8 @@ private:
         void setTraversalVisited(const bool val) { traversalVisited = val; }
 	};
 
-	int sizeX, sizeY;
-    int cellsVisited = 0;
+    unsigned int sizeX, sizeY;
+    unsigned int cellsVisited = 0;
 	std::vector<std::vector<Cell>> mazeCells = std::vector<std::vector<Cell>>();
 
     /**
@@ -99,7 +99,7 @@ private:
      * South -> 3rd LSB
      * East -> 4th LSB
      */
-    static Coordinate adjacentCell(const int x, const int y, const Cardinal8 dir);
+    static Coordinate adjacentCell(const unsigned int x, const unsigned int y, const Cardinal8 dir);
 
     /**
      * @brief isValidCell - checks if coordinates are in the maze
@@ -107,7 +107,7 @@ private:
      * @return true if the coordinates are in the maze
      */
     bool isValidCell(const Coordinate cell) const;
-    bool isValidCell(const int x, const int y) const;
+    bool isValidCell(const unsigned int x, const unsigned int y) const;
 
     //We need 2 copies of these so that we may call the method both from const and non const methods
     /**
@@ -116,9 +116,9 @@ private:
      * @param y - y coordinate
      * @return Reference to the cell at x,y
      */
-    const Cell& getCell(const int x, const int y) const;
+    const Cell& getCell(const unsigned int x, const unsigned int y) const;
     const Cell& getCell(const Coordinate cell) const;
-    Cell& getCell(const int x, const int y);
+    Cell& getCell(const unsigned int x, const unsigned int y);
     Cell& getCell(const Coordinate cell);
 
 
@@ -128,10 +128,10 @@ public:
      * @param sizeX - x dimension of the maze
      * @param sizeY - y dimension of the maze
      */
-    explicit Maze(const int sizeX, const int sizeY);
+    explicit Maze(const unsigned int sizeX, const unsigned int sizeY);
 
-	int getSizeX() const { return sizeX; }
-	int getSizeY() const { return sizeY; }
+    unsigned int getSizeX() const { return sizeX; }
+    unsigned int getSizeY() const { return sizeY; }
 
     Coordinate getDestinationCell() const { return Coordinate(sizeX/2, sizeY/2); }
 
@@ -142,7 +142,7 @@ public:
      * @param y - y coordinate of cell to place a wall at
      * @param dir - Wall to place (NSWE)
      */
-    void placeWall(const int x, const int y, const Cardinal8 dir);
+    void placeWall(const unsigned int x, const unsigned int y, const Cardinal8 dir);
 
     /**
      * @brief removeWall - removes the "dir" wall from location x, y
@@ -151,7 +151,7 @@ public:
      * @param y - y coordinate of cell to remove wall
      * @param dir - which wall to remove (NSWE)
      */
-    void removeWall(const int x, const int y, const Cardinal8 dir);
+    void removeWall(const unsigned int x, const unsigned int y, const Cardinal8 dir);
 
     /**
      * @brief isWall - checks whether there is a "dir" wall at location x, y
@@ -160,8 +160,8 @@ public:
      * @param dir - wall to check for (NSWE)
      * @return true if there is a wall
      */
-    bool isWall(const int x, const int y, const Cardinal8 dir) const;
-    bool isWall(const int x1, const int y1, const int x2, const int y2) const;
+    bool isWall(const unsigned int x, const unsigned int y, const Cardinal8 dir) const;
+    bool isWall(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2) const;
 
     /**
      * @brief getNeighboringCells - get a list of reachable (no wall) adjacent cells
@@ -169,7 +169,7 @@ public:
      * @param y - y coordinate of cell to check
      * @return List of all cells that are reachable from x, y
      */
-    std::vector<Coordinate> getNeighboringCells(const int x, const int y) const;
+    std::vector<Coordinate> getNeighboringCells(const unsigned int x, const unsigned int y) const;
 
     /**
      * @brief getDirectionBetweenCells get the Cardinal direction between 2 cells
@@ -190,7 +190,7 @@ public:
      *
      * @see getDirectionBetweenCells
      */
-    static Cardinal8 getDirectionBetweenCells(const int x1, const int y1, const int x2, const int y2);
+    static Cardinal8 getDirectionBetweenCells(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2);
 
 
     /**
@@ -199,7 +199,7 @@ public:
      * @param y - y coordinate
      * @return true if the mouse has visited x, y
      */
-    bool hasMouseVisited(const int x, const int y) const;
+    bool hasMouseVisited(const unsigned int x, const unsigned int y) const;
     bool hasMouseVisited(const Coordinate cell) const;
 
     /**
@@ -207,7 +207,7 @@ public:
      * @param x - x coordinate
      * @param y - y coordinate
      */
-    void setMouseVisited(const int x, const int y);
+    void setMouseVisited(const unsigned int x, const unsigned int y);
     void setMouseVisited(const Coordinate cell);
 
     /**
@@ -216,7 +216,7 @@ public:
      * @param y - y coordinate
      * @return true if the maze solver has seen this cell
      */
-    bool hasTraversalVisited(const int x, const int y) const;
+    bool hasTraversalVisited(const unsigned int x, const unsigned int y) const;
     bool hasTraversalVisited(const Coordinate cell) const;
 
     /**
@@ -224,7 +224,7 @@ public:
      * @param x - x coordinate
      * @param y - y coordinate
      */
-    void setTraversalVisited(const int x, const int y);
+    void setTraversalVisited(const unsigned int x, const unsigned int y);
     void setTraversalVisited(const Coordinate cell);
 
     /**
