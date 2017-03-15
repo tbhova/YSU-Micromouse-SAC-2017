@@ -204,6 +204,21 @@ TEST_F(MazeTest, TestTraversalVisted) {
     }
 }
 
+TEST_F(MazeTest, TestDirectionBetweenCells) {
+    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX,middleY+1), North);
+    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX,middleY-1), South);
+    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX+1,middleY), West);
+    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX-1,middleY), East);
+
+    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX,middleY+1)), North);
+    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX,middleY-1)), South);
+    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX+1,middleY)), West);
+    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX-1,middleY)), East);
+
+    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,0,0));
+    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,1,1));
+}
+
 TEST_F(MazeTest, TestMazeMapped) {
     maze.isMazeMapped();
 
