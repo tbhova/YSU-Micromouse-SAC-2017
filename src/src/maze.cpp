@@ -143,6 +143,9 @@ bool Maze::hasMouseVisited(const Coordinate cell) const {
 }
 
 void Maze::setMouseVisited(const int x, const int y) {
+    if (!hasMouseVisited(x, y)) {
+        cellsVisited++;
+    }
     getCell(x, y).setVisited();
 }
 
@@ -194,4 +197,9 @@ Cardinal8 Maze::getDirectionBetweenCells(const int x1, const int y1, const int x
 
 Cardinal8 Maze::getDirectionBetweenCells(const Coordinate fromCell, const Coordinate toCell) {
     return getDirectionBetweenCells(fromCell.x, fromCell.y, toCell.x, toCell.y);
+}
+
+bool Maze::isMazeMapped() const {
+    const int numberOfCells = sizeX * sizeY;
+    return (numberOfCells == cellsVisited);
 }

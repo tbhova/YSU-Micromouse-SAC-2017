@@ -218,3 +218,16 @@ TEST_F(MazeTest, TestDirectionBetweenCells) {
     ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,0,0));
     ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,1,1));
 }
+
+TEST_F(MazeTest, TestMazeMapped) {
+    maze.isMazeMapped();
+
+    for (int x = 0; x < maze.getSizeX(); x++) {
+        for (int y = 0; y < maze.getSizeY(); y++) {
+            ASSERT_FALSE(maze.isMazeMapped());
+            maze.setMouseVisited(x, y);
+            maze.setMouseVisited(x, y);
+        }
+    }
+    ASSERT_TRUE(maze.isMazeMapped());
+}

@@ -129,6 +129,7 @@ SOURCES += \
     src/motor.cpp \
     src/encoders.cpp \
     src/encoder.cpp \
+    src/navigator.cpp \
     src/interpolateir.cpp
 
 HEADERS += \
@@ -144,5 +145,6 @@ HEADERS += \
     src/motors.h \
     src/encoders.h \
     src/coordinate.h \
+    src/abstractdriver.h \
     src/interpolateir.h
 

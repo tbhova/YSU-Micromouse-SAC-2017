@@ -77,6 +77,7 @@ private:
 	};
 
 	int sizeX, sizeY;
+    int cellsVisited = 0;
 	std::vector<std::vector<Cell>> mazeCells = std::vector<std::vector<Cell>>();
 
     /**
@@ -127,10 +128,12 @@ public:
      * @param sizeX - x dimension of the maze
      * @param sizeY - y dimension of the maze
      */
-	Maze(const int sizeX, const int sizeY);
+    explicit Maze(const int sizeX, const int sizeY);
 
 	int getSizeX() const { return sizeX; }
 	int getSizeY() const { return sizeY; }
+
+    Coordinate getDestinationCell() const { return Coordinate(sizeX/2, sizeY/2); }
 
     /**
      * @brief placeWall - puts the "dir" wall at location x, y
@@ -228,6 +231,12 @@ public:
      * @brief resetTraversalVisited - mark all cells as not visited by maze solver
      */
     void resetTraversalVisited();
+
+    /**
+     * @brief isMazeMapped
+     * @return true if all cells have been visited
+     */
+    bool isMazeMapped() const;
 };
 
 #endif // MAZE_H

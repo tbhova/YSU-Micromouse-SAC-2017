@@ -11,6 +11,10 @@ struct Coordinate {
     bool operator==(Coordinate& other) {
         return other.x == x && other.y == y;
     }
+
+    bool operator==(const Coordinate& other) const {
+        return other.x == x && other.y == y;
+    }
 };
 
 #endif // COORDINATE_H
