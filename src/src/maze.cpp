@@ -178,6 +178,6 @@ void Maze::resetTraversalVisited() {
 }
 
 bool Maze::isMazeMapped() {
-    static const int numberOfCells = sizeX*sizeY;
+    const int numberOfCells = sizeX * sizeY;
     return (numberOfCells == cellsVisited);
 }

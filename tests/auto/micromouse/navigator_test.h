@@ -33,12 +33,13 @@ public:
     MockGPS() {}
     MOCK_METHOD0(nextDirection, Cardinal8());
     MOCK_METHOD2(askForDirectionToXY, Cardinal8(const Coordinate cell, const Coordinate destination));
+    MOCK_METHOD2(fullPath, std::stack<Cardinal8>(const Coordinate cell, const Coordinate destination));
 };
 
 class MockedNavigatorTest : public ::testing::Test {
 protected:
     MockDriver driver;
-    Maze maze = Maze(4,4);
+    Maze maze = Maze(2,2);
     MockGPS gps;
     Navigator navigator = Navigator(&driver, &maze, &gps);
 public:
@@ -51,9 +52,41 @@ protected:
 public:
 };
 
-
 TEST_F(MockedNavigatorTest, testMapping) {
     //Write actual test code
+    maze.placeWall(0, 0, East);
+
+    EXPECT_CALL(driver, drive(North)).Times(Exactly(2));
+    EXPECT_CALL(driver, drive(South)).Times(Exactly(2));
+    EXPECT_CALL(driver, drive(West)).Times(Exactly(1));
+    EXPECT_CALL(driver, drive(East)).Times(Exactly(1));
+    EXPECT_CALL(driver, getCurrentLocation()).Times(Exactly(7))
+            .WillOnce(Return(Coordinate(0,0)))
+            .WillOnce(Return(Coordinate(0,1)))
+            .WillOnce(Return(Coordinate(1,1)))
+            .WillOnce(Return(Coordinate(1,0)))
+            .WillOnce(Return(Coordinate(1,1)))
+            .WillOnce(Return(Coordinate(0,1)))
+            .WillOnce(Return(Coordinate(0,0)));
+
+    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(0,0), Coordinate(0,1)))
+            .Times(Exactly(1))
+            .WillOnce(Return(North));
+    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(0,1), Coordinate(1,0)))
+            .Times(Exactly(1))
+            .WillOnce(Return(East));
+    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(1,1), Coordinate(1,0)))
+            .Times(Exactly(1))
+            .WillOnce(Return(South));
+    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(1,0), Coordinate(0,0)))
+            .Times(Exactly(1))
+            .WillOnce(Return(North));
+    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(1,1), Coordinate(0,0)))
+            .Times(Exactly(1))
+            .WillOnce(Return(West));
+    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(0,1), Coordinate(0,0)))
+            .Times(Exactly(1))
+            .WillOnce(Return(South));
 
     navigator.map();
 }
