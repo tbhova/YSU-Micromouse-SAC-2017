@@ -214,7 +214,7 @@ public:
      * @brief isMazeMapped
      * @return true if all cells have been visited
      */
-    bool isMazeMapped();
+    bool isMazeMapped() const;
 };
 
 #endif // MAZE_H

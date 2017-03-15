@@ -27,7 +27,7 @@ private:
      * @brief findUnvisitedCell - determine the Coordinates of the nearest UnvisitedCell
      * @return Coordinates of the the nearest UnvisitedCell
      */
-    Coordinate findUnvisitedCell();
+    Coordinate findUnvisitedCell() const;
 
 public:
     Navigator(AbstractDriver *driver, Maze *maze, GPS *gps);
