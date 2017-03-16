@@ -12,6 +12,7 @@
  */
 class GPS {
 public:
+    virtual ~GPS() {}
     virtual Cardinal8 nextDirection() = 0;
     /**
      * @brief askForDirectionToXY - Request the directions from current cell to New Cell

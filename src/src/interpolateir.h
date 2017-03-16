@@ -46,18 +46,18 @@ private:
 
     const std::vector<IR_Data>sensorCurve = std::vector<IR_Data>(dataArray, std::end(dataArray));
 
-    unsigned short int voltsAt(const int index) const {
+    unsigned short int voltsAt(const unsigned int index) const {
         return sensorCurve.at(index).voltage;
     }
 
-    unsigned short int distAt(const int index) const {
+    unsigned short int distAt(const unsigned int index) const {
         return sensorCurve.at(index).distance;
     }
 
 public:
     InterpolateIR() {}
 
-    unsigned short int getDistance(const int voltage) const;
+    unsigned short int getDistance(const unsigned short int voltage) const;
 
 };
 

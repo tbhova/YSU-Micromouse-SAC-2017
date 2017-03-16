@@ -9,8 +9,8 @@ Navigator::Navigator(AbstractDriver *driver, Maze *maze, GPS *gps) :
 }
 
 Coordinate Navigator::findUnvisitedCell() const {
-    for (int x = 0; x < maze->getSizeX(); x++) {
-        for (int y = 0; y < maze->getSizeY(); y++) {
+    for (unsigned int x = 0; x < maze->getSizeX(); x++) {
+        for (unsigned int y = 0; y < maze->getSizeY(); y++) {
             if (!maze->hasMouseVisited(x,y)) {
                 return Coordinate(x,y);
             }
@@ -67,6 +67,9 @@ void Navigator::optimalRoute() {
             path.pop();
             reversePath.push(nextDir);
         } else {
+            if (reversePath.empty()) {
+                break;
+            }
             nextDir = reversePath.top();
             reversePath.pop();
         }

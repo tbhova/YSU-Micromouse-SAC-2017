@@ -8,6 +8,7 @@ class BreadthFirstGPS : public GPS
 {
 public:
     BreadthFirstGPS();
+    virtual ~BreadthFirstGPS();
     virtual Cardinal8 nextDirection();
 };
 

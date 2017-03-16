@@ -1,7 +1,6 @@
 #ifndef INFRAREDSENSORARRAY_H
 #define INFRAREDSENSORARRAY_H
 
-
 class InfraredSensorArray {
 
 public:
@@ -11,7 +10,6 @@ private:
     //Private class for 1 sensor
     class InfraredSensor {
     private:
-
 
     public:
         InfraredSensor();

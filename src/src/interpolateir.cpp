@@ -3,7 +3,7 @@
 
 using namespace std;
 
-unsigned short int InterpolateIR::getDistance(const int voltage) const {
+unsigned short int InterpolateIR::getDistance(const unsigned short int voltage) const {
     // Too close or far to read voltage
     if (voltage >= voltsAt(0)) {
         return distAt(0);
@@ -20,10 +20,10 @@ unsigned short int InterpolateIR::getDistance(const int voltage) const {
 
     // Linear interpolation to find the actual distance
     double range = (*(index - 1)).voltage - (*index).voltage;
-    double interpolationFactor = (double)((*(index - 1)).voltage - voltage) / range;
+    double interpolationFactor = static_cast<double>((*(index - 1)).voltage - voltage) / range;
 
-    double distance = interpolationFactor * (double)((*(index)).distance);
-    distance += (1 - interpolationFactor) * (double)((*(index - 1)).distance);
+    double distance = interpolationFactor * static_cast<double>((*(index)).distance);
+    distance += (1 - interpolationFactor) * static_cast<double>((*(index - 1)).distance);
 
-    return distance;
+    return static_cast<unsigned short int>(distance);
 }

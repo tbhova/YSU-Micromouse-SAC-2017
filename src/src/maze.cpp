@@ -179,20 +179,13 @@ void Maze::resetTraversalVisited() {
 
 Cardinal8 Maze::getDirectionBetweenCells(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2) {
     if ((x1 == x2) == (y1 == y2)) {
-        class InvalidCellInputException: public exception
-        {
-          virtual const char* what() const throw()
-          {
-            return "Cells are either not adjacent or are identical";
-          }
-        } myex;
-        throw myex;
+        //Invalid input
+        return NorthEast;
     } else if (x1 == x2) {
         return y1 > y2 ? South : North;
-    } else if (y1 == y2) {
+    } else {
         return x1 > x2 ? East : West;
     }
-    return NorthEast;
 }
 
 Cardinal8 Maze::getDirectionBetweenCells(const Coordinate fromCell, const Coordinate toCell) {
