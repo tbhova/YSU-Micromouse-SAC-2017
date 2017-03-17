@@ -4,13 +4,14 @@
 #include "../../src/src/breadthfirstgps.h"
 #include "../../src/src/breadthfirstgps.cpp"
 
-
 using namespace testing;
 using namespace std;
 
 class BreadthFirstGPSTest : public ::testing::Test {
 protected:
-    BreadthFirstGPS breadthFirst = BreadthFirstGPS();
+
+    Maze *maze = new Maze(16, 16);
+    BreadthFirstGPS breadthFirst = BreadthFirstGPS(maze);
 
 public:
 
@@ -19,12 +20,43 @@ public:
 };
 
 TEST_F(BreadthFirstGPSTest, TestConstructor) {
-    Maze maze(4, 4);
-    breadthFirst.setMaze(&maze);
+    *maze =  Maze(4, 4);
+    maze->placeWall(0, 0, North);
 }
 
 TEST_F(BreadthFirstGPSTest, TestNextDirection){
-    Maze maze(4, 4);
-    breadthFirst.setMaze(&maze);
-    ASSERT_EQ(breadthFirst.nextDirection(), North);
+    //breadthFirst.setMaze(&maze);
+    *maze = Maze(2, 2);
+    Coordinate start;
+    Coordinate destination;
+    start.x = 0;
+    start.y = 0;
+
+    destination.x = 1;
+    destination.y = 1;
+    maze->placeWall(0, 0, North);
+    maze->placeWall(0, 1, South);
+
+    ASSERT_EQ(breadthFirst.nextDirection(start, destination), East);
 }
+
+TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
+    //breadthFirst.setMaze(&maze);
+    *maze = Maze(3, 4);
+    Coordinate start;
+    Coordinate destination;
+    start.x = 0;
+    start.y = 0;
+
+    destination.x = 1;
+    destination.y = 2;
+    maze->placeWall(0, 0, North);
+    maze->placeWall(0, 1, South);
+    maze->placeWall(1, 0, North);
+    maze->placeWall(1, 1, South);
+
+    ASSERT_EQ(breadthFirst.nextDirection(start, destination), East);
+}
+
+
+

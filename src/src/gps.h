@@ -12,8 +12,9 @@
 
 class GPS {
 public:
-    GPS(){
-    }
+    GPS(){}
+    GPS(Maze *maze){ this->maze = maze; }
+
     virtual Cardinal8 nextDirection() = 0;
 
 protected:

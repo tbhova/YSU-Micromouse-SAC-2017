@@ -163,7 +163,7 @@ void Maze::setTraversalVisited(const int x, const int y) {
 }
 
 void Maze::setTraversalVisited(const Coordinate cell) {
-    setMouseVisited(cell.x, cell.y);
+    setTraversalVisited(cell.x, cell.y);
 }
 
 void Maze::resetTraversalVisited() {
@@ -187,7 +187,7 @@ Cardinal8 Maze::getDirectionBetweenCells(const int x1, const int y1, const int x
     } else if (x1 == x2) {
         return y1 > y2 ? South : North;
     } else if (y1 == y2) {
-        return x1 > x2 ? East : West;
+        return x1 > x2 ? West : East;
     }
     return NorthEast;
 }
