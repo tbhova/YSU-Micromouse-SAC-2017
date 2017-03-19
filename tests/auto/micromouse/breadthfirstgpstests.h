@@ -9,24 +9,22 @@ using namespace std;
 
 class BreadthFirstGPSTest : public ::testing::Test {
 protected:
-
     Maze *maze = new Maze(16, 16);
     BreadthFirstGPS breadthFirst = BreadthFirstGPS(maze);
 
 public:
-
-
-
+    void setMaze(const int x, const int y) {
+        *maze =  Maze(x, y);
+    }
 };
 
 TEST_F(BreadthFirstGPSTest, TestConstructor) {
-    *maze =  Maze(4, 4);
+    setMaze(4,4);
     maze->placeWall(0, 0, North);
 }
 
 TEST_F(BreadthFirstGPSTest, TestNextDirection){
-    //breadthFirst.setMaze(&maze);
-    *maze = Maze(2, 2);
+    setMaze(2, 2);
     Coordinate start = Coordinate(0,0);
     Coordinate destination = Coordinate(1,1);
 
@@ -36,8 +34,7 @@ TEST_F(BreadthFirstGPSTest, TestNextDirection){
 }
 
 TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
-    //breadthFirst.setMaze(&maze);
-    *maze = Maze(3, 4);
+    setMaze(3, 4);
     Coordinate start = Coordinate(0,0);
     Coordinate destination = Coordinate(1,2);
 
@@ -46,6 +43,3 @@ TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
 
     ASSERT_EQ(breadthFirst.nextDirection(start, destination), East);
 }
-
-
-
