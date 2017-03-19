@@ -171,7 +171,6 @@ TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellFull) {
     }
 
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
-    /// cppcheck-suppress compareBoolExpressionWithInt
     EXPECT_EQ(neighbors.size(), static_cast<unsigned int>(0));
 }
 
