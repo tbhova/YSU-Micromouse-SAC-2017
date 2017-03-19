@@ -128,7 +128,9 @@ SOURCES += \
     src/motors.cpp \
     src/motor.cpp \
     src/encoders.cpp \
-    src/encoder.cpp
+    src/encoder.cpp \
+    src/navigator.cpp \
+    src/interpolateir.cpp
 
 HEADERS += \
     src/maze.h \
@@ -142,5 +144,7 @@ HEADERS += \
     src/infraredsensorarray.h \
     src/motors.h \
     src/encoders.h \
-    src/coordinate.h
+    src/coordinate.h \
+    src/abstractdriver.h \
+    src/interpolateir.h
 

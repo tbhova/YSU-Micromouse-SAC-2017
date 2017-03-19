@@ -2,17 +2,17 @@
 #define COORDINATE_H
 
 struct Coordinate {
-    int x, y;
+    unsigned int x, y;
 
-    Coordinate(const int x, const int y) : x(x), y(y) {}
+    Coordinate(const unsigned int x, const unsigned int y) : x(x), y(y) {}
 
     Coordinate() {x = 0; y = 0;}
 
-    bool operator==(Coordinate& other) {
+    bool operator==(Coordinate& other) const {
         return other.x == x && other.y == y;
     }
 
-    bool operator==(const Coordinate& other) {
+    bool operator==(const Coordinate& other) const {
         return other.x == x && other.y == y;
     }
 };

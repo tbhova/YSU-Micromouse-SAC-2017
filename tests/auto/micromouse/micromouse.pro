@@ -9,6 +9,8 @@ CONFIG -= qt
 
 HEADERS +=     \
     mazetest.h \
-    breadthfirstgpstests.h
+    breadthfirstgpstests.h \
+    navigator_test.h \
+    ir_interpolate_test.h
 
 SOURCES +=     main.cpp

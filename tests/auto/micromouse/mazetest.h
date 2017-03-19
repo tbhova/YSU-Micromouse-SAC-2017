@@ -13,18 +13,18 @@ using namespace std;
 
 class MazeTest : public ::testing::Test {
 protected:
-    const int sizeX = 16, sizeY = 16;
-    int middleX, middleY;
+    const unsigned int sizeX = 16, sizeY = 16;
+    unsigned int middleX, middleY;
     Maze maze = Maze(sizeX, sizeY);
 
 public:
     MazeTest() {
-        srand(time(NULL));
+        srand(static_cast<unsigned int>(time(NULL)));
 
         //chose a box in the middle between 1 and size - 2
-        middleX = rand() % (sizeX - 2) + 1;
-        middleY = rand() % (sizeY - 2) + 1;
-    };
+        middleX = static_cast<unsigned int>(rand()) % (sizeX - 2) + 1;
+        middleY = static_cast<unsigned int>(rand()) % (sizeY - 2) + 1;
+    }
 };
 
 TEST_F(MazeTest, TestConstructor) {
@@ -41,8 +41,8 @@ TEST_F(MazeTest, TestConstructor) {
  * Test that there are perimeter walls and no walls in the middle
  */
 TEST_F(MazeTest, TestPerimeterWalls) {
-    for (int x = 0; x < maze.getSizeX(); x++) {
-        for (int y = 0; y < maze.getSizeY(); y++) {
+    for (unsigned int x = 0; x < maze.getSizeX(); x++) {
+        for (unsigned int y = 0; y < maze.getSizeY(); y++) {
 
             const bool southWall = maze.isWall(x, y, South),
                        northWall = maze.isWall(x, y, North),
@@ -81,14 +81,14 @@ TEST_F(MazeTest, TestInsertAdjacentBoundaryWalls) {
 
 TEST_F(MazeTest, TestInsertAndRemoveWallAdjacency) {
     //insert a wall
-    const int directionIndex = rand() % 4;
+    const unsigned int directionIndex = rand() % 4;
     const Cardinal8 randomDirection = primaryCardinalList.at(directionIndex);
 
     maze.placeWall(middleX, middleY, randomDirection);
 
     ASSERT_TRUE(maze.isWall(middleX, middleY, randomDirection));
 
-    int x = middleX, y = middleY;
+    unsigned int x = middleX, y = middleY;
     switch (randomDirection) {
     case North:
         y++;
@@ -121,8 +121,8 @@ TEST_F(MazeTest, TestRemoveBoundaryWall) {
 }
 
 TEST_F(MazeTest, TestInsertAndRemoveAllWalls) {
-    for (int x = 0; x < sizeX; x++) {
-        for (int y = 0; y < sizeY; y++) {
+    for (unsigned int x = 0; x < sizeX; x++) {
+        for (unsigned int y = 0; y < sizeY; y++) {
             for (vector<Cardinal8>::const_iterator it = primaryCardinalList.begin(); it != primaryCardinalList.end(); ++it) {
                 maze.placeWall(x, y, *it);
                 ASSERT_TRUE(maze.isWall(x, y, *it));
@@ -134,7 +134,7 @@ TEST_F(MazeTest, TestInsertAndRemoveAllWalls) {
     }
 }
 
-bool containsCoordinate(const vector<Coordinate>& vec, const int x, const int y) {
+bool containsCoordinate(const vector<Coordinate>& vec, const unsigned int x, const unsigned int y) {
     return any_of(vec.begin(), vec.end(), [x, y](Coordinate c) {return Coordinate(x,y) == c; });
 }
 
@@ -142,7 +142,7 @@ TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
     //Expect cell 0,0 to have neighbors of 0,1 and 1,0
     vector<Coordinate> neighbors = maze.getNeighboringCells(0,0);
 
-    EXPECT_EQ(neighbors.size(), (unsigned int)2);
+    EXPECT_EQ(neighbors.size(), 2);
 
     EXPECT_TRUE(containsCoordinate(neighbors, 0, 1));
     ASSERT_TRUE(containsCoordinate(neighbors, 1, 0));
@@ -151,7 +151,7 @@ TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
 TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellEmpty) {
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
 
-    EXPECT_EQ(neighbors.size(), (unsigned int)4);
+    EXPECT_EQ(neighbors.size(), 4);
 
     ASSERT_TRUE(containsCoordinate(neighbors, middleX + 1, middleY));
     ASSERT_TRUE(containsCoordinate(neighbors, middleX - 1, middleY));
@@ -165,14 +165,14 @@ TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellFull) {
     }
 
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
-    EXPECT_EQ(neighbors.size(), (unsigned int)0);
+    EXPECT_EQ(neighbors.size(), 0);
 }
 
 TEST_F(MazeTest, TestMouseVisited) {
     maze.setMouseVisited(middleX, middleY);
 
-    for (int x = 0; x < maze.getSizeX(); x++) {
-        for (int y = 0; y < maze.getSizeY(); y++) {
+    for (unsigned int x = 0; x < maze.getSizeX(); x++) {
+        for (unsigned int y = 0; y < maze.getSizeY(); y++) {
             bool isVisited = false;
             if (x == middleX && y == middleY) {
                 isVisited = true;
@@ -185,8 +185,8 @@ TEST_F(MazeTest, TestMouseVisited) {
 TEST_F(MazeTest, TestTraversalVisted) {
     maze.setTraversalVisited(middleX, middleY);
 
-    for (int x = 0; x < maze.getSizeX(); x++) {
-        for (int y = 0; y < maze.getSizeY(); y++) {
+    for (unsigned int x = 0; x < maze.getSizeX(); x++) {
+        for (unsigned int y = 0; y < maze.getSizeY(); y++) {
             bool isVisited = false;
             if (x == middleX && y == middleY) {
                 isVisited = true;
@@ -197,8 +197,8 @@ TEST_F(MazeTest, TestTraversalVisted) {
 
     maze.resetTraversalVisited();
 
-    for (int x = 0; x < maze.getSizeX(); x++) {
-        for (int y = 0; y < maze.getSizeY(); y++) {
+    for (unsigned int x = 0; x < maze.getSizeX(); x++) {
+        for (unsigned int y = 0; y < maze.getSizeY(); y++) {
             ASSERT_FALSE(maze.hasTraversalVisited(x, y));
         }
     }
@@ -215,6 +215,23 @@ TEST_F(MazeTest, TestDirectionBetweenCells) {
     ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX+1,middleY)), East);
     ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX-1,middleY)), West);
 
-    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,0,0));
-    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,1,1));
+    // Bad Input
+//    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,0,0));
+//    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,1,1));
+
+    ASSERT_EQ(maze.getDirectionBetweenCells(0,0,0,0), NorthEast);
+    ASSERT_EQ(maze.getDirectionBetweenCells(0,0,1,1), NorthEast);
+}
+
+TEST_F(MazeTest, TestMazeMapped) {
+    maze.isMazeMapped();
+
+    for (unsigned int x = 0; x < maze.getSizeX(); x++) {
+        for (unsigned int y = 0; y < maze.getSizeY(); y++) {
+            ASSERT_FALSE(maze.isMazeMapped());
+            maze.setMouseVisited(x, y);
+            maze.setMouseVisited(x, y);
+        }
+    }
+    ASSERT_TRUE(maze.isMazeMapped());
 }

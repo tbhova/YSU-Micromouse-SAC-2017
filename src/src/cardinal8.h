@@ -19,11 +19,11 @@ static const Cardinal8 primaryCardinalArray[] = {North, West, South, East};
 static const std::vector<Cardinal8> primaryCardinalList =
         std::vector<Cardinal8>(primaryCardinalArray, std::end(primaryCardinalArray));
 
-Cardinal8 oppositeDirection(Cardinal8 dir) {
-    int dirInt = (int)dir;
+inline Cardinal8 oppositeDirection(Cardinal8 dir) {
+    int dirInt = static_cast<int>(dir);
     dirInt += 4;
     if (dirInt > 7) { dirInt -= 8; }
-    return (Cardinal8)dirInt;
+    return static_cast<Cardinal8>(dirInt);
 }
 
 #endif // CARDINAL8_H
