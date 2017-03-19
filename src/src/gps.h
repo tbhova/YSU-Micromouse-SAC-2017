@@ -12,10 +12,9 @@
 
 class GPS {
 public:
-    GPS(){}
-    GPS(Maze *maze){ this->maze = maze; }
+    explicit GPS(Maze *maze){ this->maze = maze; }
 
-    virtual Cardinal8 nextDirection() = 0;
+    virtual Cardinal8 nextDirection(const Coordinate start, const Coordinate destination) = 0;
 
 protected:
     Maze *maze;
