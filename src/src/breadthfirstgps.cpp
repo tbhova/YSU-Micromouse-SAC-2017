@@ -73,7 +73,7 @@ std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate sta
     return fromWhere;
 }
 
-Cardinal8 BreadthFirstGPS::nextDirection(const Coordinate start,  const Coordinate destination){
+Cardinal8 BreadthFirstGPS::nextDirection(const Coordinate start, const Coordinate destination){
    std::vector<std::vector<Cardinal8>> fromWhere;
    fromWhere = this->search(start, destination);
    std::stack<Cardinal8> path;
@@ -82,5 +82,3 @@ Cardinal8 BreadthFirstGPS::nextDirection(const Coordinate start,  const Coordina
    return path.top();
 
 }
-
-
