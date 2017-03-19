@@ -44,7 +44,7 @@ protected:
     Navigator navigator = Navigator(&driver, maze, gps);
 public:
     MockedNavigatorTest() {}
-    ~MockedNavigatorTest() { delete maze; }
+    ~MockedNavigatorTest() { delete maze; delete gps; }
 };
 
 class NavigatorTest : public ::testing::Test {

@@ -8,7 +8,7 @@ std::stack<Cardinal8> BreadthFirstGPS::getPath(std::vector<std::vector<Cardinal8
     std::stack<Cardinal8> path;
     Coordinate traversalCoord = destination;
 
-    while(!(traversalCoord == current)) {
+    while(traversalCoord != current) {
       const Cardinal8 direction = oppositeDirection(fromWhere[traversalCoord.x][traversalCoord.y]);
       traversalCoord = Maze::adjacentCell(traversalCoord, fromWhere[traversalCoord.x][traversalCoord.y]);
 
@@ -29,8 +29,7 @@ std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate sta
     maze->setTraversalVisited(current);
 
     std::vector<std::vector<Cardinal8>> fromWhere;
-    unsigned int ySize = maze->getSizeY();
-    fromWhere.resize(ySize);
+    fromWhere.resize(maze->getSizeY());
     for(unsigned int i = 0; i < maze->getSizeY(); i++){
         fromWhere.at(i).resize(maze->getSizeX());
     }
@@ -42,13 +41,13 @@ std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate sta
      coordQueue.pop();
 
      //Get the neighboring cells (all cells that neighbor the current coordinate)
-     neighbors = maze->getNeighboringCells(current.x, current.y);
+     neighbors = maze->getNeighboringCells(current);
 
 
     //Loop through all the neighbors,
     //and if they are not visited add them to the queue
     //and keep track of the direction that the neighbor came from
-    for(unsigned int i=0; i<neighbors.size(); i++){
+    for(unsigned int i=0; i < neighbors.size(); i++){
          if(!maze->hasTraversalVisited(neighbors.at(i))){
             maze->setTraversalVisited(neighbors.at(i));
 

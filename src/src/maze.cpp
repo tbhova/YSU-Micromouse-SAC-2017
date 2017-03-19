@@ -124,6 +124,10 @@ bool Maze::isWall(const unsigned int x, const unsigned int y, const Cardinal8 di
     return getCell(x, y).isWall(dir);
 }
 
+vector<Coordinate> Maze::getNeighboringCells(const Coordinate cell) const {
+    return getNeighboringCells(cell.x, cell.y);
+}
+
 vector<Coordinate> Maze::getNeighboringCells(const unsigned int x, const unsigned int y) const {
     vector<Coordinate> answer = vector<Coordinate>();
 

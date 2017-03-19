@@ -156,6 +156,7 @@ public:
      * @return List of all cells that are reachable from x, y
      */
     std::vector<Coordinate> getNeighboringCells(const unsigned int x, const unsigned int y) const;
+    std::vector<Coordinate> getNeighboringCells(const Coordinate cell) const;
 
     /**
      * @brief getDirectionBetweenCells get the Cardinal direction between 2 cells
