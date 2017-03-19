@@ -7,17 +7,14 @@ std::stack<Cardinal8> BreadthFirstGPS::getPath(std::vector<std::vector<Cardinal8
                                                const Coordinate current, const Coordinate destination){
     std::stack<Cardinal8> path;
     Coordinate traversalCoord = destination;
-    Cardinal8 direction;
 
-    while(!(traversalCoord == current)){
-
-      direction = oppositeDirection(fromWhere[traversalCoord.x][traversalCoord.y]);
-      traversalCoord = maze->adjacentCell(traversalCoord.x, traversalCoord.y,
-                                          fromWhere[traversalCoord.x][traversalCoord.y]);
+    while(!(traversalCoord == current)) {
+      const Cardinal8 direction = oppositeDirection(fromWhere[traversalCoord.x][traversalCoord.y]);
+      traversalCoord = Maze::adjacentCell(traversalCoord, fromWhere[traversalCoord.x][traversalCoord.y]);
 
       path.push(direction);
-
     }
+
     return path;
 }
 
@@ -32,9 +29,9 @@ std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate sta
     maze->setTraversalVisited(current);
 
     std::vector<std::vector<Cardinal8>> fromWhere;
-    int ySize = maze->getSizeY();
+    unsigned int ySize = maze->getSizeY();
     fromWhere.resize(ySize);
-    for(int i=0; i<maze->getSizeY(); i++){
+    for(unsigned int i = 0; i < maze->getSizeY(); i++){
         fromWhere.at(i).resize(maze->getSizeX());
     }
 
@@ -69,16 +66,17 @@ std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate sta
          }
       }
 
-    }while(!coordQueue.empty() && !foundDest);
+    } while(!coordQueue.empty() && !foundDest);
     return fromWhere;
 }
 
-Cardinal8 BreadthFirstGPS::nextDirection(const Coordinate start, const Coordinate destination){
-   std::vector<std::vector<Cardinal8>> fromWhere;
-   fromWhere = this->search(start, destination);
-   std::stack<Cardinal8> path;
+std::stack<Cardinal8> BreadthFirstGPS::fullPath(const Coordinate start, const Coordinate destination) {
+    std::vector<std::vector<Cardinal8>> fromWhere;
+    fromWhere = this->search(start, destination);
 
-   path = this->getPath(fromWhere, start, destination);
-   return path.top();
+    return this->getPath(fromWhere, start, destination);
+}
 
+Cardinal8 BreadthFirstGPS::getDirectionTo(const Coordinate start, const Coordinate destination){
+   return this->fullPath(start, destination).top();
 }

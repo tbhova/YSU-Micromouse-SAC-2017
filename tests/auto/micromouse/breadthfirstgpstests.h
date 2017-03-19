@@ -13,7 +13,7 @@ protected:
     BreadthFirstGPS breadthFirst = BreadthFirstGPS(maze);
 
 public:
-    void setMaze(const int x, const int y) {
+    void setMaze(const unsigned int x, const unsigned int y) {
         *maze =  Maze(x, y);
     }
 };
@@ -30,7 +30,7 @@ TEST_F(BreadthFirstGPSTest, TestNextDirection){
 
     maze->placeWall(0, 0, North);
 
-    ASSERT_EQ(breadthFirst.nextDirection(start, destination), East);
+    ASSERT_EQ(breadthFirst.getDirectionTo(start, destination), East);
 }
 
 TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
@@ -41,5 +41,5 @@ TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
     maze->placeWall(0, 0, North);
     maze->placeWall(1, 0, North);
 
-    ASSERT_EQ(breadthFirst.nextDirection(start, destination), East);
+    ASSERT_EQ(breadthFirst.getDirectionTo(start, destination), East);
 }

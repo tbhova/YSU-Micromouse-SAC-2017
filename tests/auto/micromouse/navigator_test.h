@@ -14,6 +14,7 @@
 #include "../../src/src/gps.h"
 
 #include <vector>
+#include <stack>
 
 using namespace testing;
 using namespace std;
@@ -30,20 +31,20 @@ public:
 
 class MockGPS : public GPS {
 public:
-    MockGPS() {}
-    MOCK_METHOD0(nextDirection, Cardinal8());
-    MOCK_METHOD2(askForDirectionToXY, Cardinal8(const Coordinate cell, const Coordinate destination));
-    MOCK_METHOD2(fullPath, std::stack<Cardinal8>(const Coordinate cell, const Coordinate destination));
+    explicit MockGPS(Maze* maze) : GPS(maze) {}
+    MOCK_METHOD2(getDirectionTo, Cardinal8(const Coordinate start, const Coordinate destination));
+    MOCK_METHOD2(fullPath, std::stack<Cardinal8>(const Coordinate start, const Coordinate destination));
 };
 
 class MockedNavigatorTest : public ::testing::Test {
 protected:
     MockDriver driver;
-    Maze maze = Maze(2,2);
-    MockGPS gps;
-    Navigator navigator = Navigator(&driver, &maze, &gps);
+    Maze* maze = new Maze(2,2);
+    MockGPS* gps = new MockGPS(maze);
+    Navigator navigator = Navigator(&driver, maze, gps);
 public:
     MockedNavigatorTest() {}
+    ~MockedNavigatorTest() { delete maze; }
 };
 
 class NavigatorTest : public ::testing::Test {
@@ -53,8 +54,7 @@ public:
 };
 
 TEST_F(MockedNavigatorTest, testMapping) {
-    //Write actual test code
-    maze.placeWall(0, 0, East);
+    maze->placeWall(0, 0, East);
 
     EXPECT_CALL(driver, drive(North)).Times(Exactly(2));
     EXPECT_CALL(driver, drive(South)).Times(Exactly(2));
@@ -69,22 +69,22 @@ TEST_F(MockedNavigatorTest, testMapping) {
             .WillOnce(Return(Coordinate(0,1)))
             .WillOnce(Return(Coordinate(0,0)));
 
-    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(0,0), Coordinate(0,1)))
+    EXPECT_CALL(*gps, getDirectionTo(Coordinate(0,0), Coordinate(0,1)))
             .Times(Exactly(1))
             .WillOnce(Return(North));
-    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(0,1), Coordinate(1,0)))
+    EXPECT_CALL(*gps, getDirectionTo(Coordinate(0,1), Coordinate(1,0)))
             .Times(Exactly(1))
             .WillOnce(Return(East));
-    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(1,1), Coordinate(1,0)))
+    EXPECT_CALL(*gps, getDirectionTo(Coordinate(1,1), Coordinate(1,0)))
             .Times(Exactly(1))
             .WillOnce(Return(South));
-    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(1,0), Coordinate(0,0)))
+    EXPECT_CALL(*gps, getDirectionTo(Coordinate(1,0), Coordinate(0,0)))
             .Times(Exactly(1))
             .WillOnce(Return(North));
-    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(1,1), Coordinate(0,0)))
+    EXPECT_CALL(*gps, getDirectionTo(Coordinate(1,1), Coordinate(0,0)))
             .Times(Exactly(1))
             .WillOnce(Return(West));
-    EXPECT_CALL(gps, askForDirectionToXY(Coordinate(0,1), Coordinate(0,0)))
+    EXPECT_CALL(*gps, getDirectionTo(Coordinate(0,1), Coordinate(0,0)))
             .Times(Exactly(1))
             .WillOnce(Return(South));
 

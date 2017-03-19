@@ -9,14 +9,15 @@
 class BreadthFirstGPS : public GPS {
 
 protected:
-    std::stack<Cardinal8> getPath(std::vector<std::vector<Cardinal8>> fromWhere,
+    static std::stack<Cardinal8> getPath(std::vector<std::vector<Cardinal8>> fromWhere,
                                   const Coordinate current, const Coordinate destination);
     std::vector<std::vector<Cardinal8>> search(const Coordinate current, const Coordinate destination);
 
 public:
     explicit BreadthFirstGPS(Maze *maze) : GPS(maze) {}
-    virtual ~BreadthFirstGPS();
-    virtual Cardinal8 nextDirection(const Coordinate start, const Coordinate destination);
+    virtual ~BreadthFirstGPS() {}
+    virtual Cardinal8 getDirectionTo(const Coordinate start, const Coordinate destination);
+    virtual std::stack<Cardinal8> fullPath(const Coordinate start, const Coordinate destination);
 };
 
 #endif // BREADTHFIRSTGPS_H

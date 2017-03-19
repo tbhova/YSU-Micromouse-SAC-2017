@@ -22,9 +22,9 @@ public:
      * @param destination - Destination Cell
      * @return Direction to the new cell
      */
-    virtual Cardinal8 nextDirection(const Coordinate start, const Coordinate destination) = 0;
+    virtual Cardinal8 getDirectionTo(const Coordinate start, const Coordinate destination) = 0;
 
-    virtual std::stack<Cardinal8> fullPath(const Coordinate cell, const Coordinate destination) = 0;
+    virtual std::stack<Cardinal8> fullPath(const Coordinate start, const Coordinate destination) = 0;
 
 protected:
     Maze* maze;

@@ -47,6 +47,10 @@ int Maze::cardinalToBit(const Cardinal8 dir) {
 	return 1 << bitShifts;
 }
 
+Coordinate Maze::adjacentCell(const Coordinate cell, const Cardinal8 dir) {
+    return adjacentCell(cell.x, cell.y, dir);
+}
+
 Coordinate Maze::adjacentCell(const unsigned int x, const unsigned int y, const Cardinal8 dir) {
     Coordinate adjacent;
     adjacent.x = x;
@@ -166,7 +170,7 @@ void Maze::setTraversalVisited(const unsigned int x, const unsigned int y) {
 }
 
 void Maze::setTraversalVisited(const Coordinate cell) {
-    setMouseVisited(cell.x, cell.y);
+    setTraversalVisited(cell.x, cell.y);
 }
 
 void Maze::resetTraversalVisited() {
