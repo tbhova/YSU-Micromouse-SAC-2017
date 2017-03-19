@@ -22,12 +22,10 @@ void Maze::Cell::removeWall(const Cardinal8 dir) {
 }
 
 
-Maze::Maze(const unsigned int sizeX, const unsigned int sizeY) : sizeX(sizeX), sizeY(sizeY){
+Maze::Maze(const unsigned int sizeX, const unsigned int sizeY) : sizeX(sizeX), sizeY(sizeY) {
+    mazeCells.resize(sizeX);
     for (unsigned int x = 0; x < sizeX; x++) {
-		mazeCells.push_back(std::vector<Cell>());
-        for (unsigned int y = 0; y < sizeY; y++) {
-			mazeCells.at(x).push_back(Cell());
-		}
+        mazeCells.at(x).resize(sizeY);
 	}
 
     for (unsigned int x = 0; x < sizeX; x++) {
