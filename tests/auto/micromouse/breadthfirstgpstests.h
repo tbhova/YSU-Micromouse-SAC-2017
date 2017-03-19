@@ -43,9 +43,7 @@ TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
     Coordinate destination = Coordinate(1,2);
 
     maze->placeWall(0, 0, North);
-    maze->placeWall(0, 1, South);
     maze->placeWall(1, 0, North);
-    maze->placeWall(1, 1, South);
 
     ASSERT_EQ(breadthFirst.nextDirection(start, destination), East);
 }
