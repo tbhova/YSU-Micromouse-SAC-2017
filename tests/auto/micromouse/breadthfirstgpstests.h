@@ -27,13 +27,9 @@ TEST_F(BreadthFirstGPSTest, TestConstructor) {
 TEST_F(BreadthFirstGPSTest, TestNextDirection){
     //breadthFirst.setMaze(&maze);
     *maze = Maze(2, 2);
-    Coordinate start;
-    Coordinate destination;
-    start.x = 0;
-    start.y = 0;
+    Coordinate start = Coordinate(0,0);
+    Coordinate destination = Coordinate(1,1);
 
-    destination.x = 1;
-    destination.y = 1;
     maze->placeWall(0, 0, North);
     maze->placeWall(0, 1, South);
 
@@ -43,13 +39,9 @@ TEST_F(BreadthFirstGPSTest, TestNextDirection){
 TEST_F(BreadthFirstGPSTest, TestNextDirectionBig){
     //breadthFirst.setMaze(&maze);
     *maze = Maze(3, 4);
-    Coordinate start;
-    Coordinate destination;
-    start.x = 0;
-    start.y = 0;
+    Coordinate start = Coordinate(0,0);
+    Coordinate destination = Coordinate(1,2);
 
-    destination.x = 1;
-    destination.y = 2;
     maze->placeWall(0, 0, North);
     maze->placeWall(0, 1, South);
     maze->placeWall(1, 0, North);
