@@ -47,6 +47,10 @@ int Maze::cardinalToBit(const Cardinal8 dir) {
 	return 1 << bitShifts;
 }
 
+Coordinate Maze::adjacentCell(const Coordinate cell, const Cardinal8 dir) {
+    return adjacentCell(cell.x, cell.y, dir);
+}
+
 Coordinate Maze::adjacentCell(const unsigned int x, const unsigned int y, const Cardinal8 dir) {
     Coordinate adjacent;
     adjacent.x = x;
@@ -120,6 +124,10 @@ bool Maze::isWall(const unsigned int x, const unsigned int y, const Cardinal8 di
     return getCell(x, y).isWall(dir);
 }
 
+vector<Coordinate> Maze::getNeighboringCells(const Coordinate cell) const {
+    return getNeighboringCells(cell.x, cell.y);
+}
+
 vector<Coordinate> Maze::getNeighboringCells(const unsigned int x, const unsigned int y) const {
     vector<Coordinate> answer = vector<Coordinate>();
 
@@ -166,7 +174,7 @@ void Maze::setTraversalVisited(const unsigned int x, const unsigned int y) {
 }
 
 void Maze::setTraversalVisited(const Coordinate cell) {
-    setMouseVisited(cell.x, cell.y);
+    setTraversalVisited(cell.x, cell.y);
 }
 
 void Maze::resetTraversalVisited() {
@@ -184,7 +192,7 @@ Cardinal8 Maze::getDirectionBetweenCells(const unsigned int x1, const unsigned i
     } else if (x1 == x2) {
         return y1 > y2 ? South : North;
     } else {
-        return x1 > x2 ? East : West;
+        return x1 > x2 ? West : East;
     }
 }
 

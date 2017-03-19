@@ -37,7 +37,7 @@ void Navigator::map() {
             destinationCell = findUnvisitedCell();
         }
 
-        Cardinal8 nextDir = directions->askForDirectionToXY(currentCell, destinationCell);
+        Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);
         driver->drive(nextDir);
     }
 }
