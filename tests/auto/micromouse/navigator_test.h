@@ -12,6 +12,8 @@
 #include "../../src/src/navigator.cpp"
 #include "../../src/src/abstractdriver.h"
 #include "../../src/src/gps.h"
+#include "../../src/src/breadthfirstgps.h"
+#include "../../src/src/breadthfirstgps.cpp"
 
 #include <vector>
 #include <stack>
@@ -49,8 +51,13 @@ public:
 
 class NavigatorTest : public ::testing::Test {
 protected:
-    Navigator *navigator;
+    MockDriver driver;
+    Maze* maze = new Maze(2,2);
+    MockGPS* gps = new BreadthFirstGPS(maze);
+    Navigator navigator = Navigator(&driver, maze, gps);
 public:
+    NavigatorTest() {}
+    ~NavigatorTest() { delete maze; delete gps; }
 };
 
 TEST_F(MockedNavigatorTest, testMapping) {

@@ -19,6 +19,7 @@ std::stack<Cardinal8> BreadthFirstGPS::getPath(std::vector<std::vector<Cardinal8
 }
 
 std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate start, const Coordinate destination){
+    maze->resetTraversalVisited();
     Coordinate current = start;  //The current location of the search
     std::queue<Coordinate> coordQueue; //The queue of coordinates to search
     std::vector<Coordinate> neighbors; //The neighbors of current
