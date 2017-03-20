@@ -28,7 +28,7 @@ TEST_F(DriverTest, locationTest) {
    // EXPECT_EQ(,East);
 }
 TEST_F(DriverTest, driveTest) {
-    StopGoDriver driver = Driver;
+    StopGoDriver driver;
     driver.drive(North);
 }
 TEST_F(DriverTest, getVarTest) {

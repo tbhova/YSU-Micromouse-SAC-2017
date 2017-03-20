@@ -148,8 +148,7 @@ HEADERS += \
     src/encoders.h \
     src/coordinate.h \
     src/abstractdriver.h \
-    src/interpolateir.h
-    src/mousedriver.h \
+    src/interpolateir.h \
     src/hardwaremanager.h \
     src/batterysensor.h \
     src/stopgodriver.h \
