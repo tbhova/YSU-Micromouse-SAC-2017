@@ -9,6 +9,7 @@ CONFIG -= qt
 
 HEADERS +=     \
     mazetest.h \
+    breadthfirstgpstests.h \
     navigator_test.h \
     ir_interpolate_test.h \
     driver_test.h

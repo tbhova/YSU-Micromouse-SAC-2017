@@ -8,12 +8,12 @@ struct Coordinate {
 
     Coordinate() {x = 0; y = 0;}
 
-    bool operator==(Coordinate& other) {
+    bool operator==(const Coordinate& other) const {
         return other.x == x && other.y == y;
     }
 
-    bool operator==(const Coordinate& other) const {
-        return other.x == x && other.y == y;
+    bool operator!=(const Coordinate& other) const {
+        return !(*this == other);
     }
 };
 

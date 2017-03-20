@@ -1,4 +1,5 @@
 #include "mazetest.h"
+#include "breadthfirstgpstests.h"
 #include "navigator_test.h"
 #include "ir_interpolate_test.h"
 #include "driver_test.h"

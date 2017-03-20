@@ -29,11 +29,15 @@ public:
 
 TEST_F(MazeTest, TestConstructor) {
     Maze m = Maze(16,16);
-    EXPECT_EQ(m.getSizeX(), 16);
-    ASSERT_EQ(m.getSizeY(), 16);
+    // cppcheck-suppress compareBoolExpressionWithInt
+    EXPECT_EQ(m.getSizeX(), static_cast<unsigned int>(16));
+    // cppcheck-suppress compareBoolExpressionWithInt
+    ASSERT_EQ(m.getSizeY(), static_cast<unsigned int>(16));
     m = Maze(12, 4);
-    EXPECT_EQ(m.getSizeX(), 12);
-    ASSERT_EQ(m.getSizeY(), 4);
+    // cppcheck-suppress compareBoolExpressionWithInt
+    EXPECT_EQ(m.getSizeX(), static_cast<unsigned int>(12));
+    // cppcheck-suppress compareBoolExpressionWithInt
+    ASSERT_EQ(m.getSizeY(), static_cast<unsigned int>(4));
 }
 
 /**
@@ -142,7 +146,8 @@ TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
     //Expect cell 0,0 to have neighbors of 0,1 and 1,0
     vector<Coordinate> neighbors = maze.getNeighboringCells(0,0);
 
-    EXPECT_EQ(neighbors.size(), 2);
+    // cppcheck-suppress compareBoolExpressionWithInt
+    EXPECT_EQ(neighbors.size(), static_cast<unsigned int>(2));
 
     EXPECT_TRUE(containsCoordinate(neighbors, 0, 1));
     ASSERT_TRUE(containsCoordinate(neighbors, 1, 0));
@@ -151,7 +156,8 @@ TEST_F(MazeTest, TestAdjacentNeighborsEdgeCell) {
 TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellEmpty) {
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
 
-    EXPECT_EQ(neighbors.size(), 4);
+    // cppcheck-suppress compareBoolExpressionWithInt
+    EXPECT_EQ(neighbors.size(), static_cast<unsigned int>(4));
 
     ASSERT_TRUE(containsCoordinate(neighbors, middleX + 1, middleY));
     ASSERT_TRUE(containsCoordinate(neighbors, middleX - 1, middleY));
@@ -165,7 +171,7 @@ TEST_F(MazeTest, TestAdjacentNeighborsMiddleCellFull) {
     }
 
     vector<Coordinate> neighbors = maze.getNeighboringCells(middleX, middleY);
-    EXPECT_EQ(neighbors.size(), 0);
+    EXPECT_EQ(neighbors.size(), static_cast<unsigned int>(0));
 }
 
 TEST_F(MazeTest, TestMouseVisited) {
@@ -207,13 +213,13 @@ TEST_F(MazeTest, TestTraversalVisted) {
 TEST_F(MazeTest, TestDirectionBetweenCells) {
     ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX,middleY+1), North);
     ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX,middleY-1), South);
-    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX+1,middleY), West);
-    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX-1,middleY), East);
+    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX+1,middleY), East);
+    ASSERT_EQ(maze.getDirectionBetweenCells(middleX,middleY,middleX-1,middleY), West);
 
     ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX,middleY+1)), North);
     ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX,middleY-1)), South);
-    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX+1,middleY)), West);
-    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX-1,middleY)), East);
+    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX+1,middleY)), East);
+    ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX-1,middleY)), West);
 
     // Bad Input
 //    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,0,0));

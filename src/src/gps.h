@@ -10,21 +10,24 @@
  * Abstract class, all other gps classes should inherit from this
  * Gives directions to the navigator
  */
+
 class GPS {
 public:
+    explicit GPS(Maze *maze){ this->maze = maze; }
     virtual ~GPS() {}
-    virtual Cardinal8 nextDirection() = 0;
+
     /**
-     * @brief askForDirectionToXY - Request the directions from current cell to New Cell
-     * @param cell - Current Cell
-     * @param cell - Destination Cell
+     * @brief nextDirection - Request the directions from current cell to New Cell
+     * @param start - Current Cell
+     * @param destination - Destination Cell
      * @return Direction to the new cell
      */
-    virtual Cardinal8 askForDirectionToXY(const Coordinate cell, const Coordinate destination) = 0;
+    virtual Cardinal8 getDirectionTo(const Coordinate start, const Coordinate destination) = 0;
 
-    virtual std::stack<Cardinal8> fullPath(const Coordinate cell, const Coordinate destination) = 0;
+    virtual std::stack<Cardinal8> fullPath(const Coordinate start, const Coordinate destination) = 0;
 
 protected:
     Maze* maze;
 };
+
 #endif // GPS_H
