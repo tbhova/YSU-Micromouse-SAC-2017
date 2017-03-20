@@ -12,7 +12,7 @@ void Driver::drive(const Cardinal8 dir) {
 }
 
 void Driver::updateState(Cardinal8 direction) {
-    Coordinate cell = maze.adjacentCell(x,y,direction);
+    Coordinate cell = Maze::adjacentCell(x,y,direction);
     x=cell.x;
     y=cell.y;
     dir=direction;
