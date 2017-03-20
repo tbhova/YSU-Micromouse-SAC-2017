@@ -9,4 +9,3 @@ void StopGoDriver::drive(const Cardinal8 dir) {
     updateState(dir);
 
 }
-

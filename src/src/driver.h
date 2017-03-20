@@ -15,7 +15,7 @@ class Driver : public AbstractDriver {
 public:
     Driver();
     virtual void drive(const Cardinal8 dir, const int cells);
-    virtual void drive(const Cardinal8 dir);
+    virtual void drive(const Cardinal8 dir) = 0;
     virtual Coordinate getCurrentLocation();
     virtual std::vector<Cardinal8> getWalls();
     int getX() const;
@@ -29,10 +29,11 @@ protected:
     Cardinal8 getLeftDir();
     Cardinal8 getRightDir();
     Cardinal8 getForwardDir();
+    virtual void turn(Cardinal8 direc);
 
 private:
-    int x, y;
-    Cardinal8 dir;
+    int x = 0, y = 0;
+    Cardinal8 dir = North;
     Maze maze;
     HardwareManager manager;
 

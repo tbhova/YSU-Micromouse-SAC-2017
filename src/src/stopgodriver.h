@@ -5,7 +5,7 @@
 class StopGoDriver : public Driver {
 public:
     StopGoDriver();
-    virtual void drive(const Cardinal8 dir);
+    void drive(const Cardinal8 dir);
     void turn();
     //turning, updateState, drive forward 1 cell (hardware manager)
 private:

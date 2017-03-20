@@ -1,7 +1,7 @@
 #include "mazetest.h"
 #include "navigator_test.h"
 #include "ir_interpolate_test.h"
-
+#include "driver_test.h"
 #include <gtest/gtest.h>
 
 int main(int argc, char *argv[]) {

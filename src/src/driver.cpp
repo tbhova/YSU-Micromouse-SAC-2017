@@ -1,15 +1,14 @@
 #include "driver.h"
 #include "maze.h"
+#include <stdlib.h>
 
 void Driver::drive(const Cardinal8 dir, const int cells) {
     for (int i=0; i<cells; i++) {
         drive(dir);
-
     }
 }
-
 void Driver::drive(const Cardinal8 dir) {
-
+    updateState(dir);
 }
 
 void Driver::updateState(Cardinal8 direction) {
@@ -64,4 +63,16 @@ Cardinal8 Driver::getRightDir() {
 }
 Coordinate Driver::getCurrentLocation() {
     return Coordinate(x,y);
+}
+void Driver::turn(Cardinal8 direc) {
+    int turns = (dir-direc)/2;
+    updateHeading(dir);
+    for(int i=0; i<abs(turns); i++) {
+        if(turns<0) {
+         // turnleft();
+        }
+        else
+          break;
+          // turnright();
+    }
 }

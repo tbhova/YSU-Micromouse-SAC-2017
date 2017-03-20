@@ -11,5 +11,6 @@ HEADERS +=     \
     mazetest.h \
     navigator_test.h \
     ir_interpolate_test.h
+    driver_test.h
 
 SOURCES +=     main.cpp
