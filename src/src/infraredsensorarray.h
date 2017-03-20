@@ -16,7 +16,7 @@ private:
 
     public:
         InfraredSensor();
-        short int getDistance();
+        unsigned short int getDistance();
     };
 
 

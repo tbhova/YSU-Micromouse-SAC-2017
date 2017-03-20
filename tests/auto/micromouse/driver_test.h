@@ -13,6 +13,8 @@
 #include "../../src/src/stopgodriver.h"
 #include "../../src/src/stopgodriver.cpp"
 #include "../../src/src/hardwaremanager.cpp"
+#include "../../src/src/infraredsensorarray.cpp"
+#include "../../src/src/infraredsensor.cpp"
 
 #include <vector>
 
