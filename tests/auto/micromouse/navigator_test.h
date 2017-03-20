@@ -13,7 +13,6 @@
 #include "../../src/src/abstractdriver.h"
 #include "../../src/src/gps.h"
 #include "../../src/src/breadthfirstgps.h"
-#include "../../src/src/breadthfirstgps.cpp"
 
 #include <vector>
 #include <stack>
