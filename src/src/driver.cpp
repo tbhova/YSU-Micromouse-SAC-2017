@@ -84,3 +84,9 @@ void Driver::turn(Cardinal8 direc) {
           // turnright();
     }
 }
+unsigned int getX() {
+    return x;
+}
+unsigned int getY() {
+    return y;
+}
