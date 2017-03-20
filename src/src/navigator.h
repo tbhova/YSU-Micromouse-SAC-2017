@@ -44,6 +44,7 @@ public:
      */
     void map();
     void optimalRoute();
+    void returnToOrigin();
 
 protected:
 
