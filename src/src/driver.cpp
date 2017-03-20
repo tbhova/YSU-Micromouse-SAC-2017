@@ -1,6 +1,11 @@
 #include "driver.h"
 #include "maze.h"
+#include "hardwaremanager.h"
 #include <stdlib.h>
+
+Driver::Driver() {
+
+}
 
 void Driver::drive(const Cardinal8 dir, const int cells) {
     for (int i=0; i<cells; i++) {
@@ -28,17 +33,20 @@ int Driver::numTurns(Cardinal8 direction) {
      return ((int)direction-(int)dir);
 }
 std::vector<Cardinal8> Driver::getWalls() {
-    bool* areWalls=manager.areWalls();
+//    bool* areWalls = manager->areWalls();
     std::vector<Cardinal8> walls;
-            if(areWalls[0]) {
-                walls.push_back(getLeftDir());
-            }
-            if(areWalls[1]) {
-                walls.push_back(getForwardDir());
-            }
-            if(areWalls[2]) {
-                walls.push_back(getRightDir());
-            }
+//    if(areWalls[0]) {
+    if (manager->isLeftWall()) {
+        walls.push_back(getLeftDir());
+    }
+//    if(areWalls[1]) {
+    if (manager->isCenterWall()) {
+        walls.push_back(getForwardDir());
+    }
+//    if(areWalls[2]) {
+    if (manager->isRightWall()) {
+        walls.push_back(getRightDir());
+    }
 
     return walls;
 }

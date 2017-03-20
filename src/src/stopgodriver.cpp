@@ -1,6 +1,6 @@
 #include "stopgodriver.h"
 
-StopGoDriver::StopGoDriver() {
+StopGoDriver::StopGoDriver() : Driver() {
    x=0;
    y=0;
    dir=North;
@@ -10,6 +10,6 @@ void StopGoDriver::drive(const Cardinal8 dir) {
 
 }
 
-void drive(const GPS &directions) {
+void StopGoDriver::drive(const GPS &directions) {
 
 }

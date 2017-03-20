@@ -18,8 +18,8 @@ public:
     virtual void drive(const Cardinal8 dir) = 0;
     virtual Coordinate getCurrentLocation();
     virtual std::vector<Cardinal8> getWalls();
-    int getX() const;
-    int getY() const;
+    unsigned int getX() const;
+    unsigned int getY() const;
 
 protected:
     Cardinal8 getDir();
@@ -30,12 +30,12 @@ protected:
     Cardinal8 getRightDir();
     Cardinal8 getForwardDir();
     virtual void turn(Cardinal8 direc);
+    HardwareManager* getHwManager() { return manager; }
 
 private:
-    int x = 0, y = 0;
+    unsigned int x = 0, y = 0;
     Cardinal8 dir = North;
-    Maze maze;
-    HardwareManager manager;
+    HardwareManager *manager;
 
 };
 

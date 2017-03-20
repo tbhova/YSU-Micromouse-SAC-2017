@@ -7,10 +7,11 @@ class HardwareManager {
 private:
     InfraredSensorArray irArray;
 public:
-    bool* areWalls();
-
-
-
+    HardwareManager();
+//    bool* areWalls();
+    bool isLeftWall();
+    bool isCenterWall();
+    bool isRightWall();
 };
 
 #endif // HARDWAREMANAGER_H
