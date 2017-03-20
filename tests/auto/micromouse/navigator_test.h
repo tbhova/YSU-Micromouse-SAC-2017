@@ -23,7 +23,7 @@ using namespace std;
 class MockDriver : public AbstractDriver {
 public:
     MockDriver() {}
-    MOCK_METHOD1(drive, void(const GPS &directions));
+    MOCK_METHOD1(drive, void(std::stack<Cardinal8> &directions));
     MOCK_METHOD2(drive, void(const Cardinal8 dir, const int cells));
     MOCK_METHOD1(drive, void(const Cardinal8 dir));
     MOCK_METHOD0(getCurrentLocation, Coordinate());
@@ -62,18 +62,17 @@ public:
 TEST_F(MockedNavigatorTest, testMapping) {
     maze->placeWall(0, 0, East);
 
-    EXPECT_CALL(driver, drive(North)).Times(Exactly(2));
-    EXPECT_CALL(driver, drive(South)).Times(Exactly(2));
-    EXPECT_CALL(driver, drive(West)).Times(Exactly(1));
+    EXPECT_CALL(driver, drive(North)).Times(Exactly(1));
+    EXPECT_CALL(driver, drive(South)).Times(Exactly(1));
     EXPECT_CALL(driver, drive(East)).Times(Exactly(1));
-    EXPECT_CALL(driver, getCurrentLocation()).Times(Exactly(7))
+    EXPECT_CALL(driver, getCurrentLocation()).Times(Exactly(4))
             .WillOnce(Return(Coordinate(0,0)))
             .WillOnce(Return(Coordinate(0,1)))
             .WillOnce(Return(Coordinate(1,1)))
-            .WillOnce(Return(Coordinate(1,0)))
-            .WillOnce(Return(Coordinate(1,1)))
-            .WillOnce(Return(Coordinate(0,1)))
-            .WillOnce(Return(Coordinate(0,0)));
+            .WillOnce(Return(Coordinate(1,0)));
+
+    EXPECT_CALL(driver, getWalls())
+            .WillRepeatedly(Return(std::vector<Cardinal8>()));
 
     EXPECT_CALL(*gps, getDirectionTo(Coordinate(0,0), Coordinate(0,1)))
             .Times(Exactly(1))
@@ -84,20 +83,9 @@ TEST_F(MockedNavigatorTest, testMapping) {
     EXPECT_CALL(*gps, getDirectionTo(Coordinate(1,1), Coordinate(1,0)))
             .Times(Exactly(1))
             .WillOnce(Return(South));
-    EXPECT_CALL(*gps, getDirectionTo(Coordinate(1,0), Coordinate(0,0)))
-            .Times(Exactly(1))
-            .WillOnce(Return(North));
-    EXPECT_CALL(*gps, getDirectionTo(Coordinate(1,1), Coordinate(0,0)))
-            .Times(Exactly(1))
-            .WillOnce(Return(West));
-    EXPECT_CALL(*gps, getDirectionTo(Coordinate(0,1), Coordinate(0,0)))
-            .Times(Exactly(1))
-            .WillOnce(Return(South));
 
     navigator.map();
 }
-
-
 
 TEST_F(NavigatorTest, testMapping) {
     maze->placeWall(0, 0, East);
