@@ -52,7 +52,7 @@ class NavigatorTest : public ::testing::Test {
 protected:
     MockDriver driver;
     Maze* maze = new Maze(2,2);
-    MockGPS* gps = new BreadthFirstGPS(maze);
+    GPS* gps = new BreadthFirstGPS(maze);
     Navigator navigator = Navigator(&driver, maze, gps);
 public:
     NavigatorTest() {}
