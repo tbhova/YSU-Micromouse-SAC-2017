@@ -16,27 +16,23 @@
 #include "../../src/src/infraredsensorarray.cpp"
 #include "../../src/src/infraredsensor.cpp"
 
-#include <vector>
 
 using namespace testing;
 using namespace std;
 
 class DriverTest : public ::testing::Test {
-
+protected:
+    StopGoDriver driver = StopGoDriver();
 
 };
 
 TEST_F(DriverTest, locationTest) {
-//    EXPECT_EQ(getCurrentLocation(),0);
-   // EXPECT_EQ(,East);
-}
-TEST_F(DriverTest, driveTest) {
-    StopGoDriver driver = StopGoDriver();
-    driver.drive(North);
+    EXPECT_EQ(driver.getCurrentLocation(), Coordinate(0,0));
 }
 TEST_F(DriverTest, getVarTest) {
-//    EXPECT_EQ(getX(), 0);
-//    EXPECT_EQ(getY(), 1);
+    driver.drive(North);
+    EXPECT_EQ(driver.getX(), 0);
+    EXPECT_EQ(driver.getY(), 1);
 
 }
 
