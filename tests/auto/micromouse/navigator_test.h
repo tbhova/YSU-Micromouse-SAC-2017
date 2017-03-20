@@ -87,7 +87,7 @@ TEST_F(MockedNavigatorTest, testMapping) {
     navigator.map();
 }
 
-TEST_F(NavigatorTest, testMapping) {
+TEST_F(NavigatorTest, testMappingActual) {
     maze->placeWall(0, 0, East);
     maze->placeWall(0, 1, North);
     maze->placeWall(1, 0, North);
