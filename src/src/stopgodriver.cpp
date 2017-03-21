@@ -1,6 +1,6 @@
 #include "stopgodriver.h"
 
-StopGoDriver::StopGoDriver() {
+StopGoDriver::StopGoDriver() : Driver() {
 
 }
 

@@ -1,12 +1,14 @@
+#ifndef MAZETEST_H
+#define MAZETEST_H
+
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "maze.h"
-#include "maze.cpp"
-#include "coordinate.h"
-
 #include <vector>
 #include <algorithm>
+
+#include "maze.h"
+#include "coordinate.h"
 
 using namespace testing;
 using namespace std;
@@ -221,10 +223,6 @@ TEST_F(MazeTest, TestDirectionBetweenCells) {
     ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX+1,middleY)), East);
     ASSERT_EQ(maze.getDirectionBetweenCells(Coordinate(middleX,middleY), Coordinate(middleX-1,middleY)), West);
 
-    // Bad Input
-//    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,0,0));
-//    ASSERT_ANY_THROW(maze.getDirectionBetweenCells(0,0,1,1));
-
     ASSERT_EQ(maze.getDirectionBetweenCells(0,0,0,0), NorthEast);
     ASSERT_EQ(maze.getDirectionBetweenCells(0,0,1,1), NorthEast);
 }
@@ -241,3 +239,5 @@ TEST_F(MazeTest, TestMazeMapped) {
     }
     ASSERT_TRUE(maze.isMazeMapped());
 }
+
+#endif // MAZETEST_H

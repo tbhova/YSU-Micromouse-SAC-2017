@@ -2,7 +2,6 @@
 #include <gmock/gmock-matchers.h>
 
 #include "breadthfirstgps.h"
-#include "breadthfirstgps.cpp"
 
 using namespace testing;
 using namespace std;

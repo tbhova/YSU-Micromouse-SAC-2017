@@ -9,7 +9,6 @@
 #include "coordinate.h"
 #include "cardinal8.h"
 #include "navigator.h"
-#include "navigator.cpp"
 #include "abstractdriver.h"
 #include "gps.h"
 #include "breadthfirstgps.h"

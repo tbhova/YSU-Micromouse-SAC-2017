@@ -130,7 +130,8 @@ SOURCES += \
     src/encoders.cpp \
     src/encoder.cpp \
     src/navigator.cpp \
-    src/interpolateir.cpp
+    src/interpolateir.cpp \
+    src/driver.cpp
 
 HEADERS += \
     src/maze.h \

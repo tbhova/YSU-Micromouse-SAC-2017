@@ -4,11 +4,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "interpolateir.h"
-#include "interpolateir.cpp"
-
 #include <vector>
 #include <algorithm>
+
+#include "interpolateir.h"
 
 TEST(InterpolateIr, TestInterpolationLowerBoundaries) {
     InterpolateIR interpolate;

@@ -1,4 +1,3 @@
-
 include(../gtest_dependency.pri)
 
 TEMPLATE = app
@@ -7,12 +6,17 @@ CONFIG -= app_bundle
 CONFIG += thread
 CONFIG -= qt
 
+DEFINES += BUILD_FOR_PC
+
 HEADERS +=     \
     mazetest.h \
     breadthfirstgpstests.h \
     navigator_test.h \
-    ir_interpolate_test.h
+    ir_interpolate_test.h \
+    $$files(../../../src/src/*.h)
 
-SOURCES +=     main.cpp
+SOURCES +=     \
+    $$files(../../../src/src/*.cpp) \
+    testmain.cpp
 
-INCLUDEPATH += $$PWD\..\..\..\src\src
+INCLUDEPATH += ../../../src/src
