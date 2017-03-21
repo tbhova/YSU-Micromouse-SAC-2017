@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "../../src/src/breadthfirstgps.h"
-#include "../../src/src/breadthfirstgps.cpp"
+#include "breadthfirstgps.h"
+#include "breadthfirstgps.cpp"
 
 using namespace testing;
 using namespace std;

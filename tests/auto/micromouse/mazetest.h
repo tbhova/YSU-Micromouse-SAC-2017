@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "../../src/src/maze.h"
-#include "../../src/src/maze.cpp"
-#include "../../src/src/coordinate.h"
+#include "maze.h"
+#include "maze.cpp"
+#include "coordinate.h"
 
 #include <vector>
 #include <algorithm>

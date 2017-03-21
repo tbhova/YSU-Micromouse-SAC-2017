@@ -5,14 +5,14 @@
 #include <gmock/gmock-matchers.h>
 #include <gmock/gmock.h>
 
-#include "../../src/src/maze.h"
-#include "../../src/src/coordinate.h"
-#include "../../src/src/cardinal8.h"
-#include "../../src/src/navigator.h"
-#include "../../src/src/navigator.cpp"
-#include "../../src/src/abstractdriver.h"
-#include "../../src/src/gps.h"
-#include "../../src/src/breadthfirstgps.h"
+#include "maze.h"
+#include "coordinate.h"
+#include "cardinal8.h"
+#include "navigator.h"
+#include "navigator.cpp"
+#include "abstractdriver.h"
+#include "gps.h"
+#include "breadthfirstgps.h"
 
 #include <vector>
 #include <stack>

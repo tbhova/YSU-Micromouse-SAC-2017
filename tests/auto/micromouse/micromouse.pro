@@ -14,3 +14,5 @@ HEADERS +=     \
     ir_interpolate_test.h
 
 SOURCES +=     main.cpp
+
+INCLUDEPATH += $$PWD\..\..\..\src\src

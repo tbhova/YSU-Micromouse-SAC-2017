@@ -4,8 +4,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
-#include "../../src/src/interpolateir.h"
-#include "../../src/src/interpolateir.cpp"
+#include "interpolateir.h"
+#include "interpolateir.cpp"
 
 #include <vector>
 #include <algorithm>
