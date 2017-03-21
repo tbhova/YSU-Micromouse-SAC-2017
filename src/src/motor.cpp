@@ -1,9 +1,20 @@
 #include "motors.h"
 
-//Motors::Motor() {
-
-//}
+Motors::Motor::Motor(int forward, int reverse, int speed) {
+    this->forwardPin = forward;
+    this->reversePin = reverse;
+    this->speedPin = speed;
+}
 
 void Motors::Motor::setSpeed(short int speed) {
-    analogWrite(speedPin, speed);
+    if (speed<=0) {
+       digitalWriteFast(reversePin, HIGH);
+       digitalWriteFast(forwardPin, LOW);
+    }
+    else if (speed>=0) {
+        digitalWriteFast(reversePin, LOW);
+        digitalWriteFast(forwardPin, HIGH);
+    }
+
+    analogWrite(speedPin, abs(speed));
 }

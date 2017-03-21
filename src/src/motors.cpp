@@ -19,6 +19,7 @@ void Motors::brake() {
 }
 
 void Motors::setSpeed(short int speedLeft, short int speedRight) {
+    digitalWriteFast(MOTOR_STANDBY, HIGH);
     leftMotor.setSpeed(speedLeft);
     rightMotor.setSpeed(speedRight);
 }
