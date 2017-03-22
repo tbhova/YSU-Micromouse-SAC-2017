@@ -1,8 +1,8 @@
+#ifndef BUILD_FOR_PC
+
 #include "motors.h"
 
-
-Motors::Motors()
-{
+Motors::Motors() {
     this->coast();
 }
 
@@ -24,3 +24,4 @@ void Motors::setSpeed(short int speedLeft, short int speedRight) {
     rightMotor.setSpeed(speedRight);
 }
 
+#endif // BUILD_FOR_PC

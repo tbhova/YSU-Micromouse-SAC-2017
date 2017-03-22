@@ -15,7 +15,6 @@ class Driver : public AbstractDriver {
 public:
     Driver();
     virtual void drive(const Cardinal8 dir, const int cells);
-    virtual void drive(const Cardinal8 dir) = 0;
     virtual Coordinate getCurrentLocation();
     virtual std::vector<Cardinal8> getWalls();
     unsigned int getX() const;

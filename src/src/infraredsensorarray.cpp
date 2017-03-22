@@ -1,3 +1,5 @@
+#ifndef BUILD_FOR_PC
+
 #include "infraredsensorarray.h"
 
 InfraredSensorArray::InfraredSensorArray() {
@@ -17,3 +19,5 @@ short int getDistance() {
     //we'll change return value
     return 0;
 }
+
+#endif // BUILD_FOR_PC

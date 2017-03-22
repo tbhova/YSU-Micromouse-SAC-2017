@@ -1,3 +1,4 @@
+#ifndef BUILD_FOR_PC
 #ifndef ENCODERS_H
 #define ENCODERS_H
 
@@ -16,3 +17,4 @@ private:
 };
 
 #endif // ENCODERS_H
+#endif // BUILD_FOR_PC

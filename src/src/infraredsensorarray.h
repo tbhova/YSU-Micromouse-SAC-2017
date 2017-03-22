@@ -1,3 +1,4 @@
+#ifndef BUILD_FOR_PC
 #ifndef INFRAREDSENSORARRAY_H
 #define INFRAREDSENSORARRAY_H
 
@@ -24,3 +25,4 @@ private:
 };
 
 #endif // INFRAREDSENSORARRAY_H
+#endif // BUILD_FOR_PC

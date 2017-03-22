@@ -141,6 +141,7 @@ HEADERS += \
     src/pins.h \
     src/navigator.h \
     src/driver.h \
+    src/stopgodriver.h \
     src/gps.h \
     src/breadthfirstgps.h \
     src/infraredsensorarray.h \
