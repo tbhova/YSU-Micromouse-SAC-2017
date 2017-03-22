@@ -19,9 +19,9 @@ public:
     virtual std::vector<Cardinal8> getWalls();
     unsigned int getX() const;
     unsigned int getY() const;
+    Cardinal8 getDir();
 
 protected:
-    Cardinal8 getDir();
     void updateState(Cardinal8 direction);
     void updateHeading(Cardinal8 direc);
     int numTurns(Cardinal8 direction);
