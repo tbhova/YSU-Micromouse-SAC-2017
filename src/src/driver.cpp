@@ -90,3 +90,6 @@ unsigned int Driver::getX() const {
 unsigned int Driver::getY() const {
     return y;
 }
+Cardinal8 getDir() {
+    return dir;
+}
