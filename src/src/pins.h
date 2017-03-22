@@ -1,4 +1,3 @@
-#ifndef BUILD_FOR_PC
 #ifndef PINS_H
 #define PINS_H
 
@@ -21,4 +20,3 @@ const int   LEFT_MOTOR_SPEED        = 7,
 #define IR_SENSOR_RIGHT     A15 //pin 34
 
 #endif // PINS_H
-#endif // BUILD_FOR_PC

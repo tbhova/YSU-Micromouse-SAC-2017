@@ -6,8 +6,6 @@ CONFIG -= app_bundle
 CONFIG += thread
 CONFIG -= qt
 
-DEFINES += BUILD_FOR_PC
-
 HEADERS +=     \
     mazetest.h \
     breadthfirstgpstests.h \
@@ -15,8 +13,7 @@ HEADERS +=     \
     ir_interpolate_test.h \
     $$files(../../../src/src/*.h)
 
-SOURCES +=     \
-    $$files(../../../src/src/*.cpp) \
-    testmain.cpp
+SOURCES += \
+    main.cpp
 
 INCLUDEPATH += ../../../src/src

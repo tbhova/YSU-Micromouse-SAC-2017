@@ -1,5 +1,3 @@
-#ifndef BUILD_FOR_PC
-
 #include <Arduino.h>
 #include "mk20dx128.h"
 #include "core_pins.h"
@@ -14,5 +12,3 @@ void loop() {
         digitalWriteFast(LED_BUILTIN, LOW);
         delay(300);
 }
-
-#endif // BUILD_FOR_PC
