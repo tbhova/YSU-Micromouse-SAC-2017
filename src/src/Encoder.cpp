@@ -1,4 +1,3 @@
-
 #include "Encoder.h"
 
 // Yes, all the code is in the header file, to provide the user

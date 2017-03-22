@@ -96,6 +96,8 @@ public:
 		interrupts_in_use = attach_interrupt(pin1, &encoder);
 		interrupts_in_use += attach_interrupt(pin2, &encoder);
 #endif
+        Serial.print("interrupts: ");
+        Serial.println(interrupts_in_use);
 		//update_finishup();  // to force linker to include the code (does not work)
 	}
 
