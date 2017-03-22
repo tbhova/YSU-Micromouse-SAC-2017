@@ -2,8 +2,10 @@
 #include "mk20dx128.h"
 #include "core_pins.h"
 #include "pins.h"
+#include <Encoder.h>
 
-
+Encoder leftWheel(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
+Encoder rightWheel(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 void setup() {
         pinMode(LED_BUILTIN, OUTPUT);
         pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
@@ -29,7 +31,20 @@ void setup() {
         attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
         attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
 
+    Serial.begin(9600);
+    if (Serial.available()) {
+      Serial.read();
+      Serial.println("Reset both knobs to zero");
+      leftWheel.write(0);
+      rightWheel.write(0);
+    }
+
+    Serial.println("TwoKnobs Encoder Test:");
+
 }
+
+long positionLeft  = -999;
+long positionRight = -999;
 
 void loop() {
         digitalWriteFast(LED_BUILTIN, HIGH);
@@ -42,3 +57,28 @@ void loop() {
         //motors.setSpeed(-128,128);
 
 }
+
+        long newLeft, newRight;
+          newLeft = leftWheel.read();
+          newRight = rightWheel.read();
+         // if (newLeft != positionLeft || newRight != positionRight) {
+            Serial.print("Left = ");
+            Serial.print(newLeft);
+            Serial.print(", Right = ");
+            Serial.print(newRight);
+            Serial.println();
+            positionLeft = newLeft;
+            positionRight = newRight;
+            Serial.read();
+          //}
+          // if a character is sent from the serial monitor,
+          // reset both back to zero.
+          if (Serial.available()) {
+            Serial.read();
+            Serial.println("Reset both knobs to zero");
+            leftWheel.write(0);
+            rightWheel.write(0);
+          }
+        }
+
+#endif // BUILD_FOR_PC

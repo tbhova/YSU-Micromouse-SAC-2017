@@ -128,12 +128,13 @@ SOURCES += \
     src/motors.cpp \
     src/motor.cpp \
     src/encoders.cpp \
-    src/encoder.cpp \
     src/navigator.cpp \
     src/interpolateir.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
     src/driver.cpp
+    src/tencoder.cpp \
+    src/Encoder.cpp
 
 HEADERS += \
     src/maze.h \
@@ -153,5 +154,4 @@ HEADERS += \
     src/hardwaremanager.h \
     src/batterysensor.h \
     src/stopgodriver.h \
-    src/abstractdriver.h \
     src/abstracthardwaremanager.h
