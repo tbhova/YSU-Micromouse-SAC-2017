@@ -1,4 +1,3 @@
-#ifndef BUILD_FOR_PC
 #ifndef MOTORS_H
 #define MOTORS_H
 
@@ -33,4 +32,3 @@ private:
 };
 
 #endif // MOTORS_H
-#endif // BUILD_FOR_PC

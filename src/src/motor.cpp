@@ -1,5 +1,3 @@
-#ifndef BUILD_FOR_PC
-
 #include "motors.h"
 
 Motors::Motor::Motor(int forward, int reverse, int speed) {
@@ -20,5 +18,3 @@ void Motors::Motor::setSpeed(short int speed) {
 
     analogWrite(speedPin, abs(speed));
 }
-
-#endif // BUILD_FOR_PC
