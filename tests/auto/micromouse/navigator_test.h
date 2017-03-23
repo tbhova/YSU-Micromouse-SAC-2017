@@ -25,8 +25,8 @@ public:
     MOCK_METHOD1(drive, void(std::stack<Cardinal8> &directions));
     MOCK_METHOD2(drive, void(const Cardinal8 dir, const int cells));
     MOCK_METHOD1(drive, void(const Cardinal8 dir));
-    MOCK_METHOD0(getCurrentLocation, Coordinate());
-    MOCK_METHOD0(getWalls, std::vector<Cardinal8>());
+    MOCK_CONST_METHOD0(getCurrentLocation, Coordinate());
+    MOCK_CONST_METHOD0(getWalls, std::vector<Cardinal8>());
 };
 
 class MockGPS : public GPS {

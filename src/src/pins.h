@@ -3,8 +3,8 @@
 
 //Digital Pins
 const int   LEFT_MOTOR_SPEED        = 7,
-            LEFT_MOTOR_FORWARD      = 8,
-            LEFT_MOTOR_REVERSE      = 9,
+            LEFT_MOTOR_REVERSE      = 8,
+            LEFT_MOTOR_FORWARD      = 9,
             RIGHT_MOTOR_SPEED       = 10,
             RIGHT_MOTOR_FORWARD     = 11,
             RIGHT_MOTOR_REVERSE     = 12,

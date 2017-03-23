@@ -131,6 +131,8 @@ SOURCES += \
     src/encoder.cpp \
     src/navigator.cpp \
     src/interpolateir.cpp \
+    src/hardwaremanager.cpp \
+    src/batterysensor.cpp \
     src/driver.cpp
 
 HEADERS += \
@@ -147,5 +149,9 @@ HEADERS += \
     src/encoders.h \
     src/coordinate.h \
     src/abstractdriver.h \
-    src/interpolateir.h
-
+    src/interpolateir.h \
+    src/hardwaremanager.h \
+    src/batterysensor.h \
+    src/stopgodriver.h \
+    src/abstractdriver.h \
+    src/abstracthardwaremanager.h

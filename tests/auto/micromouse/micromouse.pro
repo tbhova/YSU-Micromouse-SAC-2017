@@ -6,11 +6,14 @@ CONFIG -= app_bundle
 CONFIG += thread
 CONFIG -= qt
 
+DEFINES += BUILD_FOR_PC
+
 HEADERS +=     \
     mazetest.h \
     breadthfirstgpstests.h \
     navigator_test.h \
     ir_interpolate_test.h \
+    driver_test.h \
     $$files(../../../src/src/*.h)
 
 SOURCES += \

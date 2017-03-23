@@ -1,7 +1,6 @@
 #ifndef STOPGODRIVER_H
 #define STOPGODRIVER_H
 
-#include "gps.h"
 #include "cardinal8.h"
 #include "driver.h"
 #include <stack>
@@ -15,9 +14,14 @@
 class StopGoDriver : public Driver {
 public:
     StopGoDriver();
-
+    explicit StopGoDriver(AbstractHardwareManager* manager);
     virtual void drive(const Cardinal8 dir);
     virtual void drive(std::stack<Cardinal8> &path);
+
+protected:
+    virtual void turn(const Cardinal8 direction);
+    //turning, updateState, drive forward 1 cell (hardware manager)
+
 };
 
 #endif // STOPGODRIVER_H
