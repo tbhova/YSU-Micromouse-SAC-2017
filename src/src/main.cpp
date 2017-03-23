@@ -6,7 +6,11 @@
 
 
 
-Encoder *leftWheel, *rightWheel;
+Encoder leftWheel(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
+Encoder rightWheel(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
+
+//leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
+//rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 void setup() {
         pinMode(LED_BUILTIN, OUTPUT);
         pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
@@ -60,7 +64,7 @@ void loop() {
         long newLeft, newRight;
           newLeft = leftWheel->read();
           newRight = rightWheel->read();
-         // if (newLeft != positionLeft || newRight != positionRight) {
+         if (newLeft != positionLeft || newRight != positionRight) {
             Serial.print("Left = ");
             Serial.print(newLeft);
             Serial.print(", Right = ");
@@ -68,7 +72,7 @@ void loop() {
             Serial.println();
             positionLeft = newLeft;
             positionRight = newRight;
-          //}
+          }
           // if a character is sent from the serial monitor,
           // reset both back to zero.
 //          if (Serial.available()) {
