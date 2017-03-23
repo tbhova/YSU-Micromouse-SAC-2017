@@ -5,12 +5,10 @@
 #include <Encoder.h>
 
 
+Encoder * leftWheel/*(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B)*/;
+Encoder * rightWheel/*(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B)*/;
 
-Encoder leftWheel(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
-Encoder rightWheel(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 
-//leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
-//rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 void setup() {
         pinMode(LED_BUILTIN, OUTPUT);
         pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
@@ -35,6 +33,9 @@ void setup() {
         attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
         attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
         attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
+
+    leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
+    rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 
     Serial.begin(9600);
 
