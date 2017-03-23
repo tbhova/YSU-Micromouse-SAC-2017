@@ -15,21 +15,22 @@ class Driver : public AbstractDriver {
 public:
     Driver();
     virtual void drive(const Cardinal8 dir, const int cells);
-    virtual Coordinate getCurrentLocation();
-    virtual std::vector<Cardinal8> getWalls();
+    virtual void drive(const Cardinal8 dir);
+    virtual Coordinate getCurrentLocation() const;
+    virtual std::vector<Cardinal8> getWalls() const;
     unsigned int getX() const;
     unsigned int getY() const;
-    Cardinal8 getDir();
+    Cardinal8 getHeading() const;
 
 protected:
-    void updateState(Cardinal8 direction);
-    void updateHeading(Cardinal8 direc);
-    int numTurns(Cardinal8 direction);
-    Cardinal8 getLeftDir();
-    Cardinal8 getRightDir();
-    Cardinal8 getForwardDir();
-    virtual void turn(Cardinal8 direc);
-    HardwareManager* getHwManager() { return manager; }
+    void updateState(const Cardinal8 direction);
+    void updateHeading(const Cardinal8 direc);
+    int getTurnsTo(const Cardinal8 direction) const;
+    virtual void turn(const Cardinal8 direction);
+    Cardinal8 getLeftDir() const;
+    Cardinal8 getRightDir() const;
+    Cardinal8 getForwardDir() const;
+    HardwareManager* getHwManager() const { return manager; }
 
 private:
     unsigned int x = 0, y = 0;

@@ -8,10 +8,9 @@ private:
     InfraredSensorArray irArray;
 public:
     HardwareManager();
-//    bool* areWalls();
-    bool isLeftWall();
-    bool isCenterWall();
-    bool isRightWall();
+    bool isLeftWall() const;
+    bool isCenterWall() const;
+    bool isRightWall() const;
 };
 
 #endif // HARDWAREMANAGER_H

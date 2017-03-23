@@ -1,16 +1,16 @@
-#ifndef BATTERYSENSOR_H
-#define BATTERYSENSOR_H
+//#ifndef BATTERYSENSOR_H
+//#define BATTERYSENSOR_H
 
 
-class BatterySensor {
-private:
-    float batteryVoltage;
+//class BatterySensor {
+//private:
+//    float batteryVoltage;
 
 
-public:
-    BatterySensor();
+//public:
+//    BatterySensor();
 
 
-};
+//};
 
-#endif // BATTERYSENSOR_H
+//#endif // BATTERYSENSOR_H

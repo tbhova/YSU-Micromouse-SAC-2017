@@ -5,37 +5,40 @@
 #include <gmock/gmock-matchers.h>
 #include <gmock/gmock.h>
 
-#include "../../src/src/coordinate.h"
-#include "../../src/src/cardinal8.h"
-#include "../../src/src/abstractdriver.h"
-#include "../../src/src/driver.h"
-#include "../../src/src/driver.cpp"
-#include "../../src/src/stopgodriver.h"
-#include "../../src/src/stopgodriver.cpp"
-#include "../../src/src/hardwaremanager.cpp"
-#include "../../src/src/infraredsensorarray.cpp"
-#include "../../src/src/infraredsensor.cpp"
-
+#include "coordinate.h"
+#include "cardinal8.h"
+#include "abstractdriver.h"
+#include "driver.h"
+#include "stopgodriver.h"
+#include "hardwaremanager.h"
 
 using namespace testing;
 using namespace std;
 
-class DriverTest : public ::testing::Test {
-protected:
-    StopGoDriver driver = StopGoDriver();
+//class MockHardwareManager : public HardwareManager {
+//public:
+//    MockHardwareManager() {}
+//    MOCK_CONST_METHOD0(isLeftWall, bool());
+//    MOCK_CONST_METHOD0(isCenterWall, bool());
+//    MOCK_CONST_METHOD0(isRightWall, bool());
+//};
 
-};
+//class DriverTest : public ::testing::Test {
+//protected:
+//    StopGoDriver driver = StopGoDriver(new MockHardwareManager());
 
-TEST_F(DriverTest, locationTest) {
-    EXPECT_EQ(driver.getCurrentLocation(), Coordinate(0,0));
-}
-TEST_F(DriverTest, getVarTest) {
-    driver.drive(North);
-    EXPECT_EQ(driver.getX(), 0);
-    EXPECT_EQ(driver.getY(), 1);
+//};
 
-}
-
-
+//TEST_F(DriverTest, locationTest) {
+//    EXPECT_EQ(driver.getCurrentLocation(), Coordinate(0,0));
+//}
+//TEST_F(DriverTest, getVarTest) {
+//    driver.drive(North);
+//    driver.drive(East);
+//    driver.drive(East);
+//    // cppcheck-suppress compareBoolExpressionWithInt
+//    EXPECT_EQ(driver.getX(), static_cast<unsigned int>(2));
+//    EXPECT_EQ(driver.getY(), static_cast<unsigned int>(1));
+//}
 
 #endif // DRIVER_TEST_H

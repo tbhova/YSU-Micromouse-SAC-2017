@@ -1,14 +1,15 @@
 #include "stopgodriver.h"
 
 StopGoDriver::StopGoDriver() : Driver() {
-   x=0;
-   y=0;
-   dir=North;
+
+}
+
+StopGoDriver::StopGoDriver(HardwareManager* manager) : Driver(manager) {
+
 }
 
 void StopGoDriver::drive(const Cardinal8 dir) {
-    updateState(dir);
-
+    Driver::drive(dir);
 }
 
 void StopGoDriver::drive(std::stack<Cardinal8> &path) {

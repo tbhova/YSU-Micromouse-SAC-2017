@@ -4,11 +4,15 @@
 #include <stdlib.h>
 
 Driver::Driver() {
+    manager = new HardwareManager();
+}
+
+Driver::Driver(HardwareManager* manager) : manager(manager) {
 
 }
 
 void Driver::drive(const Cardinal8 dir, const int cells) {
-    for (int i=0; i<cells; i++) {
+    for (int i = 0; i < cells; i++) {
         drive(dir);
     }
 }
@@ -16,80 +20,80 @@ void Driver::drive(const Cardinal8 dir) {
     updateState(dir);
 }
 
-void Driver::updateState(Cardinal8 direction) {
-    Coordinate cell = Maze::adjacentCell(x,y,direction);
+void Driver::updateState(const Cardinal8 direction) {
+    Coordinate cell = Maze::adjacentCell(x, y, direction);
     x=cell.x;
     y=cell.y;
     dir=direction;
-
 }
 
-void Driver::updateHeading(Cardinal8 direc) {
-    dir=direc;
+void Driver::updateHeading(const Cardinal8 direction) {
+    dir=direction;
 }
 
 
-int Driver::numTurns(Cardinal8 direction) {
-     return ((int)direction-(int)dir);
+int Driver::getTurnsTo(const Cardinal8 direction) const {
+     return static_cast<int>(direction) - static_cast<int>(dir);
 }
-std::vector<Cardinal8> Driver::getWalls() {
-//    bool* areWalls = manager->areWalls();
+
+std::vector<Cardinal8> Driver::getWalls() const {
     std::vector<Cardinal8> walls;
-//    if(areWalls[0]) {
     if (manager->isLeftWall()) {
         walls.push_back(getLeftDir());
     }
-//    if(areWalls[1]) {
     if (manager->isCenterWall()) {
         walls.push_back(getForwardDir());
     }
-//    if(areWalls[2]) {
     if (manager->isRightWall()) {
         walls.push_back(getRightDir());
     }
 
     return walls;
 }
-Cardinal8 Driver::getLeftDir() {
-   int leftDir=(int)dir+2;
-    if(leftDir>8) {
-        leftDir-=8;
-    }
-    return (Cardinal8)leftDir;
+
+Cardinal8 Driver::getLeftDir() const {
+   int leftDir = (static_cast<int>(dir) + 2) % 8;
+    return static_cast<Cardinal8>(leftDir);
 }
 
-Cardinal8 Driver::getForwardDir() {
+Cardinal8 Driver::getForwardDir() const {
     return dir;
 }
 
-Cardinal8 Driver::getRightDir() {
-    int rightDir=(int)dir-2;
-    if(rightDir<0) {
-        rightDir+=8;
+Cardinal8 Driver::getRightDir() const {
+    int rightDir = static_cast<int>(dir) - 2;
+    if(rightDir < 0) {
+        rightDir += 8;
     }
-    return (Cardinal8)rightDir;
+    return static_cast<Cardinal8>(rightDir);
 }
-Coordinate Driver::getCurrentLocation() {
+
+Coordinate Driver::getCurrentLocation() const {
     return Coordinate(x,y);
 }
-void Driver::turn(Cardinal8 direc) {
-    int turns = (dir-direc)/2;
+
+void Driver::turn(Cardinal8 direction) {
+    int turns = (dir - direction) / 2;
     updateHeading(dir);
-    for(int i=0; i<abs(turns); i++) {
-        if(turns<0) {
+
+    for(int i = 0; i < abs(turns); i++) {
+        if(turns < 0) {
          // turnleft();
         }
-        else
-          break;
+        else {
           // turnright();
+        }
     }
 }
+
 unsigned int Driver::getX() const {
     return x;
 }
+
 unsigned int Driver::getY() const {
     return y;
 }
-Cardinal8 getDir() {
+
+Cardinal8 Driver::getHeading() const {
     return dir;
 }

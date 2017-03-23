@@ -1,7 +1,7 @@
 #include "motors.h"
 
 Motors::Motors() {
-    this->coast();
+    disengage();
 }
 
 void Motors::disengage() {
@@ -9,11 +9,15 @@ void Motors::disengage() {
 }
 
 void Motors::coast() {
-
+    digitalWriteFast(MOTOR_STANDBY, HIGH);
+    leftMotor.coast();
+    rightMotor.coast();
 }
 
 void Motors::brake() {
-
+    digitalWriteFast(MOTOR_STANDBY, HIGH);
+    leftMotor.brake();
+    rightMotor.brake();
 }
 
 void Motors::setSpeed(short int speedLeft, short int speedRight) {
