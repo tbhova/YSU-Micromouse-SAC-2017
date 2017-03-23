@@ -15,4 +15,3 @@ unsigned short int InfraredSensorArray::getCenterIR() const {
 unsigned short int InfraredSensorArray::getRightIR() const {
     return rightIR.getDistance();
 }
-
