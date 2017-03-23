@@ -3,8 +3,12 @@
 InfraredSensorArray::InfraredSensor::InfraredSensor() {
 
 }
+<<<<<<< HEAD
 
 unsigned short int InfraredSensorArray::InfraredSensor::getDistance() {
     return 0;
 }
 
+#endif // BUILD_FOR_PC
+=======
+>>>>>>> master

@@ -15,7 +15,7 @@ BEGIN {
 	printf(", ")
 
 	# Convert distance from cm to mm
-	distance = $2 * 1000;
+	distance = $2 * 10;
 	printf("%i", distance);
 
 	if (NR != awk_fileLines + 1) {
