@@ -15,6 +15,7 @@ class Driver : public AbstractDriver {
 public:
     Driver();
     explicit Driver(AbstractHardwareManager* manager);
+    virtual ~Driver();
     virtual void drive(const Cardinal8 dir, const int cells);
     virtual void drive(const Cardinal8 dir);
     virtual Coordinate getCurrentLocation() const;
@@ -25,7 +26,7 @@ public:
 
 protected:
     void updateState(const Cardinal8 direction);
-    void updateHeading(const Cardinal8 direc);
+    void updateHeading(const Cardinal8 direction);
     int getTurnsTo(const Cardinal8 direction) const;
     virtual void turn(const Cardinal8 direction);
     Cardinal8 getLeftDir() const;
@@ -35,7 +36,7 @@ protected:
 
 private:
     unsigned int x = 0, y = 0;
-    Cardinal8 dir = North;
+    Cardinal8 heading = North;
     AbstractHardwareManager *manager;
 
 };

@@ -17,7 +17,6 @@ using namespace std;
 
 class MockHardwareManager : public AbstractHardwareManager {
 public:
-//    MockHardwareManager() {}
     MOCK_CONST_METHOD0(isLeftWall, bool());
     MOCK_CONST_METHOD0(isCenterWall, bool());
     MOCK_CONST_METHOD0(isRightWall, bool());
@@ -26,14 +25,13 @@ public:
 class DriverTest : public ::testing::Test {
 protected:
     StopGoDriver driver = StopGoDriver(new MockHardwareManager());
-
 };
 
 TEST_F(DriverTest, locationTest) {
     EXPECT_EQ(driver.getCurrentLocation(), Coordinate(0,0));
 }
 
-TEST_F(DriverTest, getVarTest) {
+TEST_F(DriverTest, updateStateCorrectlyTest) {
     driver.drive(North);
     driver.drive(East);
     driver.drive(East);

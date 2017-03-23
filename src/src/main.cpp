@@ -1,8 +1,9 @@
 #include <Arduino.h>
 #include "mk20dx128.h"
 #include "core_pins.h"
-#include "motors.h"
 #include "pins.h"
+
+//#include "motors.h"
 
 void setup() {
         pinMode(LED_BUILTIN, OUTPUT);
@@ -23,9 +24,9 @@ void loop() {
         delay(3000);
         digitalWriteFast(LED_BUILTIN, LOW);
         delay(300);
-        Motors motors;
-        motors.setSpeed(128,-128);
-        delay(600);
-        motors.setSpeed(-128,128);
+        //Motors motors;
+        //motors.setSpeed(128,-128);
+        //delay(600);
+        //motors.setSpeed(-128,128);
 
 }

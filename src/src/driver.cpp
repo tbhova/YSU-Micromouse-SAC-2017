@@ -13,6 +13,10 @@ Driver::Driver(AbstractHardwareManager* manager) : manager(manager) {
 
 }
 
+Driver::~Driver() {
+    delete manager;
+}
+
 void Driver::drive(const Cardinal8 dir, const int cells) {
     for (int i = 0; i < cells; i++) {
         drive(dir);
@@ -24,18 +28,18 @@ void Driver::drive(const Cardinal8 dir) {
 
 void Driver::updateState(const Cardinal8 direction) {
     Coordinate cell = Maze::adjacentCell(x, y, direction);
-    x=cell.x;
-    y=cell.y;
-    dir=direction;
+    x = cell.x;
+    y = cell.y;
+    updateHeading(direction);
 }
 
 void Driver::updateHeading(const Cardinal8 direction) {
-    dir=direction;
+    heading = direction;
 }
 
 
 int Driver::getTurnsTo(const Cardinal8 direction) const {
-     return static_cast<int>(direction) - static_cast<int>(dir);
+     return static_cast<int>(direction) - static_cast<int>(heading);
 }
 
 std::vector<Cardinal8> Driver::getWalls() const {
@@ -54,29 +58,29 @@ std::vector<Cardinal8> Driver::getWalls() const {
 }
 
 Cardinal8 Driver::getLeftDir() const {
-   int leftDir = (static_cast<int>(dir) + 2) % 8;
+    int leftDir = (static_cast<int>(heading) + 2) % 8;
     return static_cast<Cardinal8>(leftDir);
 }
 
 Cardinal8 Driver::getForwardDir() const {
-    return dir;
+    return heading;
 }
 
 Cardinal8 Driver::getRightDir() const {
-    int rightDir = static_cast<int>(dir) - 2;
-    if(rightDir < 0) {
+    int rightDir = static_cast<int>(heading) - 2;
+    if (rightDir < 0) {
         rightDir += 8;
     }
     return static_cast<Cardinal8>(rightDir);
 }
 
 Coordinate Driver::getCurrentLocation() const {
-    return Coordinate(x,y);
+    return Coordinate(x, y);
 }
 
 void Driver::turn(Cardinal8 direction) {
-    int turns = (dir - direction) / 2;
-    updateHeading(dir);
+    int turns = (heading - direction) / 2;
+    updateHeading(heading);
 
     for(int i = 0; i < abs(turns); i++) {
         if(turns < 0) {
@@ -97,5 +101,5 @@ unsigned int Driver::getY() const {
 }
 
 Cardinal8 Driver::getHeading() const {
-    return dir;
+    return heading;
 }
