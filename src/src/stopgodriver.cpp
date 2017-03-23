@@ -1,10 +1,12 @@
 #include "stopgodriver.h"
 
+#ifndef BUILD_FOR_PC
 StopGoDriver::StopGoDriver() : Driver() {
 
 }
+#endif
 
-StopGoDriver::StopGoDriver(HardwareManager* manager) : Driver(manager) {
+StopGoDriver::StopGoDriver(AbstractHardwareManager* manager) : Driver(manager) {
 
 }
 
@@ -17,4 +19,8 @@ void StopGoDriver::drive(std::stack<Cardinal8> &path) {
         drive(path.top());
         path.pop();
     }
+}
+
+void StopGoDriver::turn(const Cardinal8 direction) {
+    Driver::turn(direction);
 }

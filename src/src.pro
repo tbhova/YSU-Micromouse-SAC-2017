@@ -153,4 +153,5 @@ HEADERS += \
     src/hardwaremanager.h \
     src/batterysensor.h \
     src/stopgodriver.h \
-    src/abstractdriver.h
+    src/abstractdriver.h \
+    src/abstracthardwaremanager.h

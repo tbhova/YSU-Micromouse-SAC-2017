@@ -6,6 +6,8 @@ CONFIG -= app_bundle
 CONFIG += thread
 CONFIG -= qt
 
+DEFINES += BUILD_FOR_PC
+
 HEADERS +=     \
     mazetest.h \
     breadthfirstgpstests.h \

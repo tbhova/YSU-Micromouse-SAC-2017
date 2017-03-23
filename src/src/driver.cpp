@@ -3,11 +3,13 @@
 #include "hardwaremanager.h"
 #include <stdlib.h>
 
+#ifndef BUILD_FOR_PC
 Driver::Driver() {
     manager = new HardwareManager();
 }
+#endif
 
-Driver::Driver(HardwareManager* manager) : manager(manager) {
+Driver::Driver(AbstractHardwareManager* manager) : manager(manager) {
 
 }
 
