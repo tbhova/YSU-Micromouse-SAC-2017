@@ -64,7 +64,7 @@ void loop() {
         long newLeft, newRight;
           newLeft = leftWheel->read();
           newRight = rightWheel->read();
-        // if (newLeft != positionLeft || newRight != positionRight) {
+         if (newLeft != positionLeft || newRight != positionRight) {
             Serial.print("Left = ");
             Serial.print(newLeft);
             Serial.print(", Right = ");
@@ -72,14 +72,14 @@ void loop() {
             Serial.println();
             positionLeft = newLeft;
             positionRight = newRight;
-          //}
+          }
           // if a character is sent from the serial monitor,
           // reset both back to zero.
-//          if (Serial.available()) {
-//            Serial.read();
-//            Serial.println("Reset both knobs to zero");
-//            leftWheel.write(0);
-//            rightWheel.write(0);
-//          }
+          if (Serial.available()) {
+            Serial.read();
+            Serial.println("Reset both wheels to zero");
+            leftWheel->write(0);
+            rightWheel->write(0);
+          }
 
 }
