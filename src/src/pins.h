@@ -1,6 +1,7 @@
 #ifndef PINS_H
 #define PINS_H
-
+#include <Arduino.h>
+#include "mk20dx128.h"
 //Digital Pins
 const int   LEFT_MOTOR_SPEED        = 7,
             LEFT_MOTOR_FORWARD      = 8,
