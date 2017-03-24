@@ -121,11 +121,10 @@ void motorController::setSpeeds(vLeft, vRight) {
 }
 
 void setOneMotorSpeed(motor, encoder, velocity) {
-	lastVelocity = motor.getLastVelocity();
-	currentVelocity = encoder.getInstantaneousSpeed();
+	measuredVelocity = encoder.getInstantaneousSpeed();
 	
-	error = currentVelocity - lastVelocity;
-	newVelocity = PID(error);
+	error = velocity - measuredVelocity;
+	newVelocity = PID(error); //maybe velocity + error instead
 	
 	motor.setSpeed(newVelocity);
 }
