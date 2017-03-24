@@ -25,14 +25,14 @@ void setup() {
         pinMode(LEFT_MOTOR_ENCODER_B, INPUT);
         pinMode(RIGHT_MOTOR_ENCODER_A, INPUT);
         pinMode(RIGHT_MOTOR_ENCODER_B, INPUT);
-        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, RISING);
-        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
-        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
-        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
-        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_A), rightEncoderUpdate, RISING);
-        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
-        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
-        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
+//        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, RISING);
+//        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
+//        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
+//        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
+//        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_A), rightEncoderUpdate, RISING);
+//        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
+//        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
+//        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
 
     leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
     rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
@@ -60,12 +60,11 @@ void loop() {
         //delay(600);
         //motors.setSpeed(-128,128);
 
-}
 
         long newLeft, newRight;
           newLeft = leftWheel->read();
           newRight = rightWheel->read();
-         if (newLeft != positionLeft || newRight != positionRight) {
+        // if (newLeft != positionLeft || newRight != positionRight) {
             Serial.print("Left = ");
             Serial.print(newLeft);
             Serial.print(", Right = ");
@@ -73,7 +72,7 @@ void loop() {
             Serial.println();
             positionLeft = newLeft;
             positionRight = newRight;
-          }
+          //}
           // if a character is sent from the serial monitor,
           // reset both back to zero.
 //          if (Serial.available()) {
@@ -82,6 +81,5 @@ void loop() {
 //            leftWheel.write(0);
 //            rightWheel.write(0);
 //          }
-        }
 
-#endif // BUILD_FOR_PC
+}
