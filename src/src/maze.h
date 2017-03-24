@@ -88,20 +88,6 @@ private:
     static int cardinalToBit(const Cardinal8 dir);
 
     /**
-     * @brief adjacentCell - get the coordinates of the cell to the NSWE of given cell
-     * @param x - given cell's x coordinate
-     * @param y - given cell's y coordinate
-     * @param dir - primary cardinal NSWE
-     * @return int with 1 of lower 4 bits set
-     *
-     * North -> least significant bit (LSB)
-     * West -> 2nd LSB
-     * South -> 3rd LSB
-     * East -> 4th LSB
-     */
-    static Coordinate adjacentCell(const unsigned int x, const unsigned int y, const Cardinal8 dir);
-
-    /**
      * @brief isValidCell - checks if coordinates are in the maze
      * @param cell - coordinates of cell
      * @return true if the coordinates are in the maze
@@ -170,6 +156,7 @@ public:
      * @return List of all cells that are reachable from x, y
      */
     std::vector<Coordinate> getNeighboringCells(const unsigned int x, const unsigned int y) const;
+    std::vector<Coordinate> getNeighboringCells(const Coordinate cell) const;
 
     /**
      * @brief getDirectionBetweenCells get the Cardinal direction between 2 cells
@@ -192,6 +179,20 @@ public:
      */
     static Cardinal8 getDirectionBetweenCells(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2);
 
+    /**
+     * @brief adjacentCell - get the coordinates of the cell to the NSWE of given cell
+     * @param x - given cell's x coordinate
+     * @param y - given cell's y coordinate
+     * @param dir - primary cardinal NSWE
+     * @return int with 1 of lower 4 bits set
+     *
+     * North -> least significant bit (LSB)
+     * West -> 2nd LSB
+     * South -> 3rd LSB
+     * East -> 4th LSB
+     */
+    static Coordinate adjacentCell(const unsigned int x, const unsigned int y, const Cardinal8 dir);
+    static Coordinate adjacentCell(const Coordinate cell, const Cardinal8 dir);
 
     /**
      * @brief hasMouseVisited - checks if the mouse has visited x, y

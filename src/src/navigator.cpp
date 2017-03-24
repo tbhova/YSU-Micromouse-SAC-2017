@@ -26,10 +26,7 @@ void Navigator::map() {
         Coordinate currentCell = driver->getCurrentLocation();
         maze->setMouseVisited(currentCell);
         if (maze->isMazeMapped()) {
-            destinationCell = Coordinate(0, 0);
-            if (currentCell == destinationCell) {
-                break;
-            }
+            break;
         }
         else {
             vector<Cardinal8> walls = driver->getWalls();
@@ -37,7 +34,7 @@ void Navigator::map() {
             destinationCell = findUnvisitedCell();
         }
 
-        Cardinal8 nextDir = directions->askForDirectionToXY(currentCell, destinationCell);
+        Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);
         driver->drive(nextDir);
     }
 }
@@ -52,27 +49,21 @@ void Navigator::run() {
     if (!maze->isMazeMapped()) {
         map();
     }
+    returnToOrigin();
+
     //TODO add a delay or some type of indication so we can manually reset the bot against the wall
     optimalRoute();
+    returnToOrigin();
 }
 
 void Navigator::optimalRoute() {
     std::stack<Cardinal8> path = directions->fullPath(Coordinate(0,0), maze->getDestinationCell());
-    std::stack<Cardinal8> reversePath = std::stack<Cardinal8>();
+    driver->drive(path);
+    returnToOrigin();
+}
 
-    while (true) {
-        Cardinal8 nextDir;
-        if (!path.empty()) {
-            nextDir = path.top();
-            path.pop();
-            reversePath.push(nextDir);
-        } else {
-            if (reversePath.empty()) {
-                break;
-            }
-            nextDir = reversePath.top();
-            reversePath.pop();
-        }
-        driver->drive(nextDir);
-    }
+void Navigator::returnToOrigin() {
+    const Coordinate currentCell = driver->getCurrentLocation();
+    std::stack<Cardinal8> path = directions->fullPath(currentCell, Coordinate(0,0));
+    driver->drive(path);
 }
