@@ -10,21 +10,21 @@ Encoder * rightWheel/*(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B)*/;
 
 
 void setup() {
-        pinMode(LED_BUILTIN, OUTPUT);
-        pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
-        pinMode(LEFT_MOTOR_REVERSE, OUTPUT);
-        pinMode(RIGHT_MOTOR_FORWARD, OUTPUT);
-        pinMode(RIGHT_MOTOR_REVERSE, OUTPUT);
-        pinMode(RIGHT_MOTOR_SPEED, OUTPUT);
-        pinMode(LEFT_MOTOR_SPEED, OUTPUT);
-        pinMode(MOTOR_STANDBY, OUTPUT);
-        pinMode(IR_SENSOR_LEFT, INPUT);
-        pinMode(IR_SENSOR_CENTER, INPUT);
-        pinMode(IR_SENSOR_RIGHT, INPUT);
-        pinMode(LEFT_MOTOR_ENCODER_A, INPUT);
-        pinMode(LEFT_MOTOR_ENCODER_B, INPUT);
-        pinMode(RIGHT_MOTOR_ENCODER_A, INPUT);
-        pinMode(RIGHT_MOTOR_ENCODER_B, INPUT);
+    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
+    pinMode(LEFT_MOTOR_REVERSE, OUTPUT);
+    pinMode(RIGHT_MOTOR_FORWARD, OUTPUT);
+    pinMode(RIGHT_MOTOR_REVERSE, OUTPUT);
+    pinMode(RIGHT_MOTOR_SPEED, OUTPUT);
+    pinMode(LEFT_MOTOR_SPEED, OUTPUT);
+    pinMode(MOTOR_STANDBY, OUTPUT);
+    pinMode(IR_SENSOR_LEFT, INPUT);
+    pinMode(IR_SENSOR_CENTER, INPUT);
+    pinMode(IR_SENSOR_RIGHT, INPUT);
+    pinMode(LEFT_MOTOR_ENCODER_A, INPUT);
+    pinMode(LEFT_MOTOR_ENCODER_B, INPUT);
+    pinMode(RIGHT_MOTOR_ENCODER_A, INPUT);
+    pinMode(RIGHT_MOTOR_ENCODER_B, INPUT);
 //        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, RISING);
 //        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
 //        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);

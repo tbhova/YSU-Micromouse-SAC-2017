@@ -132,9 +132,8 @@ SOURCES += \
     src/interpolateir.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
-    src/driver.cpp
-    src/tencoder.cpp \
-    src/Encoder.cpp
+    src/driver.cpp \
+    src/encoder.cpp
 
 HEADERS += \
     src/maze.h \
