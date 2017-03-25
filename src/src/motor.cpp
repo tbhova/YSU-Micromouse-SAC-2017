@@ -6,6 +6,19 @@ Motors::Motor::Motor(const int forward, const int reverse, const int speed) {
     speedPin = speed;
 }
 
+void Motors::Motor::coast() {
+    //Should the digitalWrite on the Standby pin be done in Motors or Motor?
+    //digitalWriteFast(MOTOR_STANDBY, HIGH);
+    digitalWriteFast(forwardPin, HIGH);
+    digitalWriteFast(reversePin, HIGH);
+}
+
+void Motors::Motor::brake() {
+    //digitalWriteFast(MOTOR_STANDBY, HIGH);
+    digitalWriteFast(forwardPin, LOW);
+    digitalWriteFast(reversePin, LOW);
+}
+
 void Motors::Motor::setSpeed(short int speed) {
     if (speed < 0) {
        digitalWriteFast(reversePin, HIGH);
