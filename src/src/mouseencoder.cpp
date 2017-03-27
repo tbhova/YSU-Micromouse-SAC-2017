@@ -4,17 +4,18 @@
 #include <Encoder.h>
 
 Encoders::MouseEncoder::MouseEncoder(const int encoderA, const int encoderB) {
-    lastTime = micros();
+    lastTime = millis();
     encoder = new Encoder(encoderA, encoderB);
 }
 
 int Encoders::MouseEncoder::getSpeed() {
-    int delta = static_cast<int>(micros() - lastTime);
+    int delta = static_cast<int>(millis() - lastTime);
     lastTime += static_cast<unsigned int>(delta);
+    double deltaDouble = static_cast<double>(delta)/1000.0;
 
-    positionEstimate += velocityEstimate * delta;
-    int positionError = getTicks() - positionEstimate;
-    velocityIntegrator += positionError * kp * delta;
+    positionEstimate += velocityEstimate * deltaDouble;
+    double positionError = getTicks() - positionEstimate;
+    velocityIntegrator += positionError * kp * deltaDouble;
     velocityEstimate = positionError * kp + velocityIntegrator;
 
     return velocityEstimate;
