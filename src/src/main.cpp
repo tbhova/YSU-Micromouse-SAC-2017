@@ -2,12 +2,11 @@
 #include "mk20dx128.h"
 #include "core_pins.h"
 #include "pins.h"
-#include <Encoder.h>
+#include "encoders.h"
+#include "motors.h"
 
 
-//Encoder * leftWheel/*(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B)*/;
-//Encoder * rightWheel/*(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B)*/;
-
+Encoders encoders;
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
@@ -42,44 +41,50 @@ void setup() {
     while (!Serial) {
 
     }
-    Serial.println("TwoKnobs Encoder Test:");
-//    leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
-//    rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
+    Serial.println("Two Encoder Test:");
+    Serial.print("LeftEncoder: ");
+    Serial.print(encoders.getLeftSpeed());
+    Serial.print("RightEncoder: ");
+    Serial.println(encoders.getRightSpeed());
+    while (!Serial) {
+
+    }
 }
 
 long positionLeft  = -999;
 long positionRight = -999;
-
+int motorSpeed = 0;
 void loop() {
         digitalWriteFast(LED_BUILTIN, HIGH);
         delay(3000);
         digitalWriteFast(LED_BUILTIN, LOW);
         delay(300);
-        //Motors motors;
+        Motors motors;
         //motors.setSpeed(128,-128);
         //delay(600);
-        //motors.setSpeed(-128,128);
+
+        motors.setSpeed(motorSpeed, 0);
+
+        for(int i=0; i<100; i++) {
+        Serial.println("Two Encoder Test:");
+        Serial.print("LeftEncoder: ");
+        Serial.print(encoders.getLeftSpeed());
+        Serial.print("RightEncoder: ");
+        Serial.print(encoders.getRightSpeed());
+        Serial.println(motorSpeed);
+        delay(100);
+        }
+        motorSpeed+=50;
+        motorSpeed= motorSpeed % 256;
 
 
-        long newLeft, newRight;
-          newLeft = leftWheel->read();
-          newRight = rightWheel->read();
-         if (newLeft != positionLeft || newRight != positionRight) {
-            Serial.print("Left = ");
-            Serial.print(newLeft);
-            Serial.print(", Right = ");
-            Serial.print(newRight);
-            Serial.println();
-            positionLeft = newLeft;
-            positionRight = newRight;
-          }
+
           // if a character is sent from the serial monitor,
           // reset both back to zero.
           if (Serial.available()) {
             Serial.read();
             Serial.println("Reset both wheels to zero");
-            leftWheel->write(0);
-            rightWheel->write(0);
+            encoders.reset(0);
           }
 
 }

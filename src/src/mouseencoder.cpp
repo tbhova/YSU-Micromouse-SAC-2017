@@ -24,6 +24,10 @@ int Encoders::MouseEncoder::getTicks() {
     return encoder->read();
 }
 
+void Encoders::MouseEncoder::reset(int reset) {
+    encoder->write(reset);
+}
+
 Encoders::MouseEncoder::~MouseEncoder() {
     delete encoder;
 }
