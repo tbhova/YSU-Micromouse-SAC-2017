@@ -20,10 +20,10 @@ void setup() {
     pinMode(IR_SENSOR_LEFT, INPUT);
     pinMode(IR_SENSOR_CENTER, INPUT);
     pinMode(IR_SENSOR_RIGHT, INPUT);
-    pinMode(LEFT_MOTOR_ENCODER_A, INPUT);
-    pinMode(LEFT_MOTOR_ENCODER_B, INPUT);
-    pinMode(RIGHT_MOTOR_ENCODER_A, INPUT);
-    pinMode(RIGHT_MOTOR_ENCODER_B, INPUT);
+//    pinMode(LEFT_MOTOR_ENCODER_A, INPUT);
+//    pinMode(LEFT_MOTOR_ENCODER_B, INPUT);
+//    pinMode(RIGHT_MOTOR_ENCODER_A, INPUT);
+//    pinMode(RIGHT_MOTOR_ENCODER_B, INPUT);
 //        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, RISING);
 //        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_A), rightEncoderUpdate, FALLING);
 //        attachInterrupt(digitalPinToInterrupt(RIGHT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
@@ -41,14 +41,11 @@ void setup() {
     while (!Serial) {
 
     }
-    Serial.println("Two Encoder Test:");
-    Serial.print("LeftEncoder: ");
-    Serial.print(encoders.getLeftSpeed());
-    Serial.print("RightEncoder: ");
-    Serial.println(encoders.getRightSpeed());
-    while (!Serial) {
-
-    }
+//    Serial.println("Two Encoder Test:");
+//    Serial.print("LeftEncoder: ");
+//    Serial.print(encoders.getLeftSpeed());
+//    Serial.println(" RightEncoder: ");
+//    Serial.println(encoders.getRightSpeed());
 }
 
 long positionLeft  = -999;
@@ -66,11 +63,11 @@ void loop() {
         motors.setSpeed(motorSpeed, 0);
 
         for(int i=0; i<100; i++) {
-        Serial.println("Two Encoder Test:");
-        Serial.print("LeftEncoder: ");
-        Serial.print(encoders.getLeftSpeed());
-        Serial.print("RightEncoder: ");
-        Serial.print(encoders.getRightSpeed());
+            Serial.println("Two Encoder Test:");
+            Serial.print("LeftEncoder: ");
+            Serial.print(encoders.getLeftSpeed());
+            Serial.print(" RightEncoder: ");
+            Serial.println(encoders.getRightSpeed());
         Serial.println(motorSpeed);
         delay(100);
         }
@@ -81,10 +78,10 @@ void loop() {
 
           // if a character is sent from the serial monitor,
           // reset both back to zero.
-          if (Serial.available()) {
-            Serial.read();
-            Serial.println("Reset both wheels to zero");
-            encoders.reset(0);
-          }
+//          if (Serial.available()) {
+//            Serial.read();
+//            Serial.println("Reset both wheels to zero");
+//            encoders.reset(0);
+//          }
 
 }
