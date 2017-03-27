@@ -5,6 +5,26 @@
 
 //#include "motors.h"
 
+// Begin PID test code
+#include <PID_v1.h>
+#include <PID_AutoTune_v0.h>
+
+byte ATuneModeRemember=2;
+double input=80, output=50, setpoint=180;
+double kp=2,ki=0.5,kd=2;
+
+double kpmodel=1.5, taup=100, theta[50];
+double outputStart=5;
+double aTuneStep=50, aTuneNoise=1, aTuneStartValue=100;
+unsigned int aTuneLookBack=20;
+
+boolean tuning = false;
+unsigned long  modelTime, serialTime;
+
+PID myPID(&input, &output, &setpoint,kp,ki,kd, DIRECT);
+PID_ATune aTune(&input, &output);
+// End PID test code
+
 void setup() {
         pinMode(LED_BUILTIN, OUTPUT);
         pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
