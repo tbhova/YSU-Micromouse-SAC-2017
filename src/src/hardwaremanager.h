@@ -17,6 +17,12 @@ public:
     virtual bool isCenterWall() const;
     virtual bool isRightWall() const;
 
+    /**
+     * @brief convertDifferentialDrive - convert unicycle model (Velocity, omega) -> (leftWheelVelocity, RightWheelVelcity) differential drive model
+     * @param forwardVelocity overall robot velocity in mm/second
+     * @param angularVelcity turning speed of robot in radians/sec
+     * @return differential drive left and right wheel velocities
+     */
     DifferentialDriveVelcity convertDifferentialDrive(const int forwardVelocity, const double angularVelcity) const;
 };
 
