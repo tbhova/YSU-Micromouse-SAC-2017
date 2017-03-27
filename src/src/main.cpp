@@ -5,8 +5,8 @@
 #include <Encoder.h>
 
 
-Encoder * leftWheel/*(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B)*/;
-Encoder * rightWheel/*(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B)*/;
+//Encoder * leftWheel/*(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B)*/;
+//Encoder * rightWheel/*(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B)*/;
 
 
 void setup() {
@@ -34,8 +34,8 @@ void setup() {
 //        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, RISING);
 //        attachInterrupt(digitalPinToInterrupt(LEFT_MOTOR_ENCODER_B), rightEncoderUpdate, FALLING);
 
-    leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
-    rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
+//    leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
+//    rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 
     Serial.begin(9600);
 
@@ -43,8 +43,8 @@ void setup() {
 
     }
     Serial.println("TwoKnobs Encoder Test:");
-    leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
-    rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
+//    leftWheel = new Encoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
+//    rightWheel = new Encoder(RIGHT_MOTOR_ENCODER_A, RIGHT_MOTOR_ENCODER_B);
 }
 
 long positionLeft  = -999;

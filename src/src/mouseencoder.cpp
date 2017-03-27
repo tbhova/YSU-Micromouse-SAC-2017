@@ -1,12 +1,14 @@
 #include "encoders.h"
 #include <Arduino.h>
 #include "mk20dx128.h"
+#include <Encoder.h>
 
-Encoders::Encoder::Encoder() {
+Encoders::MouseEncoder::MouseEncoder(const int encoderA, const int encoderB) {
     lastTime = micros();
+    encoder = new Encoder(encoderA, encoderB);
 }
 
-int Encoders::Encoder::getSpeed() {
+int Encoders::MouseEncoder::getSpeed() {
     int delta = static_cast<int>(micros() - lastTime);
     lastTime += static_cast<unsigned int>(delta);
 
@@ -18,6 +20,10 @@ int Encoders::Encoder::getSpeed() {
     return velocityEstimate;
 }
 
-int Encoders::Encoder::getTicks() {
-    return 0;
+int Encoders::MouseEncoder::getTicks() {
+    return encoder->read();
+}
+
+Encoders::MouseEncoder::~MouseEncoder() {
+    delete encoder;
 }
