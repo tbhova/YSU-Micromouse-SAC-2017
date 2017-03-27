@@ -15,3 +15,13 @@ bool HardwareManager::isCenterWall() const {
 bool HardwareManager::isRightWall() const {
     return irArray.getRightIR() > 8000;
 }
+
+DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
+    int linearVelocity = forwardVelocity / radius;
+    double rotationalVelocity = (angularVelocity * wheelbase) / (2 * radius);
+
+    int leftV  = linearVelocity - rotationalVelocity;
+    int rightV = linearVelocity + rotationalVelocity;
+
+    return DifferentialDriveVelcity(leftV, rightV);
+}

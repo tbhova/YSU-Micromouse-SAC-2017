@@ -154,4 +154,5 @@ HEADERS += \
     src/batterysensor.h \
     src/stopgodriver.h \
     src/abstractdriver.h \
-    src/abstracthardwaremanager.h
+    src/abstracthardwaremanager.h \
+    src/differentialdrivevelocity.h
