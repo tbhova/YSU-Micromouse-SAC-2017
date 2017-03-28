@@ -19,24 +19,26 @@ void setup() {
         pinMode(RIGHT_MOTOR_SPEED, OUTPUT);
         pinMode(LEFT_MOTOR_SPEED, OUTPUT);
         pinMode(MOTOR_STANDBY, OUTPUT);
-        pinMode(IR_SENSOR_LEFT, INPUT);
-        pinMode(IR_SENSOR_CENTER, INPUT);
-        pinMode(IR_SENSOR_RIGHT, INPUT);
+        pinMode(IR_SENSOR_LEFT, INPUT_PULLDOWN);
+        pinMode(IR_SENSOR_CENTER, INPUT_PULLDOWN);
+        pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
         Serial.begin(9600);
+        while(!Serial);
+        Serial.println("IR Sensor Test");
+
 }
 
 void loop() {
 
         InfraredSensorArray irSensor;
         digitalWriteFast(LED_BUILTIN, HIGH);
-        delay(3000);
+        delay(300);
         digitalWriteFast(LED_BUILTIN, LOW);
         delay(300);
-        //Motors motors;
-        //motors.setSpeed(128,-128);
-        //delay(600);
-        //motors.setSpeed(-128,128);
+        Serial.print("Left Distance: ");
         Serial.print(irSensor.getLeftDistance());
+        Serial.print(" Center Distance: ");
         Serial.print(irSensor.getCenterDistance());
-        Serial.print(irSensor.getRightDistance());
+        Serial.print(" Right Distance: ");
+        Serial.println(irSensor.getRightDistance());
 }

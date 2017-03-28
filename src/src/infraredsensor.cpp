@@ -4,11 +4,13 @@
 #include "pins.h"
 
 InfraredSensorArray::InfraredSensor::InfraredSensor(int pin, InterpolateIR* interpolate) {
-
+    this->pin=pin;
+    this->interpolate=interpolate;
 }
 
 unsigned short int InfraredSensorArray::InfraredSensor::getDistance() const {
-    int voltage = analogRead(IR_SENSOR_LEFT);
-    int distance = interpolate.getDistance(voltage);
+    Serial.printf("%p", interpolate);
+    int voltage = analogRead(pin);
+    int distance = interpolate->getDistance(voltage);
     return distance;
 }

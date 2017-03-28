@@ -1,11 +1,11 @@
 #include "infraredsensorarray.h"
 
 InfraredSensorArray::InfraredSensorArray() {
-    interpolate = new InterpolateIR();
+
 }
 
 InfraredSensorArray::~InfraredSensorArray() {
-    delete interpolate;
+
 }
 
 unsigned short int InfraredSensorArray::getLeftDistance() const {

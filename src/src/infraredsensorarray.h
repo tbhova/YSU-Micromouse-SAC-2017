@@ -20,13 +20,13 @@ private:
         unsigned short int getDistance() const;
     private:
         int pin;
-        InterpolateIR interpolate;
+        InterpolateIR* interpolate;
     };
 
-    InterpolateIR* interpolate;  //this needs passed to each of the L R C IR sensors
-    InfraredSensor leftIR = InfraredSensor(IR_SENSOR_LEFT, interpolate);
-    InfraredSensor centerIR = InfraredSensor(IR_SENSOR_CENTER, interpolate);
-    InfraredSensor rightIR = InfraredSensor(IR_SENSOR_RIGHT, interpolate);
+    InterpolateIR interpolate;  //this needs passed to each of the L R C IR sensors
+    InfraredSensor leftIR = InfraredSensor(IR_SENSOR_LEFT, &interpolate);
+    InfraredSensor centerIR = InfraredSensor(IR_SENSOR_CENTER, &interpolate);
+    InfraredSensor rightIR = InfraredSensor(IR_SENSOR_RIGHT, &interpolate);
 };
 
 #endif // INFRAREDSENSORARRAY_H
