@@ -1,25 +1,32 @@
 #ifndef INFRAREDSENSORARRAY_H
 #define INFRAREDSENSORARRAY_H
 
-class InfraredSensorArray {
+#include "interpolateir.h"
+#include "pins.h"
 
+class InfraredSensorArray {
 public:
     InfraredSensorArray();
-    unsigned short int getLeftIR() const;
-    unsigned short int getRightIR() const;
-    unsigned short int getCenterIR() const;
+    ~InfraredSensorArray();
+    unsigned short int getLeftDistance() const;
+    unsigned short int getRightDistance() const;
+    unsigned short int getCenterDistance() const;
+
 
 private:
-    //Private class for 1 sensor
     class InfraredSensor {
-    private:
-
     public:
-        InfraredSensor();
+        InfraredSensor(const int pin, InterpolateIR* interpolate); //save pin and interpolate object
         unsigned short int getDistance() const;
+    private:
+        int pin;
+        InterpolateIR* interpolate;
     };
 
-    InfraredSensor leftIR, centerIR, rightIR;
+    InterpolateIR interpolate;
+    InfraredSensor leftIR = InfraredSensor(IR_SENSOR_LEFT, &interpolate);
+    InfraredSensor centerIR = InfraredSensor(IR_SENSOR_CENTER, &interpolate);
+    InfraredSensor rightIR = InfraredSensor(IR_SENSOR_RIGHT, &interpolate);
 };
 
 #endif // INFRAREDSENSORARRAY_H
