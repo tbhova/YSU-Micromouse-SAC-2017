@@ -23,22 +23,13 @@ void setup() {
         pinMode(IR_SENSOR_CENTER, INPUT_PULLDOWN);
         pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
         Serial.begin(9600);
-        while(!Serial);
-        Serial.println("IR Sensor Test");
-
+        //while(!Serial);
 }
 
 void loop() {
-
-        InfraredSensorArray irSensor;
         digitalWriteFast(LED_BUILTIN, HIGH);
         delay(300);
         digitalWriteFast(LED_BUILTIN, LOW);
         delay(300);
-        Serial.print("Left Distance: ");
-        Serial.print(irSensor.getLeftDistance());
-        Serial.print(" Center Distance: ");
-        Serial.print(irSensor.getCenterDistance());
-        Serial.print(" Right Distance: ");
-        Serial.println(irSensor.getRightDistance());
+
 }
