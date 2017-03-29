@@ -4,6 +4,9 @@
 #include "infraredsensorarray.h"
 #include "abstracthardwaremanager.h"
 #include "differentialdrivevelocity.h"
+#include "encoders.h"
+#include "motors.h"
+#include "wallcontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {
 private:
@@ -34,6 +37,10 @@ private:
     double wallController();
     int distanceController(const int distanceInMM);
     void motorController(const DifferentialDriveVelcity velocities);
+
+    Encoders encoders;
+    Motors motors;
+    WallController wallPID;
 };
 
 #endif // HARDWAREMANAGER_H

@@ -133,7 +133,8 @@ SOURCES += \
     src/interpolateir.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
-    src/driver.cpp
+    src/driver.cpp \
+    src/wallcontroller.cpp
 
 HEADERS += \
     src/maze.h \
@@ -155,4 +156,5 @@ HEADERS += \
     src/stopgodriver.h \
     src/abstractdriver.h \
     src/abstracthardwaremanager.h \
-    src/differentialdrivevelocity.h
+    src/differentialdrivevelocity.h \
+    src/wallcontroller.h

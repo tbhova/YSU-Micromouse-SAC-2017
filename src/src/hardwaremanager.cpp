@@ -35,8 +35,8 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     // Also if we have traveled the correct number of degrees/mm, changing the set point to 0 will cause the function to return
 
 
-#warning implement this
-    //Encoders::getEncoders().reset();
+#warning uncomment after encoders class is done
+    //encoders.reset()//
 
     if (distInMM == 0 && angleInRadians == 0) {
         return;
@@ -76,11 +76,17 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
 }
 
 int HardwareManager::getDistanceTraveled() {
+//    int leftDistance = encoders.getLeftDistance();
+//    int rightDistance = encoders.getRightDistance();
 
+//    return (leftDistance + rightDistance) / 2;
 }
 
 double HardwareManager::getAngleTraveled() {
+//    int leftDistance = encoders.getLeftDistance();
+//    int rightDistance = encoders.getRightDistance();
 
+    // TODO insert fancy math
 }
 
 double HardwareManager::angleController(const double angleInRadians) {
@@ -88,7 +94,7 @@ double HardwareManager::angleController(const double angleInRadians) {
 }
 
 double HardwareManager::wallController() {
-
+    return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWall(), isRightWall());
 }
 
 int HardwareManager::distanceController(const int distanceInMM) {
