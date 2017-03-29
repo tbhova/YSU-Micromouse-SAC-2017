@@ -17,6 +17,8 @@ public:
     virtual bool isCenterWall() const;
     virtual bool isRightWall() const;
 
+    virtual void drive(const int distInMM, const double angleInRadians);
+
     /**
      * @brief convertDifferentialDrive - convert unicycle model (Velocity, omega) -> (leftWheelVelocity, RightWheelVelcity) differential drive model
      * @param forwardVelocity overall robot velocity in mm/second
@@ -24,6 +26,14 @@ public:
      * @return differential drive left and right wheel velocities
      */
     DifferentialDriveVelcity convertDifferentialDrive(const int forwardVelocity, const double angularVelcity) const;
+
+private:
+    int getDistanceTraveled();
+    double getAngleTraveled();
+    double angleController(const double angleInRadians);
+    double wallController();
+    int distanceController(const int distanceInMM);
+    void motorController(const DifferentialDriveVelcity velocities);
 };
 
 #endif // HARDWAREMANAGER_H
