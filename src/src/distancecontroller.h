@@ -6,15 +6,15 @@
 
 class DistanceController {
 public:
-    DistanceController(const int maxVelocity);
+    explicit DistanceController(const int maxVelocity);
     void updateSetPoint(const int distanceSetPoint);
     int getNewVelocity(const int distanceTraveled);
 private:
-    const int targetStraightSpeed;
+    int targetStraightSpeed;
 
     double distanceInput, distanceSetPoint, velocityOutput;
 
-    PID distancePID = PID(&distanceInput, &velocityOutput, &distanceSetPoint, 0.5, 1.0, 1.25, DIRECT);
+    PID distancePID = PID(&distanceInput, &velocityOutput, &distanceSetPoint, 0.025, 1.0, 1.25, DIRECT);
 };
 
 #endif // DISTANCECONTROLLER_H
