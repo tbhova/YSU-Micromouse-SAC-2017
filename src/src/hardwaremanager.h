@@ -4,11 +4,13 @@
 #include "infraredsensorarray.h"
 #include "abstracthardwaremanager.h"
 #include "differentialdrivevelocity.h"
+#include "encoders.h"
+#include "motors.h"
+#include "wallcontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {
 private:
-    InfraredSensorArray irArray;
-    const int radius = 390/2, wheelbase = 860;
+
 public:
     HardwareManager();
     virtual ~HardwareManager() {}
@@ -28,12 +30,20 @@ public:
     DifferentialDriveVelcity convertDifferentialDrive(const int forwardVelocity, const double angularVelcity) const;
 
 private:
+    InfraredSensorArray irArray;
+    const int radius = 390/2, wheelbase = 860, ticksPerMM = 25;
+
+
     int getDistanceTraveled();
     double getAngleTraveled();
     double angleController(const double angleInRadians);
     double wallController();
     int distanceController(const int distanceInMM);
     void motorController(const DifferentialDriveVelcity velocities);
+
+    Encoders encoders;
+    Motors motors;
+    WallController wallPID;
 };
 
 #endif // HARDWAREMANAGER_H
