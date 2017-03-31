@@ -23,7 +23,7 @@ void StopGoDriver::drive(std::stack<Cardinal8> &path) {
     while (!path.empty()) {
         count = 0;
         next = path.top();
-        while (path.top() == next) {
+        while (!path.empty() && path.top() == next) {
             path.pop();
             count++;
         }
