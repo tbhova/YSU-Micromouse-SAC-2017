@@ -28,7 +28,6 @@ protected:
     void updateState(const Cardinal8 direction);
     void updateHeading(const Cardinal8 direction);
     int getTurnsTo(const Cardinal8 direction) const;
-    virtual void turn(const Cardinal8 direction);
     Cardinal8 getLeftDir() const;
     Cardinal8 getRightDir() const;
     Cardinal8 getForwardDir() const;

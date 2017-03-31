@@ -78,20 +78,6 @@ Coordinate Driver::getCurrentLocation() const {
     return Coordinate(x, y);
 }
 
-void Driver::turn(Cardinal8 direction) {
-    int turns = (heading - direction) / 2;
-    updateHeading(heading);
-
-    for(int i = 0; i < abs(turns); i++) {
-        if(turns < 0) {
-         // turnleft();
-        }
-        else {
-          // turnright();
-        }
-    }
-}
-
 unsigned int Driver::getX() const {
     return x;
 }
