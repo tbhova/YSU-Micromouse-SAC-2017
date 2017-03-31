@@ -7,11 +7,8 @@ DistanceController::DistanceController(const int maxVelocity) {
     distancePID.SetMode(AUTOMATIC);
 }
 
-void DistanceController::updateSetPoint(const int distance) {
+int DistanceController::getNewVelocity(const int distanceTraveled, const int distance) {
     distanceSetPoint = distance;
-}
-
-int DistanceController::getNewVelocity(const int distanceTraveled) {
     distanceInput = distanceTraveled;
     distancePID.Compute();
     return velocityOutput;

@@ -88,7 +88,7 @@ double HardwareManager::getAngleTraveled() {
 }
 
 double HardwareManager::angleController(const double angleInRadians) {
-
+    return anglePID.getNewOmega(getAngleTraveled(), angleInRadians);
 }
 
 double HardwareManager::wallController() {
@@ -96,7 +96,7 @@ double HardwareManager::wallController() {
 }
 
 int HardwareManager::distanceController(const int distanceInMM) {
-
+    return distancePID.getNewVelocity(getDistanceTraveled(), distanceInMM);
 }
 
 void HardwareManager::motorController(const DifferentialDriveVelcity velocities) {

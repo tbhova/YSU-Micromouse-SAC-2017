@@ -7,8 +7,7 @@
 class DistanceController {
 public:
     explicit DistanceController(const int maxVelocity);
-    void updateSetPoint(const int distanceSetPoint);
-    int getNewVelocity(const int distanceTraveled);
+    int getNewVelocity(const int distanceTraveled, const int distance);
 private:
     int targetStraightSpeed;
 

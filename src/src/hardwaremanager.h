@@ -7,6 +7,8 @@
 #include "encoders.h"
 #include "motors.h"
 #include "wallcontroller.h"
+#include "distancecontroller.h"
+#include "anglecontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {
 private:
@@ -44,6 +46,8 @@ private:
     Encoders encoders;
     Motors motors;
     WallController wallPID;
+    DistanceController distancePID = DistanceController(maxSpeed);
+    AngleController anglePID;
 };
 
 #endif // HARDWAREMANAGER_H
