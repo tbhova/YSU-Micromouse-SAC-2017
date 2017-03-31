@@ -134,7 +134,9 @@ SOURCES += \
     src/batterysensor.cpp \
     src/driver.cpp \
     src/mouseencoder.cpp \
-    src/wallcontroller.cpp
+    src/wallcontroller.cpp \
+    src/distancecontroller.cpp \
+    src/anglecontroller.cpp
 
 HEADERS += \
     src/maze.h \
@@ -157,4 +159,6 @@ HEADERS += \
     src/abstractdriver.h \
     src/abstracthardwaremanager.h \
     src/differentialdrivevelocity.h \
-    src/wallcontroller.h
+    src/wallcontroller.h \
+    src/distancecontroller.h \
+    src/anglecontroller.h
