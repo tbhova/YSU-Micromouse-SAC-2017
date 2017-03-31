@@ -8,10 +8,10 @@ void Motors::disengage() {
     digitalWriteFast(MOTOR_STANDBY, LOW);
 }
 
-void Motors::coast() {
+void Motors::setSpeed(short int speedLeft, short int speedRight) {
     digitalWriteFast(MOTOR_STANDBY, HIGH);
-    leftMotor.coast();
-    rightMotor.coast();
+    leftMotor.setSpeed(speedLeft);
+    rightMotor.setSpeed(speedRight);
 }
 
 void Motors::brake() {
@@ -20,8 +20,8 @@ void Motors::brake() {
     rightMotor.brake();
 }
 
-void Motors::setSpeed(short int speedLeft, short int speedRight) {
+void Motors::coast() {
     digitalWriteFast(MOTOR_STANDBY, HIGH);
-    leftMotor.setSpeed(speedLeft);
-    rightMotor.setSpeed(speedRight);
+    leftMotor.coast();
+    rightMotor.coast();
 }
