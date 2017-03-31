@@ -133,7 +133,8 @@ SOURCES += \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
     src/driver.cpp \
-    src/mouseencoder.cpp
+    src/mouseencoder.cpp \
+    src/wallcontroller.cpp
 
 HEADERS += \
     src/maze.h \
@@ -153,4 +154,7 @@ HEADERS += \
     src/hardwaremanager.h \
     src/batterysensor.h \
     src/stopgodriver.h \
-    src/abstracthardwaremanager.h
+    src/abstractdriver.h \
+    src/abstracthardwaremanager.h \
+    src/differentialdrivevelocity.h \
+    src/wallcontroller.h

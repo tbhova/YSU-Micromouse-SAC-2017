@@ -8,8 +8,8 @@ BEGIN {
 {
 	printf("IR_Data(");
 
-	# Convert voltage from 0->5 to 0->1023
-	voltage = ($1 * 1023) / 5;
+	# Convert voltage from 0->3.3 to 0->1023
+	voltage = ($1 * 1023) / 3.3;
 	printf("%i", voltage)
 
 	printf(", ")
