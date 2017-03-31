@@ -15,7 +15,7 @@ int Encoders::MouseEncoder::getSpeed() {
 
     positionEstimate += velocityEstimate * deltaDouble;
     double positionError = getTicks() - positionEstimate;
-    velocityIntegrator += positionError * kp * deltaDouble;
+    velocityIntegrator += positionError * ki * deltaDouble;
     velocityEstimate = positionError * kp + velocityIntegrator;
 
     return static_cast<int>(velocityEstimate);
