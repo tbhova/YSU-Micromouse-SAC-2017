@@ -10,8 +10,7 @@
 
 class HardwareManager : public AbstractHardwareManager {
 private:
-    InfraredSensorArray irArray;
-    const int radius = 390/2, wheelbase = 860;
+
 public:
     HardwareManager();
     virtual ~HardwareManager() {}
@@ -31,6 +30,10 @@ public:
     DifferentialDriveVelcity convertDifferentialDrive(const int forwardVelocity, const double angularVelcity) const;
 
 private:
+    InfraredSensorArray irArray;
+    const int radius = 390/2, wheelbase = 860, ticksPerMM = 25;
+
+
     int getDistanceTraveled();
     double getAngleTraveled();
     double angleController(const double angleInRadians);

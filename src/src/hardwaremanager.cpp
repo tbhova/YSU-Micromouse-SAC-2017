@@ -79,14 +79,14 @@ int HardwareManager::getDistanceTraveled() {
 //    int leftDistance = encoders.getLeftDistance();
 //    int rightDistance = encoders.getRightDistance();
 
-//    return (leftDistance + rightDistance) / 2;
+//    return (leftDistance + rightDistance) / (2 * ticksPerMM);
 }
 
 double HardwareManager::getAngleTraveled() {
 //    int leftDistance = encoders.getLeftDistance();
 //    int rightDistance = encoders.getRightDistance();
 
-    // TODO insert fancy math
+//    return (rightDistance - leftDistance) / (wheelbase * ticksPerMM);
 }
 
 double HardwareManager::angleController(const double angleInRadians) {
