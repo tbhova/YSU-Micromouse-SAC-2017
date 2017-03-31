@@ -18,9 +18,17 @@ void StopGoDriver::drive(const Cardinal8 dir) {
 }
 
 void StopGoDriver::drive(std::stack<Cardinal8> &path) {
+    Cardinal8 next = North;
+    int count;
     while (!path.empty()) {
-        drive(path.top());
-        path.pop();
+        count = 0;
+        next = path.top();
+        while (path.top() == next) {
+            path.pop();
+            count++;
+        }
+        turn(next);
+        manager->drive(180*count, 0);
     }
 }
 
