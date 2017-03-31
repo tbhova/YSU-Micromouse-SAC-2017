@@ -128,12 +128,12 @@ SOURCES += \
     src/motors.cpp \
     src/motor.cpp \
     src/encoders.cpp \
-    src/encoder.cpp \
     src/navigator.cpp \
     src/interpolateir.cpp \
     src/hardwaremanager.cpp \
     src/batterysensor.cpp \
     src/driver.cpp \
+    src/mouseencoder.cpp \
     src/wallcontroller.cpp
 
 HEADERS += \
