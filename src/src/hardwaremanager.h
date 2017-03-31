@@ -31,7 +31,7 @@ public:
 
 private:
     InfraredSensorArray irArray;
-    const int radius = 390/2, wheelbase = 860, ticksPerMM = 25;
+    const int radius = 390/2, wheelbase = 860, ticksPerMM = 25, maxSpeed = 5900;
 
 
     int getDistanceTraveled();

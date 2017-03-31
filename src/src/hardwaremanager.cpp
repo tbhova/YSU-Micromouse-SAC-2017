@@ -34,9 +34,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     // TODO This can be simplified with sentinal values in angle/dist controllers
     // Also if we have traveled the correct number of degrees/mm, changing the set point to 0 will cause the function to return
 
-
-#warning uncomment after encoders class is done
-    //encoders.reset()//
+    encoders.reset(0);
 
     if (distInMM == 0 && angleInRadians == 0) {
         return;
@@ -76,17 +74,17 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
 }
 
 int HardwareManager::getDistanceTraveled() {
-//    int leftDistance = encoders.getLeftDistance();
-//    int rightDistance = encoders.getRightDistance();
+    const int leftDistance = encoders.getLeftTicks();
+    const int rightDistance = encoders.getRightTicks();
 
-//    return (leftDistance + rightDistance) / (2 * ticksPerMM);
+    return (leftDistance + rightDistance) / (2 * ticksPerMM);
 }
 
 double HardwareManager::getAngleTraveled() {
-//    int leftDistance = encoders.getLeftDistance();
-//    int rightDistance = encoders.getRightDistance();
+    const int leftDistance = encoders.getLeftTicks();
+    const int rightDistance = encoders.getRightTicks();
 
-//    return (rightDistance - leftDistance) / (wheelbase * ticksPerMM);
+    return static_cast<double>(rightDistance - leftDistance) / static_cast<double>(wheelbase * ticksPerMM);
 }
 
 double HardwareManager::angleController(const double angleInRadians) {
