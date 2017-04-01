@@ -39,7 +39,13 @@ void Driver::updateHeading(const Cardinal8 direction) {
 
 
 int Driver::getTurnsTo(const Cardinal8 direction) const {
-     return static_cast<int>(direction) - static_cast<int>(heading);
+     int distance = (static_cast<int>(direction) - static_cast<int>(heading)) / 2;
+     if (distance < -2) {
+         distance += 4;
+     } else if (distance > 2) {
+         distance -= 4;
+     }
+     return distance;
 }
 
 std::vector<Cardinal8> Driver::getWalls() const {
