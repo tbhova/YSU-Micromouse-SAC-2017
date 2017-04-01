@@ -136,7 +136,8 @@ SOURCES += \
     src/mouseencoder.cpp \
     src/wallcontroller.cpp \
     src/distancecontroller.cpp \
-    src/anglecontroller.cpp
+    src/anglecontroller.cpp \
+    src/angledistancecontroller.cpp
 
 HEADERS += \
     src/maze.h \
@@ -161,4 +162,5 @@ HEADERS += \
     src/differentialdrivevelocity.h \
     src/wallcontroller.h \
     src/distancecontroller.h \
-    src/anglecontroller.h
+    src/anglecontroller.h \
+    src/angledistancecontroller.h
