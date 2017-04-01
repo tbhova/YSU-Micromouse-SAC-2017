@@ -2,6 +2,7 @@
 #define GPS_H
 
 #include "cardinal8.h"
+#include "coordinate.h"
 #include "maze.h"
 #include <stack>
 
@@ -25,6 +26,8 @@ public:
     virtual Cardinal8 getDirectionTo(const Coordinate start, const Coordinate destination) = 0;
 
     virtual std::stack<Cardinal8> fullPath(const Coordinate start, const Coordinate destination) = 0;
+
+    virtual Coordinate unvisitedCell(const Coordinate currentCell) const = 0;
 
 protected:
     Maze* maze;
