@@ -20,6 +20,7 @@ public:
     MOCK_CONST_METHOD0(isLeftWall, bool());
     MOCK_CONST_METHOD0(isCenterWall, bool());
     MOCK_CONST_METHOD0(isRightWall, bool());
+    MOCK_METHOD2(drive, void(const int distInMM, const double angleInRadians));
 };
 
 class DriverTest : public ::testing::Test {

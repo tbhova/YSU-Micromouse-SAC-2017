@@ -27,7 +27,7 @@ public:
 
     virtual std::stack<Cardinal8> fullPath(const Coordinate start, const Coordinate destination) = 0;
 
-    virtual Coordinate unvisitedCell(const Coordinate currentCell) const = 0;
+    virtual Coordinate undiscoveredCell(const Coordinate currentCell) const = 0;
 
 protected:
     Maze* maze;

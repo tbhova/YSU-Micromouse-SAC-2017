@@ -34,6 +34,7 @@ public:
     explicit MockGPS(Maze* maze) : GPS(maze) {}
     MOCK_METHOD2(getDirectionTo, Cardinal8(const Coordinate start, const Coordinate destination));
     MOCK_METHOD2(fullPath, std::stack<Cardinal8>(const Coordinate start, const Coordinate destination));
+    MOCK_CONST_METHOD1(undiscoveredCell, Coordinate(const Coordinate currentCell));
 };
 
 class MockedNavigatorTest : public ::testing::Test {
