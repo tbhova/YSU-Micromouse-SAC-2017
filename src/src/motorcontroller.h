@@ -8,16 +8,21 @@ class MotorController {
 public:
     MotorController();
     int getPWM(const int desiredVelocity, const int actualVelocity);
-
+    int autoTune(const int actualVelocity);
+    int getKp(){return velocityPID.GetKp();}
+    int getKi(){return velocityPID.GetKi();}
+    int getKd(){return velocityPID.GetKd();}
+    bool isAutoDone(){return doneAuto;}
 private:
 
     // Velocity Error Input and setpoint
     double velocityInput = 0, velocitySetPoint = 0;
-
     // variable output
     double pwmOutput = 0;
 
-    PID velocityPID = PID(&velocityInput, &pwmOutput, &velocitySetPoint, 2.1, 0.74, 1.8, DIRECT);
+    PID velocityPID = PID(&velocityInput, &pwmOutput, &velocitySetPoint, 0.021, 0.074, 0.018, DIRECT);
+    PID_ATune velocityATune = PID_ATune(&velocityInput, &pwmOutput);
+    bool doneAuto;
 };
 
 #endif // MOTORCONTROLLER_H

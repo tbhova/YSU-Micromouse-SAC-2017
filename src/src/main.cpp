@@ -2,27 +2,17 @@
 #include "mk20dx128.h"
 #include "core_pins.h"
 #include "pins.h"
-
-
+#include "motorcontroller.h"
+#include "encoders.h"
+#include "motors.h"
 // Begin PID test code
 #include <PID_v1.h>
 #include <PID_AutoTune_v0.h>
 
-byte ATuneModeRemember=2;
-double input=80, output=50, setpoint=180;
-double kp=2,ki=0.5,kd=2;
-
-double kpmodel=1.5, taup=100, theta[50];
-double outputStart=5;
-double aTuneStep=50, aTuneNoise=1, aTuneStartValue=100;
-unsigned int aTuneLookBack=20;
-
-boolean tuning = false;
-unsigned long  modelTime, serialTime;
-
-PID myPID(&input, &output, &setpoint,kp,ki,kd, DIRECT);
-PID_ATune aTune(&input, &output);
-// End PID test code
+MotorController leftMotorController;
+MotorController rightMotorController;
+Encoders encoders;
+Motors motors;
 
 extern "C"{
    int _getpid(){ return -1;}
@@ -44,11 +34,39 @@ void setup() {
     pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
     Serial.begin(9600);
     //while(!Serial);
+
+
 }
 
 void loop() {
-    digitalWriteFast(LED_BUILTIN, HIGH);
-    delay(300);
-    digitalWriteFast(LED_BUILTIN, LOW);
-    delay(300);
+
+    int leftSpeed;
+    //leftSpeed = leftMotorController.getPWM(3000, encoders.getLeftSpeed());
+    int rightSpeed;
+    //rightSpeed = rightMotorController.getPWM(3000, encoders.getRightSpeed());
+    leftSpeed = leftMotorController.autoTune(encoders.getLeftSpeed());
+    //rightSpeed = rightMotorController.autoTune(encoders.getRightSpeed());
+    if(leftMotorController.isAutoDone()){
+        motors.setSpeed(0, 0);
+        while(1){
+           Serial.print("Kp: ");
+           Serial.println(leftMotorController.getKp());
+           Serial.print("Ki: ");
+           Serial.println(leftMotorController.getKi());
+           Serial.print("Kd :");
+           Serial.println(leftMotorController.getKd());
+           delay(1000);
+       }
+    }
+    /*Serial.print("Left: ");
+    Serial.print(leftSpeed);
+    Serial.print("    ");
+    Serial.print(encoders.getLeftSpeed());
+    Serial.print("Right: ");
+    Serial.print(rightSpeed);
+    Serial.print("  ");
+    Serial.println(encoders.getRightSpeed());*/
+
+    motors.setSpeed(leftSpeed, leftSpeed);
+   // delay(1);
 }
