@@ -8,6 +8,7 @@
 #include "differentialdrivevelocity.h"
 
 #include "wallcontroller.h"
+#include "angledistancecontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {
 private:
@@ -45,6 +46,7 @@ private:
     Encoders encoders;
     Motors motors;
     WallController wallPID;
+    AngleDistanceController angleDistController;
 };
 
 #endif // HARDWAREMANAGER_H
