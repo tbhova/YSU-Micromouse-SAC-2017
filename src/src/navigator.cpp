@@ -66,4 +66,5 @@ void Navigator::returnToOrigin() {
     const Coordinate currentCell = driver->getCurrentLocation();
     std::stack<Cardinal8> path = directions->fullPath(currentCell, Coordinate(0,0));
     driver->drive(path);
+    driver->drive(North, 0); // reset to face North
 }
