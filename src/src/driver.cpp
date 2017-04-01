@@ -1,9 +1,10 @@
 #include "driver.h"
 #include "maze.h"
-#include "hardwaremanager.h"
+
 #include <stdlib.h>
 
 #ifndef BUILD_FOR_PC
+#include "hardwaremanager.h"
 Driver::Driver() {
     manager = new HardwareManager();
 }

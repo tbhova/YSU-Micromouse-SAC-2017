@@ -1,8 +1,6 @@
 #ifndef ABSTRACTHARDWAREMANAGER_H
 #define ABSTRACTHARDWAREMANAGER_H
 
-#include "infraredsensorarray.h"
-
 class AbstractHardwareManager {
 public:
     virtual ~AbstractHardwareManager() {}

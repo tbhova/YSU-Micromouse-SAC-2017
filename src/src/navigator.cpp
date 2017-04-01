@@ -31,7 +31,7 @@ void Navigator::map() {
         else {
             vector<Cardinal8> walls = driver->getWalls();
             updateMaze(currentCell,walls);
-            destinationCell = findUnvisitedCell();
+            destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
         }
 
         Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);

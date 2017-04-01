@@ -2,10 +2,11 @@
 #define HARDWAREMANAGER_H
 
 #include "infraredsensorarray.h"
-#include "abstracthardwaremanager.h"
-#include "differentialdrivevelocity.h"
 #include "encoders.h"
 #include "motors.h"
+#include "abstracthardwaremanager.h"
+#include "differentialdrivevelocity.h"
+
 #include "wallcontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {

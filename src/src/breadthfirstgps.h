@@ -18,6 +18,7 @@ public:
     virtual ~BreadthFirstGPS() {}
     virtual Cardinal8 getDirectionTo(const Coordinate start, const Coordinate destination);
     virtual std::stack<Cardinal8> fullPath(const Coordinate start, const Coordinate destination);
+    virtual Coordinate undiscoveredCell(const Coordinate current) const;
 };
 
 #endif // BREADTHFIRSTGPS_H
