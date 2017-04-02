@@ -31,13 +31,12 @@ protected:
     Cardinal8 getLeftDir() const;
     Cardinal8 getRightDir() const;
     Cardinal8 getForwardDir() const;
-    AbstractHardwareManager* getHwManager() const { return manager; }
+
+    AbstractHardwareManager *manager;
 
 private:
     unsigned int x = 0, y = 0;
     Cardinal8 heading = North;
-    AbstractHardwareManager *manager;
-
 };
 
 #endif // DRIVER_H

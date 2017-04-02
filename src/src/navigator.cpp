@@ -1,7 +1,17 @@
 #include "navigator.h"
 #include <stack>
+#include "breadthfirstgps.h"
 
 using namespace std;
+
+#ifndef BUILD_FOR_PC
+#include "stopgodriver.h"
+Navigator::Navigator() {
+    driver = new StopGoDriver();
+    maze = new Maze(16, 16);
+    directions = new BreadthFirstGPS(maze);
+}
+#endif
 
 Navigator::Navigator(AbstractDriver *driver, Maze *maze, GPS *gps) :
     driver(driver), maze(maze), directions(gps) {

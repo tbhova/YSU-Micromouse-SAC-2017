@@ -2,12 +2,15 @@
 #include "mk20dx128.h"
 #include "core_pins.h"
 #include "pins.h"
+#include "navigator.h"
 
 extern "C"{
    int _getpid(){ return -1;}
    int _kill(int pid, int sig){ return -1; }
    int _write(){return -1;}
 }
+
+Navigator navigator;
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
@@ -27,7 +30,6 @@ void setup() {
 
 void loop() {
     digitalWriteFast(LED_BUILTIN, HIGH);
-    delay(300);
+    navigator.run();
     digitalWriteFast(LED_BUILTIN, LOW);
-    delay(300);
 }
