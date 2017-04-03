@@ -16,7 +16,7 @@ int state=1;
 Motors motor;
 Encoders encoder;
 const double wheelBase=95;
-double circles=.25;
+double circles=.125;
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
@@ -31,7 +31,7 @@ void setup() {
     pinMode(IR_SENSOR_CENTER, INPUT_PULLDOWN);
     pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
     Serial.begin(9600);
-    //while(!Serial);
+    while(!Serial);
 }
 double radTurn=25*wheelBase*(2*circles*3.4159265359);
 void loop() {
@@ -39,12 +39,13 @@ void loop() {
     delay(30);
     digitalWriteFast(LED_BUILTIN, LOW);
     delay(30);
-    Serial.println(encoder.getRightTicks());
-    motor.setSpeed(-170, 170);
-    if(encoder.getRightTicks()>=radTurn) {
-        motor.setSpeed(0,0);
-    }
 
+//    Serial.println(encoder.getRightTicks());
+    motor.setSpeed(-170, 170);
+    while(encoder.getRightTicks()<=radTurn) {
+        motor.setSpeed(-170, 170);
+    }
+    motor.setSpeed(0,0);
 
 //    if(state==1) {
 //        motorSpeed++;
