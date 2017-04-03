@@ -3,17 +3,18 @@
 #include "core_pins.h"
 #include "pins.h"
 #include "navigator.h"
-#include "motorcontroller.h"
-#include "encoders.h"
-#include "motors.h"
-// Begin PID test code
-#include <PID_v1.h>
-#include <PID_AutoTune_v0.h>
 
-MotorController leftMotorController;
-MotorController rightMotorController;
-Encoders encoders;
-Motors motors;
+//#include "motorcontroller.h"
+//#include "encoders.h"
+//#include "motors.h"
+//// Begin PID test code
+//#include <PID_v1.h>
+//#include <PID_AutoTune_v0.h>
+
+//MotorController leftMotorController;
+//MotorController rightMotorController;
+//Encoders encoders;
+//Motors motors;
 
 extern "C"{
    int _getpid(){ return -1;}
@@ -37,8 +38,6 @@ void setup() {
     pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
     Serial.begin(9600);
     //while(!Serial);
-
-
 }
 
 void loop() {
