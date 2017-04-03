@@ -30,6 +30,7 @@ void setup() {
 
 void loop() {
     digitalWriteFast(LED_BUILTIN, HIGH);
-    navigator.run();
+//    navigator.run();
+    navigator.driveStraight();
     digitalWriteFast(LED_BUILTIN, LOW);
 }

@@ -78,3 +78,15 @@ void Navigator::returnToOrigin() {
     driver->drive(path);
     driver->drive(North, 0); // reset to face North
 }
+
+void Navigator::driveStraight() {
+    stack<Cardinal8> path;
+    for (int i = 0; i < 16; i++) {
+        path.push(North);
+    }
+    for (int i = 0; i < 16; i++) {
+        path.push(South);
+    }
+    driver->drive(path);
+    driver->drive(North, 0);
+}
