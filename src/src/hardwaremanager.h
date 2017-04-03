@@ -9,6 +9,7 @@
 
 #include "wallcontroller.h"
 #include "angledistancecontroller.h"
+#include "motorcontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {
 private:
@@ -47,6 +48,9 @@ private:
     Motors motors;
     WallController wallPID;
     AngleDistanceController angleDistController;
+    MotorController leftMotorPID;
+    MotorController rightMotorPID;
+
 };
 
 #endif // HARDWAREMANAGER_H
