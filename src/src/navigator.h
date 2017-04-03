@@ -47,6 +47,8 @@ public:
     void optimalRoute();
     void returnToOrigin();
 
+    void driveStraight();
+
 protected:
 
 };
