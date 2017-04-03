@@ -1,9 +1,10 @@
 #include "driver.h"
 #include "maze.h"
-#include "hardwaremanager.h"
+
 #include <stdlib.h>
 
 #ifndef BUILD_FOR_PC
+#include "hardwaremanager.h"
 Driver::Driver() {
     manager = new HardwareManager();
 }
@@ -39,7 +40,13 @@ void Driver::updateHeading(const Cardinal8 direction) {
 
 
 int Driver::getTurnsTo(const Cardinal8 direction) const {
-     return static_cast<int>(direction) - static_cast<int>(heading);
+     int distance = (static_cast<int>(direction) - static_cast<int>(heading)) / 2;
+     if (distance < -2) {
+         distance += 4;
+     } else if (distance > 2) {
+         distance -= 4;
+     }
+     return distance;
 }
 
 std::vector<Cardinal8> Driver::getWalls() const {
@@ -76,20 +83,6 @@ Cardinal8 Driver::getRightDir() const {
 
 Coordinate Driver::getCurrentLocation() const {
     return Coordinate(x, y);
-}
-
-void Driver::turn(Cardinal8 direction) {
-    int turns = (heading - direction) / 2;
-    updateHeading(heading);
-
-    for(int i = 0; i < abs(turns); i++) {
-        if(turns < 0) {
-         // turnleft();
-        }
-        else {
-          // turnright();
-        }
-    }
 }
 
 unsigned int Driver::getX() const {

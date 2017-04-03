@@ -1,7 +1,9 @@
 #include "wallcontroller.h"
 
 WallController::WallController() {
-
+    wallPID.SetOutputLimits(-2, 2);
+    wallPID.SetSampleTime(1);
+    wallPID.SetMode(AUTOMATIC);
 }
 
 double WallController::getNewOmega(const unsigned short int leftWallDistance, const unsigned short int rightWallDistance,

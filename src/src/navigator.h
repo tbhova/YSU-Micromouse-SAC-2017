@@ -30,6 +30,7 @@ private:
     Coordinate findUnvisitedCell() const;
 
 public:
+    Navigator();
     Navigator(AbstractDriver *driver, Maze *maze, GPS *gps);
 
     /**

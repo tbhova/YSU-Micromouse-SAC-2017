@@ -2,11 +2,13 @@
 #define HARDWAREMANAGER_H
 
 #include "infraredsensorarray.h"
-#include "abstracthardwaremanager.h"
-#include "differentialdrivevelocity.h"
 #include "encoders.h"
 #include "motors.h"
+#include "abstracthardwaremanager.h"
+#include "differentialdrivevelocity.h"
+
 #include "wallcontroller.h"
+#include "angledistancecontroller.h"
 
 class HardwareManager : public AbstractHardwareManager {
 private:
@@ -31,7 +33,7 @@ public:
 
 private:
     InfraredSensorArray irArray;
-    const int radius = 390/2, wheelbase = 860, ticksPerMM = 25;
+    const int radius = 39/2, wheelbase = 86, ticksPerMM = 25, maxSpeed = 5900;
 
 
     int getDistanceTraveled();
@@ -44,6 +46,7 @@ private:
     Encoders encoders;
     Motors motors;
     WallController wallPID;
+    AngleDistanceController angleDistController;
 };
 
 #endif // HARDWAREMANAGER_H

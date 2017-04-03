@@ -69,6 +69,58 @@ std::vector<std::vector<Cardinal8>> BreadthFirstGPS::search(const Coordinate sta
     } while(!coordQueue.empty() && !foundDest);
     return fromWhere;
 }
+Coordinate BreadthFirstGPS::undiscoveredCell(const Coordinate current) const{
+    maze->resetTraversalVisited();
+    Coordinate currentCell = current;  //The current location of the search
+    std::queue<Coordinate> coordQueue; //The queue of coordinates to search
+    std::vector<Coordinate> neighbors; //The neighbors of current
+    bool foundDest = false; //If the search has found a neighbor that is the destination
+    Coordinate returnCell;
+    //Add the start to the queue and set is as visited so that it doesn't find it again
+    coordQueue.push(currentCell);
+    maze->setTraversalVisited(currentCell);
+
+    std::vector<std::vector<Cardinal8>> fromWhere;
+    fromWhere.resize(maze->getSizeY());
+    for(unsigned int i = 0; i < maze->getSizeY(); i++){
+        fromWhere.at(i).resize(maze->getSizeX());
+    }
+
+
+   do{
+     //Get the current and remove it from the queue
+     currentCell = coordQueue.front();
+     coordQueue.pop();
+
+     //Get the neighboring cells (all cells that neighbor the current coordinate)
+     neighbors = maze->getNeighboringCells(currentCell);
+
+
+    //Loop through all the neighbors,
+    //and if they are not visited add them to the queue
+    //and keep track of the direction that the neighbor came from
+    for(unsigned int i=0; i < neighbors.size(); i++){
+         if(!maze->hasTraversalVisited(neighbors.at(i))){
+            maze->setTraversalVisited(neighbors.at(i));
+
+           //Keep track of where the robot has been
+           fromWhere[neighbors.at(i).x][neighbors.at(i).y]
+               = maze->getDirectionBetweenCells(neighbors.at(i), currentCell);
+           //If the neighbor is the destination
+           //then exit all loops and return the path
+           if(!maze->hasMouseVisited(neighbors.at(i))){
+               return neighbors.at(i);
+               //foundDest = true;
+               //break;
+           }
+           //Add neighbor to the queue
+           coordQueue.push(neighbors.at(i));
+         }
+      }
+
+    } while(!coordQueue.empty());
+    return currentCell;
+}
 
 std::stack<Cardinal8> BreadthFirstGPS::fullPath(const Coordinate start, const Coordinate destination) {
     std::vector<std::vector<Cardinal8>> fromWhere;

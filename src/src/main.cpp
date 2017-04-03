@@ -2,6 +2,7 @@
 #include "mk20dx128.h"
 #include "core_pins.h"
 #include "pins.h"
+#include "navigator.h"
 #include "motorcontroller.h"
 #include "encoders.h"
 #include "motors.h"
@@ -19,6 +20,8 @@ extern "C"{
    int _kill(int pid, int sig){ return -1; }
    int _write(){return -1;}
 }
+
+Navigator navigator;
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
@@ -39,6 +42,9 @@ void setup() {
 }
 
 void loop() {
+    digitalWriteFast(LED_BUILTIN, HIGH);
+    navigator.run();
+    digitalWriteFast(LED_BUILTIN, LOW);
 
     int leftSpeed;
     //leftSpeed = leftMotorController.getPWM(3000, encoders.getLeftSpeed());

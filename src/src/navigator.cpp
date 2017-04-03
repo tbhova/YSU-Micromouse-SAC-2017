@@ -1,7 +1,17 @@
 #include "navigator.h"
 #include <stack>
+#include "breadthfirstgps.h"
 
 using namespace std;
+
+#ifndef BUILD_FOR_PC
+#include "stopgodriver.h"
+Navigator::Navigator() {
+    driver = new StopGoDriver();
+    maze = new Maze(16, 16);
+    directions = new BreadthFirstGPS(maze);
+}
+#endif
 
 Navigator::Navigator(AbstractDriver *driver, Maze *maze, GPS *gps) :
     driver(driver), maze(maze), directions(gps) {
@@ -31,7 +41,7 @@ void Navigator::map() {
         else {
             vector<Cardinal8> walls = driver->getWalls();
             updateMaze(currentCell,walls);
-            destinationCell = findUnvisitedCell();
+            destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
         }
 
         Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);
@@ -66,4 +76,5 @@ void Navigator::returnToOrigin() {
     const Coordinate currentCell = driver->getCurrentLocation();
     std::stack<Cardinal8> path = directions->fullPath(currentCell, Coordinate(0,0));
     driver->drive(path);
+    driver->drive(North, 0); // reset to face North
 }
