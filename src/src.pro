@@ -137,7 +137,7 @@ SOURCES += \
     src/wallcontroller.cpp \
     src/distancecontroller.cpp \
     src/anglecontroller.cpp \
-    src/angledistancecontroller.cpp
+    src/angledistancecontroller.cpp \
     src/wallcontroller.cpp \
     src/wallcontroller.cpp \
     src/motorcontroller.cpp
@@ -166,6 +166,6 @@ HEADERS += \
     src/wallcontroller.h \
     src/distancecontroller.h \
     src/anglecontroller.h \
-    src/angledistancecontroller.h
+    src/angledistancecontroller.h \
     src/wallcontroller.h \
     src/motorcontroller.h

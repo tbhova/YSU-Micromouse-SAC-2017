@@ -46,33 +46,33 @@ void loop() {
     navigator.run();
     digitalWriteFast(LED_BUILTIN, LOW);
 
-    int leftSpeed;
-    //leftSpeed = leftMotorController.getPWM(3000, encoders.getLeftSpeed());
-    int rightSpeed;
-    //rightSpeed = rightMotorController.getPWM(3000, encoders.getRightSpeed());
-    leftSpeed = leftMotorController.autoTune(encoders.getLeftSpeed());
-    //rightSpeed = rightMotorController.autoTune(encoders.getRightSpeed());
-    if(leftMotorController.isAutoDone()){
-        motors.setSpeed(0, 0);
-        while(1){
-           Serial.print("Kp: ");
-           Serial.println(leftMotorController.getKp());
-           Serial.print("Ki: ");
-           Serial.println(leftMotorController.getKi());
-           Serial.print("Kd :");
-           Serial.println(leftMotorController.getKd());
-           delay(1000);
-       }
-    }
-    /*Serial.print("Left: ");
-    Serial.print(leftSpeed);
-    Serial.print("    ");
-    Serial.print(encoders.getLeftSpeed());
-    Serial.print("Right: ");
-    Serial.print(rightSpeed);
-    Serial.print("  ");
-    Serial.println(encoders.getRightSpeed());*/
+//    int leftSpeed;
+//    //leftSpeed = leftMotorController.getPWM(3000, encoders.getLeftSpeed());
+//    int rightSpeed;
+//    //rightSpeed = rightMotorController.getPWM(3000, encoders.getRightSpeed());
+//    leftSpeed = leftMotorController.autoTune(encoders.getLeftSpeed());
+//    //rightSpeed = rightMotorController.autoTune(encoders.getRightSpeed());
+//    if(leftMotorController.isAutoDone()){
+//        motors.setSpeed(0, 0);
+//        while(1){
+//           Serial.print("Kp: ");
+//           Serial.println(leftMotorController.getKp());
+//           Serial.print("Ki: ");
+//           Serial.println(leftMotorController.getKi());
+//           Serial.print("Kd :");
+//           Serial.println(leftMotorController.getKd());
+//           delay(1000);
+//       }
+//    }
+//    /*Serial.print("Left: ");
+//    Serial.print(leftSpeed);
+//    Serial.print("    ");
+//    Serial.print(encoders.getLeftSpeed());
+//    Serial.print("Right: ");
+//    Serial.print(rightSpeed);
+//    Serial.print("  ");
+//    Serial.println(encoders.getRightSpeed());*/
 
-    motors.setSpeed(leftSpeed, leftSpeed);
-   // delay(1);
+//    motors.setSpeed(leftSpeed, leftSpeed);
+//   // delay(1);
 }

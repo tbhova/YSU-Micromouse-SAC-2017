@@ -100,5 +100,7 @@ int HardwareManager::distanceController(const int distanceInMM) {
 }
 
 void HardwareManager::motorController(const DifferentialDriveVelcity velocities) {
-
+  int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed());
+  int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed());
+  motors.setSpeed(leftSpeed, rightSpeed);
 }
