@@ -12,7 +12,8 @@ public:
 
 private:
     // Left and Right wall distance setpoints
-    const double leftWallSetPoint = 65, rightWallSetPoint = 65;
+    // Equal distance is 110 110
+    const double leftWallSetPoint = 100, rightWallSetPoint = 100;
 
     // Wall Error Input and setpoints
     double wallInput = 0, wallSetPoint = 0;
@@ -20,7 +21,7 @@ private:
     // variable outputs
     double wallOmega = 0;
 
-    PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 2.1, 0.74, 4.8, DIRECT);
+    PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, .01, 0.0, 0.0, DIRECT);
 };
 
 #endif // WALLCONTROLLER_H

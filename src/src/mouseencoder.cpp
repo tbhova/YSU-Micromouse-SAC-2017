@@ -27,6 +27,7 @@ int Encoders::MouseEncoder::getTicks() {
 
 void Encoders::MouseEncoder::reset(int reset) {
     encoder->write(reset);
+    positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0;
 }
 
 Encoders::MouseEncoder::~MouseEncoder() {

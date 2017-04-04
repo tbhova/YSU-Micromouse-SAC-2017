@@ -18,12 +18,6 @@ int MotorController::getPWM(const int desiredVelocity, const int actualVelocity)
 
     velocityPID.Compute();
 
-    /*if(this->pwmOutput > 255){
-        return 255;
-    }
-    else if(this->pwmOutput < -255){
-        return -255;
-    }*/
     return this->pwmOutput;
 }
 int MotorController::autoTune(const int actualVelocity){

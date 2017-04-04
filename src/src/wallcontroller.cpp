@@ -11,11 +11,11 @@ double WallController::getNewOmega(const unsigned short int leftWallDistance, co
 
     // TODO - add wall checkpointing with wall last state
     if (isLeftWall && isRightWall) {
-        wallInput = leftWallDistance;
-        wallSetPoint = rightWallDistance;
+        wallInput = rightWallDistance;
+        wallSetPoint = leftWallDistance;
     } else if (isLeftWall) {
-        wallInput = leftWallDistance;
-        wallSetPoint = leftWallSetPoint;
+        wallInput = leftWallSetPoint;
+        wallSetPoint = leftWallDistance;
     } else if (isRightWall) {
         wallInput = rightWallDistance;
         wallSetPoint = rightWallSetPoint;

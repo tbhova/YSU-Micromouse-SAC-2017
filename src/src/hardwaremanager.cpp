@@ -9,23 +9,22 @@ HardwareManager::HardwareManager() {
 }
 
 bool HardwareManager::isLeftWall() const {
-    return irArray.getLeftDistance() > 8000;
+    return irArray.getLeftDistance() < 170;
 }
 
 bool HardwareManager::isCenterWall() const {
-    return irArray.getCenterDistance() > 8000;
+    return irArray.getCenterDistance() < 170;
 }
 
 bool HardwareManager::isRightWall() const {
-    return irArray.getRightDistance() > 8000;
+    return irArray.getRightDistance() < 170;
 }
 
 DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
-    int linearVelocity = forwardVelocity / radius;
-    double rotationalVelocity = (angularVelocity * wheelbase) / (2 * radius);
+    const double rotationalVelocity = (angularVelocity * wheelbase) / 2;
 
-    int leftV  = linearVelocity - rotationalVelocity;
-    int rightV = linearVelocity + rotationalVelocity;
+    const int leftV  = forwardVelocity - rotationalVelocity;
+    const int rightV = forwardVelocity + rotationalVelocity;
 
     return DifferentialDriveVelcity(leftV, rightV);
 }
@@ -34,6 +33,11 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     // TODO This can be simplified with sentinal values in angle/dist controllers
     // Also if we have traveled the correct number of degrees/mm, changing the set point to 0 will cause the function to return
 
+#warning remove
+    Serial.print("dist ");
+    Serial.println(distInMM);
+    Serial.print("angle ");
+    Serial.println(angleInRadians);
     encoders.reset(0);
 
     if (distInMM == 0 && angleInRadians == 0) {
@@ -56,7 +60,20 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             }
             const double omega = wallController();
             const int forwardVelocity = distanceController(distInMM);
+#warning remove
+            Serial.print(omega);
+            Serial.print(" ");
+            Serial.print(forwardVelocity);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(forwardVelocity, omega);
+#warning remove
+            Serial.print(" ");
+            Serial.print(velocities.left);
+            Serial.print(" ");
+            Serial.print(velocities.right);
+            Serial.print(" ");
+            Serial.print(encoders.getLeftSpeed()/ticksPerMM);
+            Serial.print(" ");
+            Serial.println(encoders.getRightSpeed()/ticksPerMM);
             motorController(velocities);
         }
     } else {
@@ -92,6 +109,11 @@ double HardwareManager::angleController(const double angleInRadians) {
 }
 
 double HardwareManager::wallController() {
+#warning remove
+    Serial.print(irArray.getLeftDistance());
+    Serial.print(" ");
+    Serial.print(irArray.getRightDistance());
+    Serial.print(" ");
     return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWall(), isRightWall());
 }
 
@@ -100,7 +122,7 @@ int HardwareManager::distanceController(const int distanceInMM) {
 }
 
 void HardwareManager::motorController(const DifferentialDriveVelcity velocities) {
-  int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed());
-  int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed());
-  motors.setSpeed(leftSpeed, rightSpeed);
+    int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed()/ticksPerMM);
+    int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed()/ticksPerMM);
+    motors.setSpeed(leftSpeed, rightSpeed);
 }

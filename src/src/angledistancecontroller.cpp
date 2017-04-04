@@ -7,14 +7,14 @@ AngleDistanceController::AngleDistanceController() {
 }
 
 double AngleDistanceController::getNewOmega(const double angleTraveled, const double angleSet) {
-    const double optimalOmega = 1.0;
+    const double optimalOmega = 2.0;
 
     return optimalOmega;
 }
 
 int AngleDistanceController::getNewVelocity(const double distTraveled, const double distSet) {
-    const int maxVelocity = (5900 * 3) / (4 * 100); // 5900 ticks per sec, times 75%, divided by ticks per mm
-    const int minVelocity = (5900) / (4 * 100); // 5900 * 25%
+    const int maxVelocity = (5900 * 3) / (4 * 25); // 5900 ticks per sec, times 75%, divided by ticks per mm
+    const int minVelocity = (5900) / (4 * 25); // 5900 * 25%
     const int time = millis();
 
     if (distTraveled < 30 && lastVelocity < maxVelocity) {

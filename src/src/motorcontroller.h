@@ -20,7 +20,7 @@ private:
     // variable output
     double pwmOutput = 0;
 
-    PID velocityPID = PID(&velocityInput, &pwmOutput, &velocitySetPoint, 0.021, 0.074, 0.018, DIRECT);
+    PID velocityPID = PID(&velocityInput, &pwmOutput, &velocitySetPoint, 6.0, 0.38, 0.018, DIRECT);
     PID_ATune velocityATune = PID_ATune(&velocityInput, &pwmOutput);
     bool doneAuto;
 };
