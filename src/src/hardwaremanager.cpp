@@ -8,16 +8,28 @@ HardwareManager::HardwareManager() {
 
 }
 
-bool HardwareManager::isLeftWall() const {
+bool HardwareManager::isLeftWallRightNow() const {
     return irArray.getLeftDistance() < 125;
 }
 
-bool HardwareManager::isCenterWall() const {
+bool HardwareManager::isLeftWall() const {
+    return leftWall;
+}
+
+bool HardwareManager::isCenterWallRightNow() const {
     return irArray.getCenterDistance() < 125;
 }
 
-bool HardwareManager::isRightWall() const {
+bool HardwareManager::isCenterWall() const {
+    return isCenterWallRightNow();
+}
+
+bool HardwareManager::isRightWallRightNow() const {
     return irArray.getRightDistance() < 125;
+}
+
+bool HardwareManager::isRightWall() const {
+    return rightWall;
 }
 
 DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
@@ -37,6 +49,9 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
 //    wallPID.reset();
 //    resetMotorController();
     this->checkpointEncoders();
+
+    leftWall = false;
+    rightWall = false;
 
     if (distInMM == 0 && angleInRadians == 0) {
         return;
@@ -102,6 +117,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                 return;
             }
             const double omega = wallController();
+            checkpointWalls();
             const int forwardVelocity = distanceController(distInMM);
 #warning remove
 //            Serial.print(omega);
@@ -160,7 +176,7 @@ double HardwareManager::wallController() {
     Serial.print(" ");
     Serial.print(irArray.getRightDistance());
     Serial.println(" ");*/
-    return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWall(), isRightWall());
+    return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWallRightNow(), isRightWallRightNow());
 }
 
 int HardwareManager::distanceController(const int distanceInMM) {
@@ -170,17 +186,6 @@ int HardwareManager::distanceController(const int distanceInMM) {
 void HardwareManager::motorController(const DifferentialDriveVelcity velocities) {
     int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed()/ticksPerMM);
     int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed()/ticksPerMM);
-#warning remove
-    if (velocities.right < 0 != velocities.left < 0) {
-//        Serial.print("Left/Right Speed:   ");
-//        Serial.print(encoders.getLeftSpeed());
-//        Serial.print("  ");
-//        Serial.print(leftSpeed);
-//        Serial.print(" , ");
-//        Serial.print(encoders.getRightSpeed());
-//        Serial.print("  ");
-//        Serial.println(rightSpeed);
-    }
     motors.setSpeed(leftSpeed, rightSpeed);
 }
 
@@ -192,4 +197,21 @@ void HardwareManager::resetMotorController(){
 void HardwareManager::checkpointEncoders() {
     checkpointedLeftEncoder = encoders.getLeftTicks();
     checkpointedRightEncoder = encoders.getRightTicks();
+}
+
+void HardwareManager::checkpointWalls() {
+    const int distance = getDistanceTraveled();
+
+    if (isLeftWallRightNow()) {
+        lastLeftWallDistance = distance;
+    }
+    if (isRightWallRightNow()) {
+        lastRightWallDistance = distance;
+    }
+
+    // only able to set wall after we've traveled 4 cm
+    if (distance > 40) {
+        leftWall = leftWall || distance - lastLeftWallDistance > 50;
+        rightWall = rightWall || distance - lastRightWallDistance > 50;
+    }
 }

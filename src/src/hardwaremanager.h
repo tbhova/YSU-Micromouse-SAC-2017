@@ -46,6 +46,15 @@ private:
     void motorController(const DifferentialDriveVelcity velocities);
     void resetMotorController();
     void checkpointEncoders();
+    void checkpointWalls();
+
+    bool isLeftWallRightNow() const;
+    bool isCenterWallRightNow() const;
+    bool isRightWallRightNow() const;
+
+    int lastLeftWall = 0, lastRightWall = 0;
+
+    bool leftWall = false, rightWall = false;
 
     Encoders encoders;
     Motors motors;
