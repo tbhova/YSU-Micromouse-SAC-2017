@@ -90,3 +90,10 @@ void Navigator::driveStraight() {
     driver->drive(path);
     driver->drive(North, 0);
 }
+
+void Navigator::turning() {
+    driver->drive(South, 0);
+    delay(500);
+    driver->drive(North, 0);
+    delay(500);
+}
