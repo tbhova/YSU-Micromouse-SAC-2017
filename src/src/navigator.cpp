@@ -81,10 +81,10 @@ void Navigator::returnToOrigin() {
 
 void Navigator::driveStraight() {
     stack<Cardinal8> path;
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 15; i++) {
         path.push(South);
     }
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 15; i++) {
         path.push(North);
     }
     driver->drive(path);

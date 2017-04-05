@@ -14,11 +14,11 @@ double WallController::getNewOmega(const unsigned short int leftWallDistance, co
         wallInput = rightWallDistance;
         wallSetPoint = leftWallDistance;
     } else if (isLeftWall) {
-        wallInput = leftWallSetPoint;
-        wallSetPoint = leftWallDistance;
+        wallInput = 2 * leftWallSetPoint;
+        wallSetPoint = 2 * leftWallDistance;
     } else if (isRightWall) {
-        wallInput = rightWallDistance;
-        wallSetPoint = rightWallSetPoint;
+        wallInput = 2 * rightWallDistance;
+        wallSetPoint = 2 * rightWallSetPoint;
     } else {
         return 0;
     }

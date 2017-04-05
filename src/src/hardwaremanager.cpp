@@ -55,25 +55,25 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     } else if (angleInRadians == 0) {
         while (true) {
             delay(1);
-            if (getDistanceTraveled() >= distInMM) {
+            if (abs(getDistanceTraveled()) >= abs(distInMM)) {
                 return;
             }
             const double omega = wallController();
             const int forwardVelocity = distanceController(distInMM);
 #warning remove
             Serial.print(omega);
-            Serial.print(" ");
-            Serial.print(forwardVelocity);
+            Serial.println(" ");
+//            Serial.print(forwardVelocity);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(forwardVelocity, omega);
 #warning remove
-            Serial.print(" ");
-            Serial.print(velocities.left);
-            Serial.print(" ");
-            Serial.print(velocities.right);
-            Serial.print(" ");
-            Serial.print(encoders.getLeftSpeed()/ticksPerMM);
-            Serial.print(" ");
-            Serial.println(encoders.getRightSpeed()/ticksPerMM);
+//            Serial.print(" ");
+//            Serial.print(velocities.left);
+//            Serial.print(" ");
+//            Serial.print(velocities.right);
+//            Serial.print(" ");
+//            Serial.print(encoders.getLeftSpeed()/ticksPerMM);
+//            Serial.print(" ");
+//            Serial.println(encoders.getRightSpeed()/ticksPerMM);
             motorController(velocities);
         }
     } else {
