@@ -52,7 +52,7 @@ private:
     bool isCenterWallRightNow() const;
     bool isRightWallRightNow() const;
 
-    int lastLeftWall = 0, lastRightWall = 0;
+    int lastLeftWallDistance = 0, lastRightWallDistance = 0;
 
     bool leftWall = false, rightWall = false;
 
