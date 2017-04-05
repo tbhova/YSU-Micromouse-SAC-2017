@@ -9,6 +9,7 @@ public:
     WallController();
     double getNewOmega(const unsigned short int leftWallDistance, const unsigned short int rightWallDistance,
                        const bool isLeftWall, const bool isRightWall);
+    void reset();
 
 private:
     // Left and Right wall distance setpoints
@@ -22,6 +23,8 @@ private:
     double wallOmega = 0;
 
     PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0038, 0.0001, 0.0003, DIRECT);
+
+    void initPID();
 };
 
 #endif // WALLCONTROLLER_H

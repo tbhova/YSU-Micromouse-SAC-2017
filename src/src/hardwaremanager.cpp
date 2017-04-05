@@ -38,7 +38,9 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     Serial.println(distInMM);
     Serial.print("angle ");
     Serial.println(angleInRadians);
-    encoders.reset(0);
+
+    encoders.reset(0)
+    wallPID.reset();
 
     if (distInMM == 0 && angleInRadians == 0) {
         return;
