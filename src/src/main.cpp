@@ -3,7 +3,9 @@
 #include "core_pins.h"
 #include "pins.h"
 #include "navigator.h"
-
+#include "driver.h"
+#include "infraredsensorarray.h"
+#include "hardwaremanager.h"
 extern "C"{
    int _getpid(){ return -1;}
    int _kill(int pid, int sig){ return -1; }
@@ -11,7 +13,8 @@ extern "C"{
 }
 
 Navigator navigator;
-
+//Driver driver;
+HardwareManager hardwareManager;
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
@@ -31,6 +34,28 @@ void setup() {
 void loop() {
     digitalWriteFast(LED_BUILTIN, HIGH);
 //    navigator.run();
-    navigator.driveStraight();
+    //navigator.driveStraight();
+    bool leftWalls[12];
+    bool rightWalls[12];
+    for(int i=0; i<12; i++){
+        //driver.drive(North);
+        hardwareManager.drive(180, 0);
+        leftWalls[i] = hardwareManager.isLeftWall();
+        rightWalls[i] = hardwareManager.isRightWall();
+    }
+
+    while(true){
+        for(int i=0; i<12; i++){
+           Serial.print("Left wall/rightwall: ");
+           Serial.print(i);
+           Serial.print("   ");
+           Serial.print(leftWalls[i]);
+           Serial.print(",");
+           Serial.println(rightWalls[i]);
+           delay(500);
+        }
+        delay(1000);
+    }
+
     digitalWriteFast(LED_BUILTIN, LOW);
 }

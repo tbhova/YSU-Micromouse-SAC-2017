@@ -46,6 +46,8 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
         while (true) {
             delay(1);
             if (abs(getAngleTraveled()) >= abs(angleInRadians)) {
+                motors.coast();
+                resetMotorController();
                 return;
             }
             const double omega = angleController(angleInRadians);
@@ -56,6 +58,8 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
         while (true) {
             delay(1);
             if (abs(getDistanceTraveled()) >= abs(distInMM)) {
+                motors.coast();
+                resetMotorController();
                 return;
             }
             const double omega = wallController();
@@ -125,4 +129,9 @@ void HardwareManager::motorController(const DifferentialDriveVelcity velocities)
     int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed()/ticksPerMM);
     int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed()/ticksPerMM);
     motors.setSpeed(leftSpeed, rightSpeed);
+}
+
+void HardwareManager::resetMotorController(){
+    leftMotorPID.reset();
+    rightMotorPID.reset();
 }

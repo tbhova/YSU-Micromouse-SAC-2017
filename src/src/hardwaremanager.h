@@ -43,6 +43,7 @@ private:
     double wallController();
     int distanceController(const int distanceInMM);
     void motorController(const DifferentialDriveVelcity velocities);
+    void resetMotorController();
 
     Encoders encoders;
     Motors motors;
