@@ -2,7 +2,7 @@
 
 WallController::WallController() {
     wallPID.SetOutputLimits(-2, 2);
-    wallPID.SetSampleTime(1);
+    wallPID.SetSampleTime(7);
     wallPID.SetMode(AUTOMATIC);
 }
 

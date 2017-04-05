@@ -21,7 +21,7 @@ private:
     // variable outputs
     double wallOmega = 0;
 
-    PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0035, 0.0001, 0.00005, DIRECT);
+    PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0038, 0.0001, 0.0003, DIRECT);
 };
 
 #endif // WALLCONTROLLER_H

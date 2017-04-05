@@ -45,7 +45,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     } else if (distInMM == 0) {
         while (true) {
             delay(1);
-            if (getAngleTraveled() >= angleInRadians) {
+            if (abs(getAngleTraveled()) >= abs(angleInRadians)) {
                 return;
             }
             const double omega = angleController(angleInRadians);
