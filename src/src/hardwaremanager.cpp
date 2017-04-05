@@ -46,16 +46,26 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
         while (true) {
             delay(1);
             if (abs(getAngleTraveled()) >= abs(angleInRadians)) {
+                motors.coast();
                 return;
             }
             const double omega = angleController(angleInRadians);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(0, omega);
+            Serial.print(" ");
+            Serial.print(velocities.left);
+            Serial.print(" ");
+            Serial.print(velocities.right);
+//            Serial.print(" ");
+//            Serial.print(encoders.getLeftSpeed()/ticksPerMM);
+//            Serial.print(" ");
+//            Serial.println(encoders.getRightSpeed()/ticksPerMM);
             motorController(velocities);
         }
     } else if (angleInRadians == 0) {
         while (true) {
             delay(1);
             if (abs(getDistanceTraveled()) >= abs(distInMM)) {
+                motors.coast();
                 return;
             }
             const double omega = wallController();
@@ -80,6 +90,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
         while (true) {
             delay(1);
             if (getDistanceTraveled() >= distInMM && getAngleTraveled() >= angleInRadians) {
+                motors.coast();
                 return;
             }
             const double omega = angleController(angleInRadians) + wallController();
@@ -124,5 +135,9 @@ int HardwareManager::distanceController(const int distanceInMM) {
 void HardwareManager::motorController(const DifferentialDriveVelcity velocities) {
     int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed()/ticksPerMM);
     int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed()/ticksPerMM);
+    Serial.print(" ");
+    Serial.print(leftSpeed);
+    Serial.print(" ");
+    Serial.println(rightSpeed);
     motors.setSpeed(leftSpeed, rightSpeed);
 }

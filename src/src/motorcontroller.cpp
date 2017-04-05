@@ -7,7 +7,7 @@ MotorController::MotorController() {
  velocityATune.SetOutputStep(70);
  velocityATune.SetNoiseBand(100);
  velocityATune.SetControlType(1);
- velocityATune.SetLookbackSec(1);
+ velocityATune.SetLookbackSec(10);
  doneAuto = false;
 }
 

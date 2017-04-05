@@ -48,6 +48,7 @@ public:
     void returnToOrigin();
 
     void driveStraight();
+    void turning();
 
 protected:
 

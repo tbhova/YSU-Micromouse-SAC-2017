@@ -7,9 +7,13 @@ AngleDistanceController::AngleDistanceController() {
 }
 
 double AngleDistanceController::getNewOmega(const double angleTraveled, const double angleSet) {
-    const double optimalOmega = 2.0;
-
-    return optimalOmega;
+    const double maxOmega = 3.0;
+    if (lastOmega < maxOmega && angleTraveled * 10 < angleSet) {
+        lastOmega += 0.001;
+    } else {
+        lastOmega = maxOmega;
+    }
+    return maxOmega;
 }
 
 int AngleDistanceController::getNewVelocity(const double distTraveled, const double distSet) {

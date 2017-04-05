@@ -1,6 +1,8 @@
 #include "navigator.h"
 #include <stack>
 #include "breadthfirstgps.h"
+#include <Arduino.h>
+#include <mk20dx128.h>
 
 using namespace std;
 
@@ -93,7 +95,7 @@ void Navigator::driveStraight() {
 
 void Navigator::turning() {
     driver->drive(South, 0);
-    delay(500);
+    delay(1500);
     driver->drive(North, 0);
-    delay(500);
+    delay(1500);
 }
