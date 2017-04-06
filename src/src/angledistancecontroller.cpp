@@ -15,7 +15,7 @@ double AngleDistanceController::getNewOmega(const double angleTraveled, const do
 
 int AngleDistanceController::getNewVelocity(const double distTraveled, const double distSet) {
     const int maxVelocity = (5900 * 3) / (4 * 25); // 5900 ticks per sec, times 75%, divided by ticks per mm
-    const int minVelocity = (5900) / (20 * 25); // 5900 * 25%
+    const int minVelocity = (5900) / (10 * 25); // 5900 * 25%
     const int time = millis();
     Serial.print("last velocity ");
     Serial.println(lastVelocity);

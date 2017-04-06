@@ -8,7 +8,7 @@ MotorController::MotorController() {
 }
 void MotorController::reset(){
     velocityPID = PID(&velocityInput, &pwmOutput, &velocitySetPoint, 6.0, 0.38, 0.018,/*6.0, 0.38, 0.018,*/ DIRECT);
-    //pwmOutput = 0;
+    pwmOutput = 0;
     velocityInput = 0;
     velocitySetPoint = 0;
     velocityPID.SetMode(MANUAL);

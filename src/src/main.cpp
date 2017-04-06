@@ -38,17 +38,17 @@ void loop() {
 
 
 //    navigator.run();
-    //navigator.driveStraight();
-    bool leftWalls[12];
-    bool rightWalls[12];
-    for(int i=0; i<12; i++){
+    navigator.driveStraight();
+    /*bool leftWalls[12];
+    bool rightWalls[12];*/
+    /*for(int i=0; i<12; i++){
         //driver.drive(North);
         hardwareManager.drive(180, 0);
         leftWalls[i] = hardwareManager.isLeftWall();
         rightWalls[i] = hardwareManager.isRightWall();
-    }
+    }*/
 
-    while(true){
+    /*while(true){
         for(int i=0; i<12; i++){
            Serial.print("Left wall/rightwall: ");
            Serial.print(i);
@@ -59,7 +59,7 @@ void loop() {
            delay(500);
         }
         delay(1000);
-    }
+    }*/
 
     digitalWriteFast(LED_BUILTIN, LOW);
 }
