@@ -24,9 +24,8 @@ private:
 
     private:
         Encoder* encoder;
-        //const double kp = 4.0, ki = 90.0;
-        const double kp = 4.0, ki = 90.0;
-        double positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0;
+        const double kp = 4.0, ki = 90.0, kd = 0.1;
+        double positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0, lastPositionError = 0;
         unsigned int lastTime;
         int count;
     };

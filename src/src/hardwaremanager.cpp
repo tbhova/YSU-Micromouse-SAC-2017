@@ -37,8 +37,10 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     /*Serial.print("dist ");
     Serial.println(distInMM);
     Serial.print("angle ");
-    Serial.println(angleInRadians);*/
+    Serial.println(angleInRadians);
+
     encoders.reset(0);
+    wallPID.reset();
     resetMotorController();
     if (distInMM == 0 && angleInRadians == 0) {
         return;
@@ -47,7 +49,6 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             delay(1);
             if (abs(getAngleTraveled()) >= abs(angleInRadians)) {
                 motors.coast();
-
                 return;
             }
             const double omega = angleController(angleInRadians);
@@ -59,7 +60,6 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             delay(1);
             if (abs(getDistanceTraveled()) >= abs(distInMM)) {
                 motors.coast();
-
                 return;
             }
             const double omega = wallController();
@@ -137,9 +137,4 @@ void HardwareManager::motorController(const DifferentialDriveVelcity velocities)
     Serial.print(" , ");
     Serial.println(encoders.getRightSpeed());*/
     motors.setSpeed(leftSpeed, rightSpeed);
-}
-
-void HardwareManager::resetMotorController(){
-    leftMotorPID.reset();
-    rightMotorPID.reset();
 }
