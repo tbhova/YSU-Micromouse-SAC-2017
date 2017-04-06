@@ -15,6 +15,8 @@ int Encoders::MouseEncoder::getSpeed() {
 
     positionEstimate += velocityEstimate * deltaDouble;
     double positionError = getTicks() - positionEstimate;
+    velocityEstimate += kd * (positionError - lastPositionError);
+    lastPositionError = positionError;
     velocityIntegrator += positionError * ki * deltaDouble;
     velocityEstimate = positionError * kp + velocityIntegrator;
 
@@ -27,7 +29,7 @@ int Encoders::MouseEncoder::getTicks() {
 
 void Encoders::MouseEncoder::reset(int reset) {
     encoder->write(reset);
-    positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0;
+    positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0, lastPositionError = 0;
 }
 
 Encoders::MouseEncoder::~MouseEncoder() {
