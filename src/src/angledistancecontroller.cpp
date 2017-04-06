@@ -20,14 +20,14 @@ int AngleDistanceController::getNewVelocity(const double distTraveled, const dou
 
     if (distTraveled < 50 /*30*/ && lastVelocity < maxVelocity) {
         // ramp up
-        if (time - lastVelocityTime > 10) {
+        if (time - lastVelocityTime > 7) {
             lastVelocity++;
             lastVelocityTime = time;
         }
         return lastVelocity;
     } else if (distSet - distTraveled < 50 /*30*/) {
         // ramp down
-        if (time - lastVelocityTime > 10 && lastVelocity > minVelocity) {
+        if (time - lastVelocityTime > 7 && lastVelocity > minVelocity) {
             lastVelocity--;
             lastVelocityTime = time;
         } else if (time - lastVelocityTime > 2) {

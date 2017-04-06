@@ -1,5 +1,7 @@
 #include "motorcontroller.h"
 #include <cmath>
+#warning remove
+#include "Arduino.h"
 MotorController::MotorController() {
   reset();
 }
@@ -21,13 +23,15 @@ void MotorController::reset(){
 }
 
 int MotorController::getPWM(const int desiredVelocity, const int actualVelocity) {
-    if(std::abs(actualVelocity - desiredVelocity) > 500){
+    if(abs(actualVelocity - desiredVelocity) > 70){
        velocityInput = desiredVelocity - 50;
     }
     else{
         this->velocityInput = actualVelocity;
     }
     this->velocitySetPoint = desiredVelocity;
+    Serial.print("Velocity error:   ");
+    Serial.println(velocitySetPoint - velocityInput);
 
     velocityPID.Compute();
 

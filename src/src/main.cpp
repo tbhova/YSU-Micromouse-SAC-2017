@@ -6,6 +6,7 @@
 #include "driver.h"
 #include "infraredsensorarray.h"
 #include "hardwaremanager.h"
+#include "motors.h"
 extern "C"{
    int _getpid(){ return -1;}
    int _kill(int pid, int sig){ return -1; }
@@ -15,6 +16,7 @@ extern "C"{
 Navigator navigator;
 //Driver driver;
 HardwareManager hardwareManager;
+Motors motors;
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
@@ -28,11 +30,13 @@ void setup() {
     pinMode(IR_SENSOR_CENTER, INPUT_PULLDOWN);
     pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
     Serial.begin(9600);
-//    while(!Serial);
+    while(!Serial);
 }
 
 void loop() {
     digitalWriteFast(LED_BUILTIN, HIGH);
+
+
 //    navigator.run();
     //navigator.driveStraight();
     bool leftWalls[12];
