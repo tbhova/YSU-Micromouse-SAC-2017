@@ -24,6 +24,7 @@ private:
     PID velocityPID = PID(&velocityInput, &pwmOutput, &velocitySetPoint, 6.0, 0.38, 0.018,/*6.0, 0.38, 0.018,*/ DIRECT);
     PID_ATune velocityATune = PID_ATune(&velocityInput, &pwmOutput);
     bool doneAuto;
+    int lastTime;
 };
 
 #endif // MOTORCONTROLLER_H

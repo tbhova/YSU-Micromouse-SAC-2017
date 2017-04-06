@@ -28,6 +28,7 @@ private:
         const double kp = 4.0, ki = 90.0;
         double positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0;
         unsigned int lastTime;
+        int count;
     };
 
     MouseEncoder leftEncoder = MouseEncoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
