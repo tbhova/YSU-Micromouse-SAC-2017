@@ -2,13 +2,15 @@
 
 Gyro::Gyro()
 {
-Sensors sensors;
+
 }
+Sensors sensors;
 void Gyro::gyroSetup() {
     Wire.begin();
-    Sensors.intialize();
+    sensors.initialize();
 }
 
-virtual Vector3 Gyro::getRotation() {
+Vector3 Gyro::getRotation() {
     Vector3 gyro = gyroscope->getRotation();
+    return gyro;
  }
