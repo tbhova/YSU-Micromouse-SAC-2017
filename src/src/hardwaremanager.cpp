@@ -9,15 +9,15 @@ HardwareManager::HardwareManager() {
 }
 
 bool HardwareManager::isLeftWall() const {
-    return irArray.getLeftDistance() < 170;
+    return irArray.getLeftDistance() < 125;
 }
 
 bool HardwareManager::isCenterWall() const {
-    return irArray.getCenterDistance() < 170;
+    return irArray.getCenterDistance() < 125;
 }
 
 bool HardwareManager::isRightWall() const {
-    return irArray.getRightDistance() < 170;
+    return irArray.getRightDistance() < 125;
 }
 
 DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
@@ -85,7 +85,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                     motors.coast();
 
                     const int newDistance = irArray.getCenterDistance();
-                    const int distanceToDrive = newDistance - 44;
+                    const int distanceToDrive = newDistance - 46;
                     if (newDistance >= originalDistance) {
                         calVelocity.left *= -1;
                         calVelocity.right *= -1;
