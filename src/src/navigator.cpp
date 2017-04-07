@@ -90,3 +90,13 @@ void Navigator::driveStraight() {
     driver->drive(path);
     driver->drive(North, 0);
 }
+
+void Navigator::driveStraightIndividualCells() {
+    for (int i = 0; i < 12; i++) {
+        driver->drive(North);
+    }
+    for (int i = 0; i < 12; i++) {
+        driver->drive(South);
+    }
+    driver->drive(North, 0);
+}

@@ -38,7 +38,8 @@ void loop() {
 
 
 //    navigator.run();
-    navigator.driveStraight();
+//    navigator.driveStraight();
+    navigator.driveStraightIndividualCells();
     /*bool leftWalls[12];
     bool rightWalls[12];*/
     /*for(int i=0; i<12; i++){
