@@ -35,6 +35,7 @@ public:
 private:
     InfraredSensorArray irArray;
     const int radius = 39/2, wheelbase = 86, ticksPerMM = 25, maxSpeed = 5900;
+    int checkpointedLeftEncoder = 0, checkpointedRightEncoder = 0;
 
 
     int getDistanceTraveled();
@@ -44,6 +45,7 @@ private:
     int distanceController(const int distanceInMM);
     void motorController(const DifferentialDriveVelcity velocities);
     void resetMotorController();
+    void checkpointEncoders();
 
     Encoders encoders;
     Motors motors;

@@ -39,9 +39,10 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     Serial.print("angle ");
     Serial.println(angleInRadians);*/
 
-    encoders.reset(0);
-    wallPID.reset();
-    resetMotorController();
+//    encoders.reset(0);
+//    wallPID.reset();
+//    resetMotorController();
+    this->checkpointEncoders();
     if (distInMM == 0 && angleInRadians == 0) {
         return;
     } else if (distInMM == 0) {
@@ -98,15 +99,15 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
 }
 
 int HardwareManager::getDistanceTraveled() {
-    const int leftDistance = encoders.getLeftTicks();
-    const int rightDistance = encoders.getRightTicks();
+    const int leftDistance = encoders.getLeftTicks() - checkpointedLeftEncoder;
+    const int rightDistance = encoders.getRightTicks() - checkpointedRightEncoder;
 
     return (leftDistance + rightDistance) / (2 * ticksPerMM);
 }
 
 double HardwareManager::getAngleTraveled() {
-    const int leftDistance = encoders.getLeftTicks();
-    const int rightDistance = encoders.getRightTicks();
+    const int leftDistance = encoders.getLeftTicks() - checkpointedLeftEncoder;
+    const int rightDistance = encoders.getRightTicks() - checkpointedRightEncoder;
 
     return static_cast<double>(rightDistance - leftDistance) / static_cast<double>(wheelbase * ticksPerMM);
 }
@@ -143,4 +144,9 @@ void HardwareManager::motorController(const DifferentialDriveVelcity velocities)
 void HardwareManager::resetMotorController(){
     leftMotorPID.reset();
     rightMotorPID.reset();
+}
+
+void HardwareManager::checkpointEncoders() {
+    checkpointedLeftEncoder = encoders.getLeftTicks();
+    checkpointedRightEncoder = encoders.getRightTicks();
 }
