@@ -88,7 +88,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             delay(1);
             if (abs(getDistanceTraveled()) >= abs(distInMM)) {
                 motors.coast();
-                if (isCenterWall()) {
+                if (isCenterWallRightNow()) {
                     const int originalDistance = irArray.getCenterDistance();
                     DifferentialDriveVelcity calVelocity = DifferentialDriveVelcity(-45, -45);
 
