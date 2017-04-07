@@ -50,6 +50,29 @@ public:
     void driveStraight();
     void driveStraightIndividualCells();
     void turnRepeatedly();
+    void driveStupidMaze() {
+        driver->drive(North);
+        driver->drive(North);
+        driver->drive(West);
+        driver->drive(West);
+        driver->drive(North);
+        driver->drive(North);
+        driver->drive(West);
+        driver->drive(South);
+        driver->drive(West);
+        driver->drive(South);
+        driver->drive(West);
+        driver->drive(North);
+        driver->drive(West);
+        driver->drive(West);
+        driver->drive(North);
+        driver->drive(North);
+        driver->drive(North);
+        driver->drive(North);
+        driver->drive(West);
+        driver->drive(South);
+        driver->drive(East);
+    }
 
 protected:
 

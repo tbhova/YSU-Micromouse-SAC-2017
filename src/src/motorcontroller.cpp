@@ -31,8 +31,8 @@ int MotorController::getPWM(const int desiredVelocity, const int actualVelocity)
     //}
     this->velocitySetPoint = desiredVelocity;
     if(millis() - lastTime > 100){
-        Serial.print("Velocity error:   ");
-        Serial.println(velocityInput - velocitySetPoint);
+//        Serial.print("Velocity error:   ");
+//        Serial.println(velocityInput - velocitySetPoint);
         lastTime = millis();
     }
     velocityPID.Compute();

@@ -10,7 +10,8 @@ using namespace std;
 #include "stopgodriver.h"
 Navigator::Navigator() {
     driver = new StopGoDriver();
-    maze = new Maze(16, 16);
+    //maze = new Maze(16, 16);
+    maze = new Maze(16, 13);
     directions = new BreadthFirstGPS(maze);
 }
 #endif

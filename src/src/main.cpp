@@ -35,7 +35,10 @@ void loop() {
 //    navigator.run();
 //    navigator.driveStraight();
 //    navigator.driveStraightIndividualCells();
-    navigator.turnRepeatedly();
+//    navigator.turnRepeatedly();
+    Serial.println("Begin");
+    navigator.driveStupidMaze();
+
     /*bool leftWalls[12];
     bool rightWalls[12];*/
     /*for(int i=0; i<12; i++){

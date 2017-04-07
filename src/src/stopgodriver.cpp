@@ -1,5 +1,7 @@
 #include "stopgodriver.h"
 #include <cmath>
+#include <Arduino.h>
+#include <mk20dx128.h>
 
 #ifndef BUILD_FOR_PC
 StopGoDriver::StopGoDriver() : Driver() {
@@ -34,7 +36,11 @@ void StopGoDriver::drive(std::stack<Cardinal8> &path) {
 
 void StopGoDriver::turn(const Cardinal8 direction) {
     int turns = getTurnsTo(direction);
+//    Serial.println(" ");
+//    Serial.print("Turns :");
+
     double radiansToTurn = (M_PI * turns) / 2;
+//    Serial.println(radiansToTurn);
     manager->drive(0, radiansToTurn);
     updateHeading(direction);
 }

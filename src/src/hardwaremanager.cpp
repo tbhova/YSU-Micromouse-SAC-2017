@@ -55,10 +55,10 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             }
             const double omega = angleController(angleInRadians);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(0, omega);
-            Serial.print(" ");
-            Serial.print(velocities.left);
-            Serial.print(" ");
-            Serial.print(velocities.right);
+//            Serial.print(" ");
+//            Serial.print(velocities.left);
+//            Serial.print(" ");
+//            Serial.print(velocities.right);
 //            Serial.print(" ");
 //            Serial.print(encoders.getLeftSpeed()/ticksPerMM);
 //            Serial.print(" ");
@@ -75,10 +75,10 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             const double omega = wallController();
             const int forwardVelocity = distanceController(distInMM);
 #warning remove
-            Serial.print(omega);
-            Serial.print("   ");
-            Serial.print(forwardVelocity);
-            Serial.println(" ");
+//            Serial.print(omega);
+//            Serial.print("   ");
+//            Serial.print(forwardVelocity);
+//            Serial.println(" ");
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(forwardVelocity, omega);
 #warning remove
 //            Serial.print(" ");
