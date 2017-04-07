@@ -11,25 +11,15 @@ Encoders::MouseEncoder::MouseEncoder(const int encoderA, const int encoderB) {
 }
 
 int Encoders::MouseEncoder::getSpeed() {
+    const double delta = static_cast<double>(micros() - lastTime)/1000000.0;
+    lastTime = micros();
 
-
-    unsigned int delta = millis() - lastTime;
-    lastTime += delta;
-    double deltaDouble = static_cast<double>(delta)/1000.0;
-
-    positionEstimate += velocityEstimate * deltaDouble;
+    positionEstimate += velocityEstimate * delta;
     double positionError = getTicks() - positionEstimate;
-    if(count < 40){
-        velocityIntegrator += positionError * 30.0 * deltaDouble;
-        velocityEstimate = positionError * 2.0 + velocityIntegrator;
-        count++;
-    }
-    else{
-        velocityIntegrator += positionError * ki * deltaDouble;
-        velocityEstimate = positionError * kp + velocityIntegrator;
-    }
-
-#warning remove
+    double velocityDerivative = (positionError - lastPositionError) * kd * delta;
+    lastPositionError = positionError;
+    velocityIntegrator += positionError * ki * delta;
+    velocityEstimate = positionError * kp + velocityIntegrator + velocityDerivative;
 
     return static_cast<int>(velocityEstimate);
 }
@@ -40,9 +30,8 @@ int Encoders::MouseEncoder::getTicks() {
 
 void Encoders::MouseEncoder::reset(int reset) {
     encoder->write(reset);
-    count = 0;
     positionEstimate = 0; velocityEstimate = 0; velocityIntegrator = 0;
-    lastTime = millis();
+    lastTime = micros();
 }
 
 Encoders::MouseEncoder::~MouseEncoder() {

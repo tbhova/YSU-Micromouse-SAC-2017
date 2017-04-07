@@ -33,12 +33,6 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     // TODO This can be simplified with sentinal values in angle/dist controllers
     // Also if we have traveled the correct number of degrees/mm, changing the set point to 0 will cause the function to return
 
-#warning remove
-    /*Serial.print("dist ");
-    Serial.println(distInMM);
-    Serial.print("angle ");
-    Serial.println(angleInRadians);*/
-
 //    encoders.reset(0);
 //    wallPID.reset();
 //    resetMotorController();
