@@ -22,14 +22,12 @@ int Encoders::MouseEncoder::getSpeed() {
 
     int ticksDelta = getTicks() - lastTicks;
     lastTicks = getTicks();
-    Serial.println(ticksDelta);
-    if (ticksDelta < 0 != velocityEstimate < 0) {
+    if (ticksDelta <= 0 != velocityEstimate < 0) {
         velocityIntegrator = 0;
         velocityEstimate = 0;
     }
 
     return static_cast<int>(velocityEstimate);
-
 }
 
 int Encoders::MouseEncoder::getTicks() {
