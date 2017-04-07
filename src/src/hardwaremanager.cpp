@@ -73,6 +73,32 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             delay(1);
             if (abs(getDistanceTraveled()) >= abs(distInMM)) {
                 motors.coast();
+                if (isCenterWall()) {
+                    const int originalDistance = irArray.getCenterDistance();
+                    DifferentialDriveVelcity calVelocity = DifferentialDriveVelcity(-45, -45);
+
+                    checkpointEncoders();
+                    while (abs(getDistanceTraveled()) < 10) {
+                        motorController(calVelocity);
+                        delay(1);
+                    }
+                    motors.coast();
+
+                    const int newDistance = irArray.getCenterDistance();
+                    const int distanceToDrive = newDistance - 44;
+                    if (newDistance >= originalDistance) {
+                        calVelocity.left *= -1;
+                        calVelocity.right *= -1;
+                    }
+
+                    checkpointEncoders();
+                    while (abs(getDistanceTraveled()) < abs(distanceToDrive)) {
+                        motorController(calVelocity);
+                        delay(1);
+                    }
+                }
+
+                motors.coast();
                 return;
             }
             const double omega = wallController();

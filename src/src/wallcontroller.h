@@ -22,7 +22,7 @@ private:
     // variable outputs
     double wallOmega = 0;
 
-    PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0038, 0.0001, 0.0003, DIRECT);
+    PID wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0188, 0.0001, 0.00025, DIRECT);
 
     void initPID();
 };

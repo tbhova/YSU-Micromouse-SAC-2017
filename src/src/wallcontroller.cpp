@@ -31,7 +31,7 @@ void WallController::reset() {
 }
 
 void WallController::initPID() {
-    wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0188/*0.0188*/, 0.0001/*0.0001*/, 0.00031/*0.00031*/, DIRECT);
+    wallPID = PID(&wallInput, &wallOmega, &wallSetPoint, 0.0188/*0.0188*/, 0.0001/*0.0001*/, 0.00025/*0.00031*/, DIRECT);
     wallPID.SetOutputLimits(-2, 2);
     wallPID.SetSampleTime(7);
     wallPID.SetMode(AUTOMATIC);
