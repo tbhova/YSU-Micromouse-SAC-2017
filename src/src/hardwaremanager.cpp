@@ -66,11 +66,11 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             //const double omega = 0;
             const int forwardVelocity = distanceController(distInMM);
 #warning remove
-            /*Serial.print(omega);
+            Serial.print(omega);
             Serial.print("   ");
             Serial.print(forwardVelocity);
             Serial.println(" ");
-//            Serial.print(forwardVelocity);*/
+            Serial.print(forwardVelocity);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(forwardVelocity, omega);
 #warning remove
 //            Serial.print(" ");
@@ -117,10 +117,11 @@ double HardwareManager::angleController(const double angleInRadians) {
 
 double HardwareManager::wallController() {
 #warning remove
+    Serial.print("IR   ");
     Serial.print(irArray.getLeftDistance());
     Serial.print(" ");
     Serial.print(irArray.getRightDistance());
-    Serial.print(" ");
+    Serial.println(" ");
     return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWall(), isRightWall());
 }
 
