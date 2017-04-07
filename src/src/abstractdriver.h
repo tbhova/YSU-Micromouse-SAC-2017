@@ -10,7 +10,7 @@ public:
     virtual void drive(const Cardinal8 dir, const int cells) = 0;
     virtual void drive(const Cardinal8 dir) = 0;
     virtual Coordinate getCurrentLocation() const = 0;
-    virtual std::vector<Cardinal8> getWalls() const = 0;
+    virtual std::vector<Cardinal8> getWalls() = 0;
 };
 
 #endif // ABSTRACTDRIVER_H

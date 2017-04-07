@@ -37,7 +37,7 @@ public:
      * @brief run - function called by main to either map or travel optimalRoute
      */
     void run();
-
+    void runToCenter();
     /**
      * @brief map - updateMaze with wall data from Driver
      * generate direction and path of travel from current cell to a destination cell
@@ -46,6 +46,8 @@ public:
     void map();
     void optimalRoute();
     void returnToOrigin();
+    void returnToOriginMap();
+    void mapToDestination();
 
     void driveStraight();
     void driveStraightIndividualCells();

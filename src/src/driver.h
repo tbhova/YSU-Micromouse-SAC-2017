@@ -19,7 +19,7 @@ public:
     virtual void drive(const Cardinal8 dir, const int cells);
     virtual void drive(const Cardinal8 dir);
     virtual Coordinate getCurrentLocation() const;
-    virtual std::vector<Cardinal8> getWalls() const;
+    virtual std::vector<Cardinal8> getWalls();
     unsigned int getX() const;
     unsigned int getY() const;
     Cardinal8 getHeading() const;

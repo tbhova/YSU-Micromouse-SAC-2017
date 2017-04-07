@@ -49,9 +49,9 @@ int Driver::getTurnsTo(const Cardinal8 direction) const {
      return distance;
 }
 
-std::vector<Cardinal8> Driver::getWalls() const {
+std::vector<Cardinal8> Driver::getWalls()  {
     std::vector<Cardinal8> walls;
-    if (manager->isLeftWall()) {
+    /*if (manager->isLeftWall()) {
         Serial.print("Left ");
         Serial.println(heading);
         walls.push_back(getLeftDir());
@@ -65,8 +65,20 @@ std::vector<Cardinal8> Driver::getWalls() const {
         Serial.print("Right ");
         Serial.println(heading);
         walls.push_back(getRightDir());
+    }*/
+    if (manager->isCenterWall()){
+        walls.push_back(getForwardDir());
     }
+    manager->drive(0, M_PI/2);
+    if (manager->isCenterWall()){
+        walls.push_back(getLeftDir());
+    }
+    manager->drive(0, -M_PI);
 
+    if (manager->isCenterWall()){
+        walls.push_back(getRightDir());
+    }
+    updateHeading(getRightDir());
     return walls;
 }
 

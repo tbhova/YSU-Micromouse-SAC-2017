@@ -62,6 +62,38 @@ void Navigator::map() {
     }
 }
 
+void Navigator::mapToDestination() {
+    Coordinate destinationCell;
+    destinationCell.x = 7;
+    destinationCell.y = 7;
+    while (true) {
+
+        Coordinate currentCell = driver->getCurrentLocation();
+        maze->setMouseVisited(currentCell);
+        if (maze->isMazeMapped() || currentCell == destinationCell) {
+            Serial.println("found destination");
+            break;
+        }
+        else {
+            vector<Cardinal8> walls = driver->getWalls();
+            Serial.print(driver->getCurrentLocation().x);
+            Serial.print(" , ");
+            Serial.print(driver->getCurrentLocation().y);
+            Serial.print(" :  ");
+            for (int i = 0; i < walls.size(); i++) {
+                Serial.print(walls.at(i));
+                Serial.print(" ");
+            }
+            Serial.println(" ");
+            updateMaze(currentCell,walls);
+            //destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
+        }
+
+        Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);
+        driver->drive(nextDir);
+    }
+}
+
 void Navigator::updateMaze(Coordinate cell, std::vector<Cardinal8> walls) {
     for(vector<Cardinal8>::iterator it = walls.begin(); it != walls.end(); ++it) {
         maze->placeWall(cell.x,cell.y,*it);
@@ -79,6 +111,16 @@ void Navigator::run() {
     returnToOrigin();
 }
 
+void Navigator::runToCenter() {
+    if(!maze->isMazeMapped()) {
+        mapToDestination();
+    }
+    returnToOriginMap();
+
+    optimalRoute();
+    returnToOrigin();
+}
+
 void Navigator::optimalRoute() {
     std::stack<Cardinal8> path = directions->fullPath(Coordinate(0,0), maze->getDestinationCell());
     driver->drive(path);
@@ -89,6 +131,39 @@ void Navigator::returnToOrigin() {
     const Coordinate currentCell = driver->getCurrentLocation();
     std::stack<Cardinal8> path = directions->fullPath(currentCell, Coordinate(0,0));
     driver->drive(path);
+    driver->drive(North, 0); // reset to face North
+}
+
+void Navigator::returnToOriginMap() {
+    Coordinate destinationCell;
+    destinationCell.x = 0;
+    destinationCell.y = 0;
+    while (true) {
+
+        Coordinate currentCell = driver->getCurrentLocation();
+        maze->setMouseVisited(currentCell);
+        if (maze->isMazeMapped() || currentCell == destinationCell) {
+            Serial.println("found destination");
+            break;
+        }
+        else {
+            vector<Cardinal8> walls = driver->getWalls();
+            Serial.print(driver->getCurrentLocation().x);
+            Serial.print(" , ");
+            Serial.print(driver->getCurrentLocation().y);
+            Serial.print(" :  ");
+            for (int i = 0; i < walls.size(); i++) {
+                Serial.print(walls.at(i));
+                Serial.print(" ");
+            }
+            Serial.println(" ");
+            updateMaze(currentCell,walls);
+            //destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
+        }
+
+        Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);
+        driver->drive(nextDir);
+    }
     driver->drive(North, 0); // reset to face North
 }
 
