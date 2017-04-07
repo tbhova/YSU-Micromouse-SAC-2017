@@ -22,7 +22,7 @@ int Encoders::MouseEncoder::getSpeed() {
 
     int ticksDelta = getTicks() - lastTicks;
     lastTicks = getTicks();
-    if (ticksDelta <= 0 != velocityEstimate < 0) {
+    if (ticksDelta < 0 != velocityEstimate < 0) {
         velocityIntegrator = 0;
         velocityEstimate = 0;
     }
