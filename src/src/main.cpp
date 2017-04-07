@@ -3,13 +3,11 @@
 #include "core_pins.h"
 #include "pins.h"
 #include "navigator.h"
-
 //#include "motorcontroller.h"
 //#include "encoders.h"
 //#include "motors.h"
 //// Begin PID test code
 //#include <PID_v1.h>
-//#include <PID_AutoTune_v0.h>
 
 //MotorController leftMotorController;
 //MotorController rightMotorController;
