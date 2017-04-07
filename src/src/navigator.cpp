@@ -43,6 +43,15 @@ void Navigator::map() {
         }
         else {
             vector<Cardinal8> walls = driver->getWalls();
+            Serial.print(driver->getCurrentLocation().x);
+            Serial.print(" , ");
+            Serial.print(driver->getCurrentLocation().y);
+            Serial.print(" :  ");
+            for (int i = 0; i < walls.size(); i++) {
+                Serial.print(walls.at(i));
+                Serial.print(" ");
+            }
+            Serial.println(" ");
             updateMaze(currentCell,walls);
             destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
         }

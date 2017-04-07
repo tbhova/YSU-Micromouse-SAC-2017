@@ -31,13 +31,13 @@ void setup() {
 void loop() {
     digitalWriteFast(LED_BUILTIN, HIGH);
 
+    Serial.println("Begin");
 
-//    navigator.run();
+    navigator.run();
 //    navigator.driveStraight();
 //    navigator.driveStraightIndividualCells();
 //    navigator.turnRepeatedly();
-    Serial.println("Begin");
-    navigator.driveStupidMaze();
+//    navigator.driveStupidMaze();
 
     /*bool leftWalls[12];
     bool rightWalls[12];*/

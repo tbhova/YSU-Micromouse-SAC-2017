@@ -65,6 +65,7 @@ std::vector<Cardinal8> Driver::getWalls() const {
 }
 
 Cardinal8 Driver::getLeftDir() const {
+    Serial.println(heading);
     int leftDir = (static_cast<int>(heading) + 2) % 8;
     return static_cast<Cardinal8>(leftDir);
 }

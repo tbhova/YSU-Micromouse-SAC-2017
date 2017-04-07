@@ -14,7 +14,7 @@ public:
 private:
     // Left and Right wall distance setpoints
     // Equal distance is 110 110
-    const double leftWallSetPoint = 105, rightWallSetPoint = 105;
+    const double leftWallSetPoint = 110, rightWallSetPoint = 110;
 
     // Wall Error Input and setpoints
     double wallInput = 0, wallSetPoint = 0;

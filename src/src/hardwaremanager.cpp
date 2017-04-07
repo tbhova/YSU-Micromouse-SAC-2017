@@ -13,7 +13,7 @@ bool HardwareManager::isLeftWallRightNow() const {
 }
 
 bool HardwareManager::isLeftWall() const {
-    return leftWall;
+    return !leftWall;
 }
 
 bool HardwareManager::isCenterWallRightNow() const {
@@ -29,7 +29,7 @@ bool HardwareManager::isRightWallRightNow() const {
 }
 
 bool HardwareManager::isRightWall() const {
-    return rightWall;
+    return !rightWall;
 }
 
 DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
