@@ -23,18 +23,8 @@ void MotorController::reset(){
 }
 
 int MotorController::getPWM(const int desiredVelocity, const int actualVelocity) {
-    //if(abs(actualVelocity - desiredVelocity) > 70){
-      // velocityInput = desiredVelocity - 50;
-    //}
-    //else{
-        this->velocityInput = actualVelocity;
-    //}
+    this->velocityInput = actualVelocity;
     this->velocitySetPoint = desiredVelocity;
-    if(millis() - lastTime > 100){
-//        Serial.print("Velocity error:   ");
-//        Serial.println(velocityInput - velocitySetPoint);
-        lastTime = millis();
-    }
     velocityPID.Compute();
 
     return this->pwmOutput;
