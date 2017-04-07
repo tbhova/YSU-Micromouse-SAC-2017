@@ -1,6 +1,8 @@
 #include "navigator.h"
 #include <stack>
 #include "breadthfirstgps.h"
+#include <Arduino.h>
+#include <mk20dx128.h>
 
 using namespace std;
 

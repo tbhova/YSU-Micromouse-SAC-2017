@@ -20,7 +20,6 @@ void MotorController::reset(){
     velocityATune.SetControlType(1);
     velocityATune.SetLookbackSec(1);
     doneAuto = false;
-
 }
 
 int MotorController::getPWM(const int desiredVelocity, const int actualVelocity) {

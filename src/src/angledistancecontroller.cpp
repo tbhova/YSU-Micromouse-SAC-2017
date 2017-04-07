@@ -7,10 +7,13 @@ AngleDistanceController::AngleDistanceController() {
 }
 
 double AngleDistanceController::getNewOmega(const double angleTraveled, const double angleSet) {
-    //const double optimalOmega = 2.0;
-    const double optimalOmega = 2.0;
-
-    return optimalOmega;
+    const double maxOmega = 3.0;
+    if (lastOmega < maxOmega && angleTraveled * 10 < angleSet) {
+        lastOmega += 0.001;
+    } else {
+        lastOmega = maxOmega;
+    }
+    return maxOmega;
 }
 
 int AngleDistanceController::getNewVelocity(const double distTraveled, const double distSet) {
@@ -19,26 +22,25 @@ int AngleDistanceController::getNewVelocity(const double distTraveled, const dou
     const int time = millis();
     Serial.print("last velocity ");
     Serial.println(lastVelocity);
-    if (distTraveled < 40 /*30*/ && lastVelocity < maxVelocity) {
+    if (distTraveled < 30 && lastVelocity < maxVelocity) {
         // ramp up
         if (time - lastVelocityTime > 2) {
             lastVelocity++;
             lastVelocityTime = time;
         }
         return lastVelocity;
-    } else if (distSet - distTraveled < 40 /*30*/) {
+    } else if (distSet - distTraveled < 30) {
         // ramp down
         if (time - lastVelocityTime > 2 && lastVelocity > minVelocity) {
             lastVelocity--;
             lastVelocityTime = time;
         } else if (time - lastVelocityTime > 2) {
-            //lastVelocity = minVelocity;
+            lastVelocity = minVelocity;
         }
         return lastVelocity;
     } else {
         // constant speed driving
-        //lastVelocity = maxVelocity;
-        //return maxVelocity;
+        lastVelocity = maxVelocity;
         return lastVelocity;
     }
 }

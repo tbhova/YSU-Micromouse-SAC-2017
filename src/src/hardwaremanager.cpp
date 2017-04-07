@@ -43,6 +43,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
 //    wallPID.reset();
 //    resetMotorController();
     this->checkpointEncoders();
+
     if (distInMM == 0 && angleInRadians == 0) {
         return;
     } else if (distInMM == 0) {
@@ -54,6 +55,14 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
             }
             const double omega = angleController(angleInRadians);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(0, omega);
+            Serial.print(" ");
+            Serial.print(velocities.left);
+            Serial.print(" ");
+            Serial.print(velocities.right);
+//            Serial.print(" ");
+//            Serial.print(encoders.getLeftSpeed()/ticksPerMM);
+//            Serial.print(" ");
+//            Serial.println(encoders.getRightSpeed()/ticksPerMM);
             motorController(velocities);
         }
     } else if (angleInRadians == 0) {
@@ -64,14 +73,12 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                 return;
             }
             const double omega = wallController();
-            //const double omega = 0;
             const int forwardVelocity = distanceController(distInMM);
 #warning remove
             Serial.print(omega);
             Serial.print("   ");
             Serial.print(forwardVelocity);
             Serial.println(" ");
-            Serial.print(forwardVelocity);
             const DifferentialDriveVelcity velocities = convertDifferentialDrive(forwardVelocity, omega);
 #warning remove
 //            Serial.print(" ");
@@ -88,6 +95,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
         while (true) {
             delay(1);
             if (getDistanceTraveled() >= distInMM && getAngleTraveled() >= angleInRadians) {
+                motors.coast();
                 return;
             }
             const double omega = angleController(angleInRadians) + wallController();
@@ -118,11 +126,11 @@ double HardwareManager::angleController(const double angleInRadians) {
 
 double HardwareManager::wallController() {
 #warning remove
-    Serial.print("IR   ");
+    /*Serial.print("IR   ");
     Serial.print(irArray.getLeftDistance());
     Serial.print(" ");
     Serial.print(irArray.getRightDistance());
-    Serial.println(" ");
+    Serial.println(" ");*/
     return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWall(), isRightWall());
 }
 
