@@ -41,6 +41,15 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
     if (distInMM == 0 && angleInRadians == 0) {
         return;
     } else if (distInMM == 0) {
+        const int ticks = millis();
+        int lastTicks = millis();
+        while (millis() - ticks < 300) {
+            if (millis() != lastTicks) {
+                encoders.getLeftSpeed();
+                encoders.getRightSpeed();
+                lastTicks = millis();
+            }
+        }
         while (true) {
             delay(1);
             if (abs(getAngleTraveled()) >= abs(angleInRadians)) {
@@ -136,10 +145,16 @@ void HardwareManager::motorController(const DifferentialDriveVelcity velocities)
     int leftSpeed = leftMotorPID.getPWM(velocities.left, encoders.getLeftSpeed()/ticksPerMM);
     int rightSpeed = rightMotorPID.getPWM(velocities.right, encoders.getRightSpeed()/ticksPerMM);
 #warning remove
-    /*Serial.print("Left/Right Speed:   ");
-    Serial.print(encoders.getLeftSpeed());
-    Serial.print(" , ");
-    Serial.println(encoders.getRightSpeed());*/
+    if (velocities.right < 0 != velocities.left < 0) {
+//        Serial.print("Left/Right Speed:   ");
+//        Serial.print(encoders.getLeftSpeed());
+//        Serial.print("  ");
+//        Serial.print(leftSpeed);
+//        Serial.print(" , ");
+//        Serial.print(encoders.getRightSpeed());
+//        Serial.print("  ");
+//        Serial.println(rightSpeed);
+    }
     motors.setSpeed(leftSpeed, rightSpeed);
 }
 

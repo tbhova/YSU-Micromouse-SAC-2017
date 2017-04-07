@@ -2,11 +2,10 @@
 #include <Arduino.h>
 #include "mk20dx128.h"
 #include <Encoder.h>
-#warning remove
-#include "Arduino.h"
+#warning remove Arduino
+
 Encoders::MouseEncoder::MouseEncoder(const int encoderA, const int encoderB) {
     lastTime = millis();
-    count = 100;
     encoder = new Encoder(encoderA, encoderB);
 }
 
@@ -21,7 +20,16 @@ int Encoders::MouseEncoder::getSpeed() {
     velocityIntegrator += positionError * ki * delta;
     velocityEstimate = positionError * kp + velocityIntegrator + velocityDerivative;
 
+    int ticksDelta = getTicks() - lastTicks;
+    lastTicks = getTicks();
+    Serial.println(ticksDelta);
+    if (ticksDelta < 0 != velocityEstimate < 0) {
+        velocityIntegrator = 0;
+        velocityEstimate = 0;
+    }
+
     return static_cast<int>(velocityEstimate);
+
 }
 
 int Encoders::MouseEncoder::getTicks() {

@@ -24,10 +24,10 @@ private:
 
     private:
         Encoder* encoder;
-        const double kp = 4.0, ki = 30.0, kd = 0.5;
+        const double kp = 4.0, ki = 30.0, kd = 0.2;
         double positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0, lastPositionError = 0;
-        unsigned int lastTime;
-        int count;
+        unsigned int lastTime = micros();
+        int lastTicks = 0;
     };
 
     MouseEncoder leftEncoder = MouseEncoder(LEFT_MOTOR_ENCODER_A, LEFT_MOTOR_ENCODER_B);
