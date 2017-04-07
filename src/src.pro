@@ -140,7 +140,8 @@ SOURCES += \
     src/angledistancecontroller.cpp \
     src/wallcontroller.cpp \
     src/wallcontroller.cpp \
-    src/motorcontroller.cpp
+    src/motorcontroller.cpp \
+    src/gyro.cpp
 
 HEADERS += \
     src/maze.h \
@@ -168,4 +169,5 @@ HEADERS += \
     src/anglecontroller.h \
     src/angledistancecontroller.h \
     src/wallcontroller.h \
-    src/motorcontroller.h
+    src/motorcontroller.h \
+    src/gyro.h
