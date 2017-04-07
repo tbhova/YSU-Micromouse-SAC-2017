@@ -16,6 +16,7 @@ public:
     StopGoDriver();
     explicit StopGoDriver(AbstractHardwareManager* manager);
     virtual void drive(const Cardinal8 dir);
+    virtual void drive(const Cardinal8 dir, const int cells);
     virtual void drive(std::stack<Cardinal8> &path);
     virtual void drive(const Cardinal8 dir, const int cells);
 

@@ -39,7 +39,8 @@ void StopGoDriver::turn(const Cardinal8 direction) {
     updateHeading(direction);
 }
 
-void StopGoDriver::drive(const Cardinal8 direction, const int cells) {
-    turn(direction);
-    manager->drive(180 * cells, 0);
+void StopGoDriver::drive(const Cardinal8 dir, const int cells) {
+    turn(dir);
+    updateHeading(dir);
+    manager->drive(180*cells, 0);
 }

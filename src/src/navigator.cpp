@@ -102,3 +102,16 @@ void Navigator::driveStraightIndividualCells() {
     }
     driver->drive(North, 0);
 }
+
+void Navigator::turnRepeatedly() {
+//    Serial.println("West");
+    driver->drive(West, 0);
+    delay(1500);
+//    Serial.println("South");
+    driver->drive(South, 0);
+    delay(1500);
+    driver->drive(East, 0);
+    delay(1500);
+    driver->drive(North, 0);
+    delay(1500);
+}

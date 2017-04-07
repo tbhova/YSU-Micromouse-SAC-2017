@@ -34,7 +34,8 @@ void loop() {
 
 //    navigator.run();
 //    navigator.driveStraight();
-    navigator.driveStraightIndividualCells();
+//    navigator.driveStraightIndividualCells();
+    navigator.turnRepeatedly();
     /*bool leftWalls[12];
     bool rightWalls[12];*/
     /*for(int i=0; i<12; i++){
@@ -58,4 +59,5 @@ void loop() {
     }*/
 
     digitalWriteFast(LED_BUILTIN, LOW);
+    delay(2000);
 }

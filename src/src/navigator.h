@@ -49,6 +49,7 @@ public:
 
     void driveStraight();
     void driveStraightIndividualCells();
+    void turnRepeatedly();
 
 protected:
 
