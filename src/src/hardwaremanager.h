@@ -34,7 +34,7 @@ public:
 
 private:
     InfraredSensorArray irArray;
-    const int radius = 39/2, wheelbase = 86, ticksPerMM = 25, maxSpeed = 5900;
+    const int radius = 39/2, wheelbase = 89, ticksPerMM = 25, maxSpeed = 5900;
     int checkpointedLeftEncoder = 0, checkpointedRightEncoder = 0;
 
 
