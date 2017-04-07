@@ -13,7 +13,8 @@ bool HardwareManager::isLeftWallRightNow() const {
 }
 
 bool HardwareManager::isLeftWall() const {
-    return !leftWall;
+//    return !leftWall;
+    return isLeftWallRightNow();
 }
 
 bool HardwareManager::isCenterWallRightNow() const {
@@ -29,7 +30,8 @@ bool HardwareManager::isRightWallRightNow() const {
 }
 
 bool HardwareManager::isRightWall() const {
-    return !rightWall;
+    //return !rightWall;
+    return isRightWallRightNow();
 }
 
 DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
@@ -209,9 +211,7 @@ void HardwareManager::checkpointWalls() {
         lastRightWallDistance = distance;
     }
 
-    // only able to set wall after we've traveled 4 cm
-    if (distance > 40) {
-        leftWall = leftWall || distance - lastLeftWallDistance > 50;
-        rightWall = rightWall || distance - lastRightWallDistance > 50;
-    }
+    // only able to set wall after we've traveled 6 cm
+    leftWall = leftWall || distance - lastLeftWallDistance > 60;
+    rightWall = rightWall || distance - lastRightWallDistance > 60;
 }

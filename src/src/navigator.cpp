@@ -39,6 +39,7 @@ void Navigator::map() {
         Coordinate currentCell = driver->getCurrentLocation();
         maze->setMouseVisited(currentCell);
         if (maze->isMazeMapped()) {
+            Serial.println("mapped");
             break;
         }
         else {
