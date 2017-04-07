@@ -24,7 +24,7 @@ private:
 
     private:
         Encoder* encoder;
-        const double kp = 350.0/*25.0*/, ki = 0.0/*30.0*/, kd = 0.0/*0.2*/;
+        const double kp = 350.0/*350.0*/, ki = 30.0/*30.0*/, kd = 0.5/*0.2*/;
         double positionEstimate = 0, velocityEstimate = 0, velocityIntegrator = 0, lastPositionError = 0;
         unsigned int lastTime = micros();
         int lastTicks = 0;
