@@ -22,6 +22,9 @@ public:
     virtual bool isCenterWall() const;
     virtual bool isRightWall() const;
 
+    bool isLeftDetected() const;
+    bool isRightDetected() const;
+
     virtual void drive(const int distInMM, const double angleInRadians);
 
     /**
@@ -56,6 +59,9 @@ private:
     bool isLeftWallRightNow() const;
     bool isCenterWallRightNow() const;
     bool isRightWallRightNow() const;
+
+    bool isRightWallAddWalls() const { return irArray.getLeftDistance() < 148; }
+    bool isLeftWallAddWalls() const { return irArray.getLeftDistance() < 148; }
 
     int lastLeftWallDistance = 0, lastRightWallDistance = 0;
 

@@ -3,7 +3,7 @@
 #include "core_pins.h"
 #include "pins.h"
 #include "navigator.h"
-
+#include "infraredsensorarray.h"
 extern "C"{
    int _getpid(){ return -1;}
    int _kill(int pid, int sig){ return -1; }
@@ -11,7 +11,7 @@ extern "C"{
 }
 
 Navigator navigator;
-
+InfraredSensorArray IRarray;
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(LEFT_MOTOR_FORWARD, OUTPUT);
@@ -26,7 +26,7 @@ void setup() {
     pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
     Serial.begin(9600);
 //    while(!Serial);
-    delay(2000);
+    delay(1500);
 }
 
 void loop() {
@@ -40,7 +40,11 @@ void loop() {
 //    navigator.driveStraightIndividualCells();
 //    navigator.turnRepeatedly();
 //    navigator.driveStupidMaze();
-
+    /*while(true){
+        Serial.print("Left IR:  ");
+        Serial.println(IRarray.getLeftDistance());
+        delay(500);
+    }*/
     /*bool leftWalls[12];
     bool rightWalls[12];*/
     /*for(int i=0; i<12; i++){

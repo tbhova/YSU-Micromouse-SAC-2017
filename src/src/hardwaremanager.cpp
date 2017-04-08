@@ -18,7 +18,7 @@ bool HardwareManager::isLeftWall() const {
 }
 
 bool HardwareManager::isCenterWallRightNow() const {
-    return irArray.getCenterDistance() < 125;
+    return irArray.getCenterDistance() < 115;
 }
 
 bool HardwareManager::isCenterWall() const {
@@ -32,6 +32,16 @@ bool HardwareManager::isRightWallRightNow() const {
 bool HardwareManager::isRightWall() const {
     //return !rightWall;
     return isRightWallRightNow();
+}
+
+bool HardwareManager::isLeftDetected() const {
+//    return irArray.getLeftDistance() < 70;
+    return leftWall;
+}
+
+bool HardwareManager::isRightDetected() const {
+//    return irArray.getRightDistance() < 70;
+    return rightWall;
 }
 
 DifferentialDriveVelcity HardwareManager::convertDifferentialDrive(const int forwardVelocity, const double angularVelocity) const {
@@ -54,6 +64,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
 
     leftWall = false;
     rightWall = false;
+    bool wallsChecked = false;
 
     if (distInMM == 0 && angleInRadians == 0) {
         return;
@@ -118,8 +129,13 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                 motors.coast();
                 return;
             }
+            if (!wallsChecked && distInMM == 180 && getDistanceTraveled() > 50) {
+                wallsChecked = true;
+                leftWall = isLeftWallAddWalls();
+                rightWall = isRightWallAddWalls();
+            }
             const double omega = wallController();
-            checkpointWalls();
+//            checkpointWalls();
             const int forwardVelocity = distanceController(distInMM);
 #warning remove
 //            Serial.print(omega);

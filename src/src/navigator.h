@@ -4,6 +4,9 @@
 #include "maze.h"
 #include "abstractdriver.h"
 #include "gps.h"
+#warning
+#include "hardwaremanager.h"
+#include "infraredsensorarray.h"
 
 /**
  * @brief The Navigator class

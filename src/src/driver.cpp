@@ -81,17 +81,23 @@ std::vector<Cardinal8> Driver::getWalls()  {
     if (manager->isCenterWall()) {
        walls.push_back(getForwardDir());
     }
-    manager->drive(0, M_PI/4);
-
-    if(manager->isLeftWall()) {
+    if(((HardwareManager*)manager)->isLeftDetected()) {
        walls.push_back(getLeftDir());
     }
-    manager->drive(0, -M_PI/2);
-
-    if(manager->isRightWall()) {
+    if(((HardwareManager*)manager)->isRightDetected()) {
        walls.push_back(getRightDir());
     }
-    manager->drive(0, M_PI/4);
+//    manager->drive(0, M_PI/3);
+
+//    if(((HardwareManager*)manager)->isLeftDetected()) {
+//       walls.push_back(getLeftDir());
+//    }
+//    manager->drive(0, (-2 * M_PI)/3);
+
+//    if(((HardwareManager*)manager)->isRightDetected()) {
+//       walls.push_back(getRightDir());
+//    }
+//    manager->drive(0, M_PI/3);
 
 
     //updateHeading(getRightDir());

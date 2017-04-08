@@ -11,13 +11,14 @@ using namespace std;
 Navigator::Navigator() {
     driver = new StopGoDriver();
     //maze = new Maze(16, 16);
-    maze = new Maze(16, 13);
+    maze = new Maze(6, 6);
     directions = new BreadthFirstGPS(maze);
 }
 #endif
 
 Navigator::Navigator(AbstractDriver *driver, Maze *maze, GPS *gps) :
     driver(driver), maze(maze), directions(gps) {
+    maze->placeWall(0,0, East);
 }
 
 Coordinate Navigator::findUnvisitedCell() const {
@@ -113,7 +114,8 @@ void Navigator::run() {
 
 void Navigator::runToCenter() {
     if(!maze->isMazeMapped()) {
-        mapToCell(Coordinate(7,7));
+//        mapToCell(Coordinate(7,7));
+        mapToCell(Coordinate(5,5));
         waitForMillis(1000);
         mapToCell(Coordinate(0,0));
         driver->drive(North, 0);
