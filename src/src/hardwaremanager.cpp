@@ -122,6 +122,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                     checkpointEncoders();
                     while (abs(getDistanceTraveled()) < abs(distanceToDrive)) {
                         motorController(calVelocity);
+//                        motors.setSpeed(calVelocity.left, calVelocity.right);
                         delay(1);
                     }
                 }
@@ -129,7 +130,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                 motors.coast();
                 return;
             }
-            if (!wallsChecked && distInMM == 180 && getDistanceTraveled() > 50) {
+            if (!wallsChecked && distInMM == 180 && getDistanceTraveled() > 55) {
                 wallsChecked = true;
                 leftWall = isLeftWallAddWalls();
                 rightWall = isRightWallAddWalls();
@@ -194,7 +195,7 @@ double HardwareManager::wallController() {
     Serial.print(" ");
     Serial.print(irArray.getRightDistance());
     Serial.println(" ");*/
-    return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), isLeftWallRightNow(), isRightWallRightNow());
+    return wallPID.getNewOmega(irArray.getLeftDistance(), irArray.getRightDistance(), !isCenterWall() && isLeftWallRightNow(), !isCenterWall() && isRightWallRightNow());
 }
 
 int HardwareManager::distanceController(const int distanceInMM) {

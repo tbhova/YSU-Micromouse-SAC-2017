@@ -40,6 +40,9 @@ public:
         encoders.getRightSpeed();
     }
 
+    bool isRightWallAddWalls() const { return irArray.getRightDistance() < 168; }
+    bool isLeftWallAddWalls() const { return irArray.getLeftDistance() < 168; }
+
 private:
     InfraredSensorArray irArray;
     const int radius = 39/2, wheelbase = 89, ticksPerMM = 25, maxSpeed = 5900;
@@ -59,9 +62,6 @@ private:
     bool isLeftWallRightNow() const;
     bool isCenterWallRightNow() const;
     bool isRightWallRightNow() const;
-
-    bool isRightWallAddWalls() const { return irArray.getLeftDistance() < 148; }
-    bool isLeftWallAddWalls() const { return irArray.getLeftDistance() < 148; }
 
     int lastLeftWallDistance = 0, lastRightWallDistance = 0;
 
