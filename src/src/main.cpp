@@ -25,7 +25,7 @@ void setup() {
     pinMode(IR_SENSOR_CENTER, INPUT_PULLDOWN);
     pinMode(IR_SENSOR_RIGHT, INPUT_PULLDOWN);
     Serial.begin(9600);
-    while(!Serial);
+//    while(!Serial);
     delay(2000);
 }
 
