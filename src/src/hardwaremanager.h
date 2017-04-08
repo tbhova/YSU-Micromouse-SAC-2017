@@ -40,8 +40,8 @@ public:
         encoders.getRightSpeed();
     }
 
-    bool isRightWallAddWalls() const { return irArray.getRightDistance() < 164; }
-    bool isLeftWallAddWalls() const { return irArray.getLeftDistance() < 164; }
+    bool isRightWallAddWalls() const { return irArray.getRightDistance() < 142; }
+    bool isLeftWallAddWalls() const { return irArray.getLeftDistance() < 142; }
 
 private:
     InfraredSensorArray irArray;

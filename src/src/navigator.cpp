@@ -10,8 +10,8 @@ using namespace std;
 #include "stopgodriver.h"
 Navigator::Navigator() {
     driver = new StopGoDriver();
-    //maze = new Maze(16, 16);
-    maze = new Maze(6, 6);
+    maze = new Maze(16, 16);
+//    maze = new Maze(6, 6);
     directions = new BreadthFirstGPS(maze);
 }
 #endif
@@ -114,8 +114,8 @@ void Navigator::run() {
 
 void Navigator::runToCenter() {
     if(!maze->isMazeMapped()) {
-//        mapToCell(Coordinate(7,7));
-        mapToCell(Coordinate(5,5));
+        mapToCell(Coordinate(7,7));
+//        mapToCell(Coordinate(5,5));
         waitForMillis(1000);
         mapToCell(Coordinate(0,0));
         driver->drive(North, 0);
