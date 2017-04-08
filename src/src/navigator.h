@@ -29,6 +29,8 @@ private:
      */
     Coordinate findUnvisitedCell() const;
 
+    void waitForMillis(const int millisTime);
+
 public:
     Navigator();
     Navigator(AbstractDriver *driver, Maze *maze, GPS *gps);
@@ -46,8 +48,7 @@ public:
     void map();
     void optimalRoute();
     void returnToOrigin();
-    void returnToOriginMap();
-    void mapToDestination();
+    void mapToCell(const Coordinate cell);
 
     void driveStraight();
     void driveStraightIndividualCells();

@@ -2,6 +2,7 @@
 #include <cmath>
 #include <Arduino.h>
 #include <mk20dx128.h>
+#include "hardwaremanager.h"
 
 #ifndef BUILD_FOR_PC
 StopGoDriver::StopGoDriver() : Driver() {
@@ -49,4 +50,8 @@ void StopGoDriver::drive(const Cardinal8 dir, const int cells) {
     turn(dir);
     updateHeading(dir);
     manager->drive(180*cells, 0);
+}
+
+void StopGoDriver::updateEncoders() {
+    ((HardwareManager*)manager)->updateEncoders();
 }

@@ -18,6 +18,7 @@ public:
     virtual void drive(const Cardinal8 dir);
     virtual void drive(const Cardinal8 dir, const int cells);
     virtual void drive(std::stack<Cardinal8> &path);
+    virtual void updateEncoders();
 
 protected:
     virtual void turn(const Cardinal8 direction);

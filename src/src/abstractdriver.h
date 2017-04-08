@@ -11,6 +11,7 @@ public:
     virtual void drive(const Cardinal8 dir) = 0;
     virtual Coordinate getCurrentLocation() const = 0;
     virtual std::vector<Cardinal8> getWalls() = 0;
+    virtual void updateEncoders() = 0;
 };
 
 #endif // ABSTRACTDRIVER_H

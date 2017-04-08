@@ -32,6 +32,11 @@ public:
      */
     DifferentialDriveVelcity convertDifferentialDrive(const int forwardVelocity, const double angularVelcity) const;
 
+    void updateEncoders() {
+        encoders.getLeftSpeed();
+        encoders.getRightSpeed();
+    }
+
 private:
     InfraredSensorArray irArray;
     const int radius = 39/2, wheelbase = 89, ticksPerMM = 25, maxSpeed = 5900;
