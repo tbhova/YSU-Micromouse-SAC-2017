@@ -9,7 +9,7 @@ HardwareManager::HardwareManager() {
 }
 
 bool HardwareManager::isLeftWallRightNow() const {
-    return irArray.getLeftDistance() < 125;
+    return irArray.getLeftDistance() < 142;
 }
 
 bool HardwareManager::isLeftWall() const {
@@ -26,7 +26,7 @@ bool HardwareManager::isCenterWall() const {
 }
 
 bool HardwareManager::isRightWallRightNow() const {
-    return irArray.getRightDistance() < 125;
+    return irArray.getRightDistance() < 142;
 }
 
 bool HardwareManager::isRightWall() const {
@@ -130,7 +130,7 @@ void HardwareManager::drive(const int distInMM, const double angleInRadians) {
                 motors.coast();
                 return;
             }
-            if (!wallsChecked && distInMM == 180 && getDistanceTraveled() > 55) {
+            if (!wallsChecked && distInMM == 180 && getDistanceTraveled() > 50) {
                 wallsChecked = true;
                 leftWall = isLeftWallAddWalls();
                 rightWall = isRightWallAddWalls();

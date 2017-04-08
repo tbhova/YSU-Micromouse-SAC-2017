@@ -50,12 +50,12 @@ void Navigator::map() {
             }
             Serial.println(" ");
             updateMaze(currentCell,walls);
-            destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
         }
         if (maze->isMazeMapped()) {
             Serial.println("mapped");
             break;
         }
+        destinationCell = directions->undiscoveredCell(currentCell);//findUnvisitedCell();
 
         Cardinal8 nextDir = directions->getDirectionTo(currentCell, destinationCell);
         driver->drive(nextDir);
