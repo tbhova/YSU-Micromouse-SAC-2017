@@ -18,7 +18,7 @@ bool HardwareManager::isLeftWall() const {
 }
 
 bool HardwareManager::isCenterWallRightNow() const {
-    return irArray.getCenterDistance() < 115;
+    return irArray.getCenterDistance() < 125;
 }
 
 bool HardwareManager::isCenterWall() const {

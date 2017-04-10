@@ -113,21 +113,21 @@ void Navigator::run() {
 }
 
 void Navigator::runToCenter() {
-    if(!maze->isMazeMapped()) {
+//    if(!maze->isMazeMapped()) {
         mapToCell(Coordinate(7,7));
 //        mapToCell(Coordinate(5,5));
         waitForMillis(1000);
         mapToCell(Coordinate(0,0));
         driver->drive(North, 0);
         waitForMillis(8000);
-        map();
-        waitForMillis(1000);
-        returnToOrigin();
-        waitForMillis(8000);
-    }
+//        map();
+//        waitForMillis(1000);
+//        returnToOrigin();
+//        waitForMillis(8000);
+//    }
 
-    optimalRoute();
-    waitForMillis(8000);
+//    optimalRoute();
+//    waitForMillis(8000);
 }
 
 void Navigator::optimalRoute() {
