@@ -6,12 +6,12 @@ Motors::Motor::Motor(const int forward, const int reverse, const int speed) {
     speedPin = speed;
 }
 
-void Motors::Motor::coast() {
+void Motors::Motor::brake() {
     digitalWriteFast(forwardPin, HIGH);
     digitalWriteFast(reversePin, HIGH);
 }
 
-void Motors::Motor::brake() {
+void Motors::Motor::coast() {
     digitalWriteFast(forwardPin, LOW);
     digitalWriteFast(reversePin, LOW);
 }
